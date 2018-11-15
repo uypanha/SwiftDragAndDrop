@@ -8,13 +8,10 @@
 
 import UIKit
 
-public extension CGRect {
+extension CGRect {
     
     public var area: CGFloat {
         return self.size.width * self.size.height
     }
     
-    public var volum: CGFloat {
-        return 100
-    }
 }
