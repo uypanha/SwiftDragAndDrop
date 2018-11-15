@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftDragAndDrop'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'Simple Drag and Drop component of multiple UITableView written in Swift'
 
 # This description is used to generate tags and improve search results.
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   s.swift_version = '4'
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'Source/*'
+  s.source_files = 'Source/**/*'
   
   # s.resource_bundles = {
   #   'SwiftDragAndDrop' => ['SwiftDragAndDrop/Assets/*.png']

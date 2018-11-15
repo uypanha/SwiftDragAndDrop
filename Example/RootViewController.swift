@@ -36,10 +36,10 @@ class RootViewController: UITableViewController {
     init() {
         super.init(style: .grouped)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "SwiftDragAndDrop"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
