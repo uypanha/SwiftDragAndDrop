@@ -14,7 +14,6 @@
 		6BEE9C5C2D77B174F12CCCCF3FD3DAE7 /* Pods-SwiftDragAndDrop_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 596A9987441F72B2777B04B4780CD2BF /* Pods-SwiftDragAndDrop_Tests-dummy.m */; };
 		79D540B004A9B534D81922ADAD1F7267 /* Pods-SwiftDragAndDrop_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F886EAAC806B44D3541D684CE28F12E /* Pods-SwiftDragAndDrop_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		95D9BF4875FCB69601806E8853193D61 /* SwiftDragAndDrop-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 65813E1451C74CC530BF1E72A71B85B7 /* SwiftDragAndDrop-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		95FD96488F806B1CB5D08EC4DB663B54 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CC402C8C4EFD1363FAFDEFACBBD4CA /* ReplaceMe.swift */; };
 		CCC99F9C343B36A515EBAAF19AB131CF /* SwiftDragAndDrop-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 640EC4952F9F625ECBCABD84F6894B67 /* SwiftDragAndDrop-dummy.m */; };
 		DAEFEA7B65B76BAA82EDD46F6E8E737E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -65,7 +64,6 @@
 		9E94EC9945E122CE160BB40786363A7C /* Pods_SwiftDragAndDrop_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftDragAndDrop_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A37CC6CA9DE3978C79A3A27B911E6555 /* Pods-SwiftDragAndDrop_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftDragAndDrop_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A5995A416EF97F22EC5B80C8C9E83E34 /* SwiftDragAndDrop-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftDragAndDrop-prefix.pch"; sourceTree = "<group>"; };
-		A5CC402C8C4EFD1363FAFDEFACBBD4CA /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = SwiftDragAndDrop/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		BF3909F1347E73C569AF6674E84C12C0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD996DE82F1042796956626555D2B8EE /* SwiftDragAndDrop.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftDragAndDrop.modulemap; sourceTree = "<group>"; };
 		D38205FF01A713758C7E2DD6FA2E57AA /* Pods-SwiftDragAndDrop_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SwiftDragAndDrop_Example.modulemap"; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				DCC9B9A3219D6749005D4352 /* Source */,
-				A5CC402C8C4EFD1363FAFDEFACBBD4CA /* ReplaceMe.swift */,
 				194363BF8223E25D6E48A2CAFAA6CC03 /* Pod */,
 				7967C7B32FEB68EC58F9E741822DCC37 /* Support Files */,
 			);
@@ -381,7 +378,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95FD96488F806B1CB5D08EC4DB663B54 /* ReplaceMe.swift in Sources */,
 				CCC99F9C343B36A515EBAAF19AB131CF /* SwiftDragAndDrop-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
