@@ -13,9 +13,11 @@ extension DragAndDropTableView {
     func autoScrollVelocity(_ rect: CGRect) -> CGFloat {
         let safeAreaFrame: CGRect
         if #available(iOS 11, *) {
-            safeAreaFrame = self.frame.inset(by: self.safeAreaInsets)
+            safeAreaFrame = UIEdgeInsetsInsetRect(self.frame, self.safeAreaInsets)
+                //self.frame.inset(by: self.safeAreaInsets)
         } else {
-            safeAreaFrame = self.frame.inset(by: self.scrollIndicatorInsets)
+            safeAreaFrame = UIEdgeInsetsInsetRect(self.frame, self.scrollIndicatorInsets)
+                // self.frame.inset(by: self.scrollIndicatorInsets)
         }
         
         let distanceToTop = max(rect.minY - safeAreaFrame.minY, 0)

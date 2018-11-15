@@ -118,7 +118,7 @@ extension ScrollViewController {
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 }
 
@@ -252,6 +252,6 @@ class TodoDragAndDropTableView: DragAndDropTableView, DragAndDropTableViewDataSo
         if let height = cellHeightsDictionary[indexPath] {
             return height
         }
-        return UITableView.automaticDimension
+        return UITableViewAutomaticDimension
     }
 }
