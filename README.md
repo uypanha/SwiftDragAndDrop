@@ -20,10 +20,6 @@ it, simply add the following line to your Podfile:
 pod 'SwiftDragAndDrop'
 ```
 
-## Author
-
-uyphanha.dev@gmail.com, uyphanha.dev@gmail.com
-
 ## License
 
 SwiftDragAndDrop is available under the MIT license. See the LICENSE file for more info.
