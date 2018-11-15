@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SwiftDragAndDrop_Example' do
+  pod 'SwiftDragAndDrop', :path => '../'
+
+  target 'SwiftDragAndDrop_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

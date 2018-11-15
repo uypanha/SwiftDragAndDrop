@@ -1,0 +1,6 @@
+framework module SwiftDragAndDrop {
+  umbrella header "SwiftDragAndDrop-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,789 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		105779B9199EF9A796E4F23E88CC6C34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */; };
+		3B4BD0098EB5D7604AFA92D33C355ACC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */; };
+		539CE4F7A9F1A476B7A31E5BB67D15D7 /* Pods-SwiftDragAndDrop_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC31D3D3BA5A2C514F4B1CE354D5AD7 /* Pods-SwiftDragAndDrop_Example-dummy.m */; };
+		5554997F3419536067DCA888CA1FD0E0 /* Pods-SwiftDragAndDrop_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6018C4F5811EE158ECEF8405D4A88F15 /* Pods-SwiftDragAndDrop_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BEE9C5C2D77B174F12CCCCF3FD3DAE7 /* Pods-SwiftDragAndDrop_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 596A9987441F72B2777B04B4780CD2BF /* Pods-SwiftDragAndDrop_Tests-dummy.m */; };
+		79D540B004A9B534D81922ADAD1F7267 /* Pods-SwiftDragAndDrop_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F886EAAC806B44D3541D684CE28F12E /* Pods-SwiftDragAndDrop_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95D9BF4875FCB69601806E8853193D61 /* SwiftDragAndDrop-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 65813E1451C74CC530BF1E72A71B85B7 /* SwiftDragAndDrop-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95FD96488F806B1CB5D08EC4DB663B54 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CC402C8C4EFD1363FAFDEFACBBD4CA /* ReplaceMe.swift */; };
+		CCC99F9C343B36A515EBAAF19AB131CF /* SwiftDragAndDrop-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 640EC4952F9F625ECBCABD84F6894B67 /* SwiftDragAndDrop-dummy.m */; };
+		DAEFEA7B65B76BAA82EDD46F6E8E737E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A7CC6146919E74EC25A30C70C1EF4773 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A61C67B97B036F94C011180315B832DA;
+			remoteInfo = "Pods-SwiftDragAndDrop_Example";
+		};
+		EB8B2927236BF3BE2A38F7CF18FFC428 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 600BE08F21F3C5D54A1CA168D2A57DE0;
+			remoteInfo = SwiftDragAndDrop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		081612D6420B10E243E4248EB4E5E900 /* Pods-SwiftDragAndDrop_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftDragAndDrop_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		0AC84EE3F8408121AF8481CD012C5C65 /* SwiftDragAndDrop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftDragAndDrop.xcconfig; sourceTree = "<group>"; };
+		0C238B8B09402453F520EA344AE94691 /* Pods-SwiftDragAndDrop_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwiftDragAndDrop_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		0CC84CEA41FA528CCB6738E1FF6317C2 /* Pods-SwiftDragAndDrop_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftDragAndDrop_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		0DC23E76A394E1C8B663A3E9A9D4397F /* Pods_SwiftDragAndDrop_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftDragAndDrop_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D5780FB4AF557A768C661C8E96E8424 /* Pods-SwiftDragAndDrop_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftDragAndDrop_Example-frameworks.sh"; sourceTree = "<group>"; };
+		237A07F25DB5C0B4EC5152F51DEE6641 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2A7512D3677A71FC4879D4E0129BADA2 /* Pods-SwiftDragAndDrop_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftDragAndDrop_Example-resources.sh"; sourceTree = "<group>"; };
+		34876CD27A8EB28C82E51B298330643E /* Pods-SwiftDragAndDrop_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftDragAndDrop_Tests-resources.sh"; sourceTree = "<group>"; };
+		3AC31D3D3BA5A2C514F4B1CE354D5AD7 /* Pods-SwiftDragAndDrop_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftDragAndDrop_Example-dummy.m"; sourceTree = "<group>"; };
+		3F797E3476F01A9C3C192D792E368A03 /* Pods-SwiftDragAndDrop_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftDragAndDrop_Example.release.xcconfig"; sourceTree = "<group>"; };
+		4AE126E681E1D51A7F616BDE8378BB0F /* Pods-SwiftDragAndDrop_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftDragAndDrop_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5046D42D21FF913EC32AF8C87195F7B6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5544EE532DB5FD84E621CB2F315B8881 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		596A9987441F72B2777B04B4780CD2BF /* Pods-SwiftDragAndDrop_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftDragAndDrop_Tests-dummy.m"; sourceTree = "<group>"; };
+		6018C4F5811EE158ECEF8405D4A88F15 /* Pods-SwiftDragAndDrop_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftDragAndDrop_Tests-umbrella.h"; sourceTree = "<group>"; };
+		63EBF18080AC43875F194B657D65D306 /* SwiftDragAndDrop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDragAndDrop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		640EC4952F9F625ECBCABD84F6894B67 /* SwiftDragAndDrop-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftDragAndDrop-dummy.m"; sourceTree = "<group>"; };
+		65813E1451C74CC530BF1E72A71B85B7 /* SwiftDragAndDrop-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftDragAndDrop-umbrella.h"; sourceTree = "<group>"; };
+		66E5594F1EA082AB1758AF978ABCCA53 /* Pods-SwiftDragAndDrop_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftDragAndDrop_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		7F886EAAC806B44D3541D684CE28F12E /* Pods-SwiftDragAndDrop_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftDragAndDrop_Example-umbrella.h"; sourceTree = "<group>"; };
+		829A344D064C3433194E67BC0969C5A4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B399228E16D0DCB98216F032BD2E0D9 /* Pods-SwiftDragAndDrop_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwiftDragAndDrop_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		903E50F58CB06CF81CAEF37C30280B26 /* SwiftDragAndDrop.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SwiftDragAndDrop.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E94EC9945E122CE160BB40786363A7C /* Pods_SwiftDragAndDrop_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftDragAndDrop_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A37CC6CA9DE3978C79A3A27B911E6555 /* Pods-SwiftDragAndDrop_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftDragAndDrop_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		A5995A416EF97F22EC5B80C8C9E83E34 /* SwiftDragAndDrop-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftDragAndDrop-prefix.pch"; sourceTree = "<group>"; };
+		A5CC402C8C4EFD1363FAFDEFACBBD4CA /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = SwiftDragAndDrop/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
+		BF3909F1347E73C569AF6674E84C12C0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD996DE82F1042796956626555D2B8EE /* SwiftDragAndDrop.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftDragAndDrop.modulemap; sourceTree = "<group>"; };
+		D38205FF01A713758C7E2DD6FA2E57AA /* Pods-SwiftDragAndDrop_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SwiftDragAndDrop_Example.modulemap"; sourceTree = "<group>"; };
+		D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		DCC9B9A2219D6749005D4352 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
+		FA69BD46624EEFA46A2ACCA6C8E9CCC5 /* Pods-SwiftDragAndDrop_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftDragAndDrop_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FBEA4608382118C8B0EAE1036B48A99E /* Pods-SwiftDragAndDrop_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SwiftDragAndDrop_Tests.modulemap"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		618B1C278387BA06F0820CA205EE87ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				105779B9199EF9A796E4F23E88CC6C34 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76B91EFAC399973BF16FD6186345617D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAEFEA7B65B76BAA82EDD46F6E8E737E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F995F3EDBCB8FDE3E92AC31B447731B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B4BD0098EB5D7604AFA92D33C355ACC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04C1F807E69329F35E0282DDD165BA07 /* Pods-SwiftDragAndDrop_Example */ = {
+			isa = PBXGroup;
+			children = (
+				BF3909F1347E73C569AF6674E84C12C0 /* Info.plist */,
+				D38205FF01A713758C7E2DD6FA2E57AA /* Pods-SwiftDragAndDrop_Example.modulemap */,
+				FA69BD46624EEFA46A2ACCA6C8E9CCC5 /* Pods-SwiftDragAndDrop_Example-acknowledgements.markdown */,
+				0C238B8B09402453F520EA344AE94691 /* Pods-SwiftDragAndDrop_Example-acknowledgements.plist */,
+				3AC31D3D3BA5A2C514F4B1CE354D5AD7 /* Pods-SwiftDragAndDrop_Example-dummy.m */,
+				1D5780FB4AF557A768C661C8E96E8424 /* Pods-SwiftDragAndDrop_Example-frameworks.sh */,
+				2A7512D3677A71FC4879D4E0129BADA2 /* Pods-SwiftDragAndDrop_Example-resources.sh */,
+				7F886EAAC806B44D3541D684CE28F12E /* Pods-SwiftDragAndDrop_Example-umbrella.h */,
+				081612D6420B10E243E4248EB4E5E900 /* Pods-SwiftDragAndDrop_Example.debug.xcconfig */,
+				3F797E3476F01A9C3C192D792E368A03 /* Pods-SwiftDragAndDrop_Example.release.xcconfig */,
+			);
+			name = "Pods-SwiftDragAndDrop_Example";
+			path = "Target Support Files/Pods-SwiftDragAndDrop_Example";
+			sourceTree = "<group>";
+		};
+		194363BF8223E25D6E48A2CAFAA6CC03 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				5544EE532DB5FD84E621CB2F315B8881 /* LICENSE */,
+				237A07F25DB5C0B4EC5152F51DEE6641 /* README.md */,
+				903E50F58CB06CF81CAEF37C30280B26 /* SwiftDragAndDrop.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		32EBF474CB9F601667B67F34FB1566EB /* SwiftDragAndDrop */ = {
+			isa = PBXGroup;
+			children = (
+				DCC9B9A3219D6749005D4352 /* Source */,
+				A5CC402C8C4EFD1363FAFDEFACBBD4CA /* ReplaceMe.swift */,
+				194363BF8223E25D6E48A2CAFAA6CC03 /* Pod */,
+				7967C7B32FEB68EC58F9E741822DCC37 /* Support Files */,
+			);
+			name = SwiftDragAndDrop;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		44D5347904CF754D6785B84253F2574A /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		68CB8DE72654B3C59514690998FFE8C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DC23E76A394E1C8B663A3E9A9D4397F /* Pods_SwiftDragAndDrop_Example.framework */,
+				9E94EC9945E122CE160BB40786363A7C /* Pods_SwiftDragAndDrop_Tests.framework */,
+				63EBF18080AC43875F194B657D65D306 /* SwiftDragAndDrop.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7967C7B32FEB68EC58F9E741822DCC37 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				829A344D064C3433194E67BC0969C5A4 /* Info.plist */,
+				CD996DE82F1042796956626555D2B8EE /* SwiftDragAndDrop.modulemap */,
+				0AC84EE3F8408121AF8481CD012C5C65 /* SwiftDragAndDrop.xcconfig */,
+				640EC4952F9F625ECBCABD84F6894B67 /* SwiftDragAndDrop-dummy.m */,
+				A5995A416EF97F22EC5B80C8C9E83E34 /* SwiftDragAndDrop-prefix.pch */,
+				65813E1451C74CC530BF1E72A71B85B7 /* SwiftDragAndDrop-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SwiftDragAndDrop";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC8EA03CB0603C5F02671A362B7E8521 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				68CB8DE72654B3C59514690998FFE8C7 /* Products */,
+				9CED087A20B6ABC9825FE1280444CCA8 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		9C47CF2B5EE52615504F230F5A1E4294 /* Pods-SwiftDragAndDrop_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5046D42D21FF913EC32AF8C87195F7B6 /* Info.plist */,
+				FBEA4608382118C8B0EAE1036B48A99E /* Pods-SwiftDragAndDrop_Tests.modulemap */,
+				4AE126E681E1D51A7F616BDE8378BB0F /* Pods-SwiftDragAndDrop_Tests-acknowledgements.markdown */,
+				8B399228E16D0DCB98216F032BD2E0D9 /* Pods-SwiftDragAndDrop_Tests-acknowledgements.plist */,
+				596A9987441F72B2777B04B4780CD2BF /* Pods-SwiftDragAndDrop_Tests-dummy.m */,
+				66E5594F1EA082AB1758AF978ABCCA53 /* Pods-SwiftDragAndDrop_Tests-frameworks.sh */,
+				34876CD27A8EB28C82E51B298330643E /* Pods-SwiftDragAndDrop_Tests-resources.sh */,
+				6018C4F5811EE158ECEF8405D4A88F15 /* Pods-SwiftDragAndDrop_Tests-umbrella.h */,
+				A37CC6CA9DE3978C79A3A27B911E6555 /* Pods-SwiftDragAndDrop_Tests.debug.xcconfig */,
+				0CC84CEA41FA528CCB6738E1FF6317C2 /* Pods-SwiftDragAndDrop_Tests.release.xcconfig */,
+			);
+			name = "Pods-SwiftDragAndDrop_Tests";
+			path = "Target Support Files/Pods-SwiftDragAndDrop_Tests";
+			sourceTree = "<group>";
+		};
+		9CED087A20B6ABC9825FE1280444CCA8 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				04C1F807E69329F35E0282DDD165BA07 /* Pods-SwiftDragAndDrop_Example */,
+				9C47CF2B5EE52615504F230F5A1E4294 /* Pods-SwiftDragAndDrop_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44D5347904CF754D6785B84253F2574A /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC8EA03CB0603C5F02671A362B7E8521 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				32EBF474CB9F601667B67F34FB1566EB /* SwiftDragAndDrop */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		DCC9B9A3219D6749005D4352 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DCC9B9A2219D6749005D4352 /* CGRect+Extensions.swift */,
+			);
+			name = Source;
+			path = Example/../Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2CC75994B78957AA0D6DF57CDE64F7E6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5554997F3419536067DCA888CA1FD0E0 /* Pods-SwiftDragAndDrop_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9F6EB30F51EFC64DE8768B443418EF1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95D9BF4875FCB69601806E8853193D61 /* SwiftDragAndDrop-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECB36C919B302C8EF1D7E6873E3EEEB8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79D540B004A9B534D81922ADAD1F7267 /* Pods-SwiftDragAndDrop_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4D5AB90542D87FA00DEB4F6A6B9AB130 /* Pods-SwiftDragAndDrop_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74CA298D25CBA04C3A647FBB743B8546 /* Build configuration list for PBXNativeTarget "Pods-SwiftDragAndDrop_Tests" */;
+			buildPhases = (
+				2CC75994B78957AA0D6DF57CDE64F7E6 /* Headers */,
+				9540C059F437774766C74AF37A2B284F /* Sources */,
+				F995F3EDBCB8FDE3E92AC31B447731B7 /* Frameworks */,
+				AAE61EFFD373E111665CDA37EA232ABB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADF4F5FED0E8DD7716A5E6697DA32A4F /* PBXTargetDependency */,
+			);
+			name = "Pods-SwiftDragAndDrop_Tests";
+			productName = "Pods-SwiftDragAndDrop_Tests";
+			productReference = 9E94EC9945E122CE160BB40786363A7C /* Pods_SwiftDragAndDrop_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		600BE08F21F3C5D54A1CA168D2A57DE0 /* SwiftDragAndDrop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC842DAF230160E30CC0D17B50AA5B8A /* Build configuration list for PBXNativeTarget "SwiftDragAndDrop" */;
+			buildPhases = (
+				D9F6EB30F51EFC64DE8768B443418EF1 /* Headers */,
+				1BD9D2401CD81316BC4BEFAAF552688B /* Sources */,
+				618B1C278387BA06F0820CA205EE87ED /* Frameworks */,
+				8A1B92839AAAC47507A15A81AA7DF862 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftDragAndDrop;
+			productName = SwiftDragAndDrop;
+			productReference = 63EBF18080AC43875F194B657D65D306 /* SwiftDragAndDrop.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A61C67B97B036F94C011180315B832DA /* Pods-SwiftDragAndDrop_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8A96BB2C8225FD4188747F14844F102 /* Build configuration list for PBXNativeTarget "Pods-SwiftDragAndDrop_Example" */;
+			buildPhases = (
+				ECB36C919B302C8EF1D7E6873E3EEEB8 /* Headers */,
+				5B5BA188C39892306733C1DC88ABF0FC /* Sources */,
+				76B91EFAC399973BF16FD6186345617D /* Frameworks */,
+				B33229C4429E57C07C8692E96B84A6EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F113A78AFE3B4DB8D8DB8FBC7B49AF7D /* PBXTargetDependency */,
+			);
+			name = "Pods-SwiftDragAndDrop_Example";
+			productName = "Pods-SwiftDragAndDrop_Example";
+			productReference = 0DC23E76A394E1C8B663A3E9A9D4397F /* Pods_SwiftDragAndDrop_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 68CB8DE72654B3C59514690998FFE8C7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A61C67B97B036F94C011180315B832DA /* Pods-SwiftDragAndDrop_Example */,
+				4D5AB90542D87FA00DEB4F6A6B9AB130 /* Pods-SwiftDragAndDrop_Tests */,
+				600BE08F21F3C5D54A1CA168D2A57DE0 /* SwiftDragAndDrop */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A1B92839AAAC47507A15A81AA7DF862 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAE61EFFD373E111665CDA37EA232ABB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B33229C4429E57C07C8692E96B84A6EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1BD9D2401CD81316BC4BEFAAF552688B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95FD96488F806B1CB5D08EC4DB663B54 /* ReplaceMe.swift in Sources */,
+				CCC99F9C343B36A515EBAAF19AB131CF /* SwiftDragAndDrop-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B5BA188C39892306733C1DC88ABF0FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				539CE4F7A9F1A476B7A31E5BB67D15D7 /* Pods-SwiftDragAndDrop_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9540C059F437774766C74AF37A2B284F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BEE9C5C2D77B174F12CCCCF3FD3DAE7 /* Pods-SwiftDragAndDrop_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ADF4F5FED0E8DD7716A5E6697DA32A4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-SwiftDragAndDrop_Example";
+			target = A61C67B97B036F94C011180315B832DA /* Pods-SwiftDragAndDrop_Example */;
+			targetProxy = A7CC6146919E74EC25A30C70C1EF4773 /* PBXContainerItemProxy */;
+		};
+		F113A78AFE3B4DB8D8DB8FBC7B49AF7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftDragAndDrop;
+			target = 600BE08F21F3C5D54A1CA168D2A57DE0 /* SwiftDragAndDrop */;
+			targetProxy = EB8B2927236BF3BE2A38F7CF18FFC428 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		50646285DD9FD95AF390BDA3FB1948EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		58DCB2BA7C34E84C00C38CEF18A96D11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		8966473377EF9A7CF4667829F57D7A3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 081612D6420B10E243E4248EB4E5E900 /* Pods-SwiftDragAndDrop_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwiftDragAndDrop_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwiftDragAndDrop_Example/Pods-SwiftDragAndDrop_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		93E2B1ABC1B272514CEE952708A01202 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AC84EE3F8408121AF8481CD012C5C65 /* SwiftDragAndDrop.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftDragAndDrop/SwiftDragAndDrop-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftDragAndDrop/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftDragAndDrop/SwiftDragAndDrop.modulemap";
+				PRODUCT_MODULE_NAME = SwiftDragAndDrop;
+				PRODUCT_NAME = SwiftDragAndDrop;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		996745D6BC7FF8412BF93862F5154EAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CC84CEA41FA528CCB6738E1FF6317C2 /* Pods-SwiftDragAndDrop_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwiftDragAndDrop_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwiftDragAndDrop_Tests/Pods-SwiftDragAndDrop_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A784873077F23499CC48A38B34977CD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A37CC6CA9DE3978C79A3A27B911E6555 /* Pods-SwiftDragAndDrop_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwiftDragAndDrop_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwiftDragAndDrop_Tests/Pods-SwiftDragAndDrop_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BBC69D413AA8F716CD33175DC7E0044A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F797E3476F01A9C3C192D792E368A03 /* Pods-SwiftDragAndDrop_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SwiftDragAndDrop_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SwiftDragAndDrop_Example/Pods-SwiftDragAndDrop_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F29CA856B074F6D1F494091658D24B8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AC84EE3F8408121AF8481CD012C5C65 /* SwiftDragAndDrop.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftDragAndDrop/SwiftDragAndDrop-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftDragAndDrop/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftDragAndDrop/SwiftDragAndDrop.modulemap";
+				PRODUCT_MODULE_NAME = SwiftDragAndDrop;
+				PRODUCT_NAME = SwiftDragAndDrop;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50646285DD9FD95AF390BDA3FB1948EA /* Debug */,
+				58DCB2BA7C34E84C00C38CEF18A96D11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74CA298D25CBA04C3A647FBB743B8546 /* Build configuration list for PBXNativeTarget "Pods-SwiftDragAndDrop_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A784873077F23499CC48A38B34977CD0 /* Debug */,
+				996745D6BC7FF8412BF93862F5154EAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8A96BB2C8225FD4188747F14844F102 /* Build configuration list for PBXNativeTarget "Pods-SwiftDragAndDrop_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8966473377EF9A7CF4667829F57D7A3A /* Debug */,
+				BBC69D413AA8F716CD33175DC7E0044A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC842DAF230160E30CC0D17B50AA5B8A /* Build configuration list for PBXNativeTarget "SwiftDragAndDrop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F29CA856B074F6D1F494091658D24B8E /* Debug */,
+				93E2B1ABC1B272514CEE952708A01202 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
