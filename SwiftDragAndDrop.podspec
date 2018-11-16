@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftDragAndDrop'
-  s.version          = '0.2.1'
+  s.version          = '0.2.2'
   s.summary          = 'Simple Drag and Drop component of multiple UITableView written in Swift'
 
   s.homepage         = 'https://github.com/uyphanha/SwiftDragAndDrop'
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/PhanhaUY'
 
   s.swift_version = '4'
-  s.ios.deployment_target = '9.3'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'Source/**/*'
 end
