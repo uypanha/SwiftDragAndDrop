@@ -1,17 +1,17 @@
 # SwiftDragAndDrop
 
-[![CI Status](https://img.shields.io/travis/uyphanha.dev@gmail.com/SwiftDragAndDrop.svg?style=flat)](https://travis-ci.org/uyphanha.dev@gmail.com/SwiftDragAndDrop)
-[![Version](https://img.shields.io/cocoapods/v/SwiftDragAndDrop.svg?style=flat)](https://cocoapods.org/pods/SwiftDragAndDrop)
-[![License](https://img.shields.io/cocoapods/l/SwiftDragAndDrop.svg?style=flat)](https://cocoapods.org/pods/SwiftDragAndDrop)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftDragAndDrop.svg?style=flat)](https://cocoapods.org/pods/SwiftDragAndDrop)
+SwiftDragAndDrop is an extended UITableView that lets you add long-press drag-and-drop reordering to any table view or across any table views in Drag and Drop Manager Component. It's robust, lightweight, and fully customizable.
 
-## Example
+## Features
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
+- Smooth animations
+- Automatic edge scrolling
+- Works with multiple UITableViews
+- Customizable shadow, scaling, and transparency effects
 
 ## Installation
+
+### CocoaPods
 
 SwiftDragAndDrop is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -19,6 +19,16 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'SwiftDragAndDrop'
 ```
+
+### Manually
+
+You can integrate SwiftDragAndDrop into your project manually by copying the contents of the `Source` folder into your project.
+
+## Usage
+
+### Setup
+
+I will update how to setup very soon. 😄😄
 
 ## License
 
