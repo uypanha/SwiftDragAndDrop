@@ -9,45 +9,53 @@
 /* Begin PBXBuildFile section */
 		DCC9B9B5219D797D005D4352 /* SwiftDragAndDrop.h in Headers */ = {isa = PBXBuildFile; fileRef = DCC9B9B3219D797D005D4352 /* SwiftDragAndDrop.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DCC9B9C2219D79EC005D4352 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9C1219D79EC005D4352 /* AppDelegate.swift */; };
-		DCC9B9C4219D79EC005D4352 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9C3219D79EC005D4352 /* ViewController.swift */; };
 		DCC9B9C7219D79EC005D4352 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC9B9C5219D79EC005D4352 /* Main.storyboard */; };
 		DCC9B9C9219D79ED005D4352 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC9B9C8219D79ED005D4352 /* Assets.xcassets */; };
 		DCC9B9CC219D79ED005D4352 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC9B9CA219D79ED005D4352 /* LaunchScreen.storyboard */; };
 		DCC9B9D8219D7A1D005D4352 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9D3219D7A1C005D4352 /* CGRect+Extensions.swift */; };
-		DCC9B9D9219D7A1D005D4352 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9D3219D7A1C005D4352 /* CGRect+Extensions.swift */; };
 		DCC9B9DC219D7A1D005D4352 /* AutoScroll+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9D5219D7A1D005D4352 /* AutoScroll+Constant.swift */; };
-		DCC9B9DD219D7A1D005D4352 /* AutoScroll+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9D5219D7A1D005D4352 /* AutoScroll+Constant.swift */; };
 		DCC9B9E5219D7A50005D4352 /* DragAndDropManager+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9E0219D7A4F005D4352 /* DragAndDropManager+Destination.swift */; };
-		DCC9B9E6219D7A50005D4352 /* DragAndDropManager+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9E0219D7A4F005D4352 /* DragAndDropManager+Destination.swift */; };
 		DCC9B9E7219D7A50005D4352 /* DragAndDropManager+GestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9E1219D7A4F005D4352 /* DragAndDropManager+GestureRecognizer.swift */; };
-		DCC9B9E8219D7A50005D4352 /* DragAndDropManager+GestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9E1219D7A4F005D4352 /* DragAndDropManager+GestureRecognizer.swift */; };
 		DCC9B9E9219D7A50005D4352 /* DragAndDropManager+SnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9E2219D7A4F005D4352 /* DragAndDropManager+SnapshotView.swift */; };
-		DCC9B9EA219D7A50005D4352 /* DragAndDropManager+SnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9E2219D7A4F005D4352 /* DragAndDropManager+SnapshotView.swift */; };
 		DCC9B9EB219D7A50005D4352 /* DragAndDropManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9E3219D7A4F005D4352 /* DragAndDropManager.swift */; };
-		DCC9B9EC219D7A50005D4352 /* DragAndDropManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9E3219D7A4F005D4352 /* DragAndDropManager.swift */; };
 		DCC9B9ED219D7A50005D4352 /* DragAndDropManager+AutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9E4219D7A50005D4352 /* DragAndDropManager+AutoScroll.swift */; };
-		DCC9B9EE219D7A50005D4352 /* DragAndDropManager+AutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9E4219D7A50005D4352 /* DragAndDropManager+AutoScroll.swift */; };
 		DCC9B9F4219D7A63005D4352 /* DragAndDropTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9F0219D7A63005D4352 /* DragAndDropTableView.swift */; };
-		DCC9B9F5219D7A63005D4352 /* DragAndDropTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9F0219D7A63005D4352 /* DragAndDropTableView.swift */; };
 		DCC9B9F6219D7A63005D4352 /* DragAndDropTableView+AutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9F1219D7A63005D4352 /* DragAndDropTableView+AutoScroll.swift */; };
-		DCC9B9F7219D7A63005D4352 /* DragAndDropTableView+AutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9F1219D7A63005D4352 /* DragAndDropTableView+AutoScroll.swift */; };
 		DCC9B9F8219D7A63005D4352 /* DragAndDropTableView+Droppable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9F2219D7A63005D4352 /* DragAndDropTableView+Droppable.swift */; };
-		DCC9B9F9219D7A63005D4352 /* DragAndDropTableView+Droppable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9F2219D7A63005D4352 /* DragAndDropTableView+Droppable.swift */; };
 		DCC9B9FA219D7A63005D4352 /* DragAndDropTableView+Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9F3219D7A63005D4352 /* DragAndDropTableView+Draggable.swift */; };
-		DCC9B9FB219D7A63005D4352 /* DragAndDropTableView+Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9F3219D7A63005D4352 /* DragAndDropTableView+Draggable.swift */; };
-		DCC9B9FD219D7AA7005D4352 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9FC219D7AA7005D4352 /* RootViewController.swift */; };
-		DCC9B9FE219D7AA7005D4352 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9FC219D7AA7005D4352 /* RootViewController.swift */; };
-		DCC9BA02219D7AF8005D4352 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9FF219D7AF8005D4352 /* ScrollViewController.swift */; };
 		DCC9BA03219D7AF8005D4352 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9FF219D7AF8005D4352 /* ScrollViewController.swift */; };
-		DCC9BA04219D7AF8005D4352 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9BA00219D7AF8005D4352 /* CollectionViewController.swift */; };
 		DCC9BA05219D7AF8005D4352 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9BA00219D7AF8005D4352 /* CollectionViewController.swift */; };
-		DCC9BA06219D7AF8005D4352 /* Reusable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9BA01219D7AF8005D4352 /* Reusable+Extensions.swift */; };
 		DCC9BA07219D7AF8005D4352 /* Reusable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9BA01219D7AF8005D4352 /* Reusable+Extensions.swift */; };
-		DCC9BA0B219D7B1F005D4352 /* DragTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9BA09219D7B1F005D4352 /* DragTableViewCell.swift */; };
 		DCC9BA0C219D7B1F005D4352 /* DragTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9BA09219D7B1F005D4352 /* DragTableViewCell.swift */; };
-		DCC9BA0D219D7B1F005D4352 /* DragTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCC9BA0A219D7B1F005D4352 /* DragTableViewCell.xib */; };
 		DCC9BA0E219D7B1F005D4352 /* DragTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCC9BA0A219D7B1F005D4352 /* DragTableViewCell.xib */; };
+		DCC9BA15219D98EB005D4352 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9FC219D7AA7005D4352 /* RootViewController.swift */; };
+		DCC9BA1D219DB0BE005D4352 /* SwiftDragAndDrop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC9B9B0219D797D005D4352 /* SwiftDragAndDrop.framework */; };
+		DCC9BA1E219DB0BE005D4352 /* SwiftDragAndDrop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCC9B9B0219D797D005D4352 /* SwiftDragAndDrop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DCC9BA1F219DB0BE005D4352 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCC9B9A7219D797D005D4352 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCC9B9AF219D797D005D4352;
+			remoteInfo = SwiftDragAndDrop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DCC9BA21219DB0BE005D4352 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DCC9BA1E219DB0BE005D4352 /* SwiftDragAndDrop.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DCC9B9B0219D797D005D4352 /* SwiftDragAndDrop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDragAndDrop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,7 +63,6 @@
 		DCC9B9B4219D797D005D4352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCC9B9BF219D79EC005D4352 /* SwiftDragAndDropExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDragAndDropExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC9B9C1219D79EC005D4352 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DCC9B9C3219D79EC005D4352 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DCC9B9C6219D79EC005D4352 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DCC9B9C8219D79ED005D4352 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCC9B9CB219D79ED005D4352 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCC9BA1D219DB0BE005D4352 /* SwiftDragAndDrop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +112,7 @@
 				DCC9B9C0219D79EC005D4352 /* Example */,
 				DCC9B9B2219D797D005D4352 /* SwiftDragAndDrop */,
 				DCC9B9B1219D797D005D4352 /* Products */,
+				DCC9BA16219D9AC9005D4352 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,7 +142,6 @@
 				DCC9BA01219D7AF8005D4352 /* Reusable+Extensions.swift */,
 				DCC9B9FF219D7AF8005D4352 /* ScrollViewController.swift */,
 				DCC9B9C1219D79EC005D4352 /* AppDelegate.swift */,
-				DCC9B9C3219D79EC005D4352 /* ViewController.swift */,
 				DCC9B9C5219D79EC005D4352 /* Main.storyboard */,
 				DCC9B9C8219D79ED005D4352 /* Assets.xcassets */,
 				DCC9B9CA219D79ED005D4352 /* LaunchScreen.storyboard */,
@@ -186,6 +194,13 @@
 			path = DragTableViewCell;
 			sourceTree = "<group>";
 		};
+		DCC9BA16219D9AC9005D4352 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -225,10 +240,12 @@
 				DCC9B9BB219D79EC005D4352 /* Sources */,
 				DCC9B9BC219D79EC005D4352 /* Frameworks */,
 				DCC9B9BD219D79EC005D4352 /* Resources */,
+				DCC9BA21219DB0BE005D4352 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DCC9BA20219DB0BE005D4352 /* PBXTargetDependency */,
 			);
 			name = SwiftDragAndDropExample;
 			productName = SwiftDragAndDropExample;
@@ -278,7 +295,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCC9BA0D219D7B1F005D4352 /* DragTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,15 +318,10 @@
 			files = (
 				DCC9B9E9219D7A50005D4352 /* DragAndDropManager+SnapshotView.swift in Sources */,
 				DCC9B9E7219D7A50005D4352 /* DragAndDropManager+GestureRecognizer.swift in Sources */,
-				DCC9B9FD219D7AA7005D4352 /* RootViewController.swift in Sources */,
-				DCC9BA0B219D7B1F005D4352 /* DragTableViewCell.swift in Sources */,
 				DCC9B9ED219D7A50005D4352 /* DragAndDropManager+AutoScroll.swift in Sources */,
-				DCC9BA04219D7AF8005D4352 /* CollectionViewController.swift in Sources */,
 				DCC9B9E5219D7A50005D4352 /* DragAndDropManager+Destination.swift in Sources */,
 				DCC9B9D8219D7A1D005D4352 /* CGRect+Extensions.swift in Sources */,
-				DCC9BA06219D7AF8005D4352 /* Reusable+Extensions.swift in Sources */,
 				DCC9B9EB219D7A50005D4352 /* DragAndDropManager.swift in Sources */,
-				DCC9BA02219D7AF8005D4352 /* ScrollViewController.swift in Sources */,
 				DCC9B9F4219D7A63005D4352 /* DragAndDropTableView.swift in Sources */,
 				DCC9B9DC219D7A1D005D4352 /* AutoScroll+Constant.swift in Sources */,
 				DCC9B9F8219D7A63005D4352 /* DragAndDropTableView+Droppable.swift in Sources */,
@@ -323,28 +334,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCC9B9F9219D7A63005D4352 /* DragAndDropTableView+Droppable.swift in Sources */,
 				DCC9BA0C219D7B1F005D4352 /* DragTableViewCell.swift in Sources */,
-				DCC9B9F5219D7A63005D4352 /* DragAndDropTableView.swift in Sources */,
-				DCC9B9EE219D7A50005D4352 /* DragAndDropManager+AutoScroll.swift in Sources */,
-				DCC9B9C4219D79EC005D4352 /* ViewController.swift in Sources */,
 				DCC9BA05219D7AF8005D4352 /* CollectionViewController.swift in Sources */,
-				DCC9B9FB219D7A63005D4352 /* DragAndDropTableView+Draggable.swift in Sources */,
+				DCC9BA15219D98EB005D4352 /* RootViewController.swift in Sources */,
 				DCC9BA07219D7AF8005D4352 /* Reusable+Extensions.swift in Sources */,
-				DCC9B9DD219D7A1D005D4352 /* AutoScroll+Constant.swift in Sources */,
-				DCC9B9D9219D7A1D005D4352 /* CGRect+Extensions.swift in Sources */,
 				DCC9BA03219D7AF8005D4352 /* ScrollViewController.swift in Sources */,
-				DCC9B9F7219D7A63005D4352 /* DragAndDropTableView+AutoScroll.swift in Sources */,
-				DCC9B9E6219D7A50005D4352 /* DragAndDropManager+Destination.swift in Sources */,
-				DCC9B9EC219D7A50005D4352 /* DragAndDropManager.swift in Sources */,
-				DCC9B9FE219D7AA7005D4352 /* RootViewController.swift in Sources */,
-				DCC9B9E8219D7A50005D4352 /* DragAndDropManager+GestureRecognizer.swift in Sources */,
-				DCC9B9EA219D7A50005D4352 /* DragAndDropManager+SnapshotView.swift in Sources */,
 				DCC9B9C2219D79EC005D4352 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DCC9BA20219DB0BE005D4352 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCC9B9AF219D797D005D4352 /* SwiftDragAndDrop */;
+			targetProxy = DCC9BA1F219DB0BE005D4352 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DCC9B9C5219D79EC005D4352 /* Main.storyboard */ = {
@@ -418,7 +425,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -476,7 +483,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -510,7 +517,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -536,7 +543,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.uyphanha.SwiftDragAndDrop.SwiftDragAndDrop;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -544,11 +551,11 @@
 		DCC9B9CF219D79ED005D4352 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NZS8K3Y2E3;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -563,11 +570,11 @@
 		DCC9B9D0219D79ED005D4352 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NZS8K3Y2E3;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

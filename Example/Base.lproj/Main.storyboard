@@ -13,7 +13,7 @@
         <!--Collection View Controller-->
         <scene sceneID="cc5-d0-6I4">
             <objects>
-                <viewController storyboardIdentifier="CollectionViewController" id="e84-i4-HIM" customClass="CollectionViewController" customModule="SwiftDragAndDrop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectionViewController" id="e84-i4-HIM" customClass="CollectionViewController" customModule="SwiftDragAndDropExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AKx-rW-3lg"/>
                         <viewControllerLayoutGuide type="bottom" id="crO-an-hPz"/>
@@ -32,14 +32,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DragCollectionViewCell" id="cDk-Zx-uVl" customClass="DragCollectionViewCell" customModule="SwiftDragAndDrop" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DragCollectionViewCell" id="cDk-Zx-uVl" customClass="DragCollectionViewCell" customModule="SwiftDragAndDropExample" customModuleProvider="target">
                                         <rect key="frame" x="1" y="0.0" width="373" height="643"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="643"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gKo-UH-vcI" customClass="DragAndDropTableView" customModule="SwiftDragAndDrop" customModuleProvider="target">
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gKo-UH-vcI" customClass="DragAndDropTableView" customModule="SwiftDragAndDrop">
                                                     <rect key="frame" x="0.0" y="0.0" width="373" height="643"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </tableView>
@@ -78,7 +78,7 @@
         <!--Scroll View Controller-->
         <scene sceneID="xa7-EQ-3z0">
             <objects>
-                <viewController storyboardIdentifier="ScrollViewController" id="jcD-3V-qIY" customClass="ScrollViewController" customModule="SwiftDragAndDrop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScrollViewController" id="jcD-3V-qIY" customClass="ScrollViewController" customModule="SwiftDragAndDropExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KZN-PD-FRw"/>
                         <viewControllerLayoutGuide type="bottom" id="znw-mp-dty"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDragAndDrop
 
 class CollectionViewController: UIViewController {
 

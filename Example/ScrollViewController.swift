@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDragAndDrop
 
 class ScrollViewController: UIViewController {
 
@@ -14,7 +15,6 @@ class ScrollViewController: UIViewController {
     
     var titles = ["Backlog", "To Do", "In Progress", "Fixed", "Done", "Released", "Bug of Release"]
     var slides:[UIView] = []
-    private var indexOfCellBeforeDragging = 0
     
     var dragAndDropManager : DragAndDropManager?
     var data  = [[DataItem]]()
