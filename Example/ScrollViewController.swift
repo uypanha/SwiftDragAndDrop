@@ -29,6 +29,8 @@ class ScrollViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "DragAndDrop UIScrollView"
+        
         var index = 0
         titles.forEach { (title) in
             let limit = ((index + 1) % 2) == 0 ? 15 : 0
