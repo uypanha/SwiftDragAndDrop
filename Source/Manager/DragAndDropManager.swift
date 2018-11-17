@@ -106,9 +106,18 @@ public protocol DroppableViewDelegate {
 
 public class DragAndDropManager: NSObject {
     
-    var canvas : UIView = UIView()
+    var canvas : UIView
     var scrollView: UIScrollView? = nil
-    var views : [UIView] = []
+    var views : [UIView]
+    
+    var viewToDetect: UIView {
+        get {
+            if let view = self.scrollView {
+                return view
+            }
+            return self.canvas
+        }
+    }
     
     var autoScrollDisplayLink: CADisplayLink?
     var lastAutoScrollTimeStamp: CFTimeInterval?
@@ -157,8 +166,6 @@ public class DragAndDropManager: NSObject {
     
     public init(canvas : UIView, tableViews : [UIView]) {
         
-        super.init()
-        
         guard let superView = canvas.superview else {
             fatalError("Canvas must be inside a view")
         }
@@ -166,23 +173,16 @@ public class DragAndDropManager: NSObject {
             self.scrollView = scrollView
         }
         self.canvas = superView
+        self.views = tableViews
+        
+        super.init()
         
         self.canvas.isMultipleTouchEnabled = false
         self.canvas.addGestureRecognizer(self.reorderGestureRecognizer)
-        self.views = tableViews
     }
     
     public func append(element tableView: UIView) {
         self.views.append(tableView)
-    }
-    
-    var viewToDetect: UIView {
-        get {
-            if let view = self.scrollView {
-                return view
-            }
-            return self.canvas
-        }
     }
     
     // MARK: - Reordering

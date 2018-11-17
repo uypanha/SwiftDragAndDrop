@@ -16,13 +16,15 @@ class CollectionViewController: UIViewController {
     private var indexOfCellBeforeDragging = 0
     
     var titles = ["Backlog", "To Do", "In Progress", "Fixed", "Done", "Released", "Bug of Release"]
-    var data  = [[DataItem]]()
+    var data = [[DataItem]]()
     
     var dragAndDropManager : DragAndDropManager?
     var views = [UIView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "DragAndDrop UICollectionView"
         
         var index = 0
         titles.forEach { (title) in
@@ -155,7 +157,6 @@ class DataItem : Equatable {
 class DragCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var tableView: DragAndDropTableView!
-    var cellHeightsDictionary: [IndexPath: CGFloat] = [:]
     
     var data = [DataItem]()
     
@@ -179,8 +180,6 @@ extension DragCollectionViewCell {
     private func prepareTableView() {
         self.tableView.register(DragTableViewCell.self)
         self.tableView.tableFooterView = UIView()
-        
-//         self.tableView.rowHeight = UITableView.automaticDimension
     }
 }
 
@@ -245,17 +244,6 @@ extension DragCollectionViewCell: DragAndDropTableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, cellIsDroppableAt indexPath: IndexPath) -> Bool {
         return indexPath.row > 0
     }
-    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        cellHeightsDictionary[indexPath] = cell.frame.size.height
-//    }
-//
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if let height = cellHeightsDictionary[indexPath] {
-//            return height
-//        }
-//        return UITableView.automaticDimension
-//    }
 }
 
 extension UIColor {
