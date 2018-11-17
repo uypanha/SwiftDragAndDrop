@@ -2,6 +2,8 @@
 
 SwiftDragAndDrop is an extended UITableView that lets you add long-press drag-and-drop reordering to any table view or across any table views in Drag and Drop Manager Component. It's robust, lightweight, and fully customizable.
 
+![Demo](Resources/demo.gif)
+
 ## Features
 
 - Smooth animations
