@@ -65,7 +65,7 @@ extension DragAndDropManager {
     }
     
     @objc func handleDisplayLinkUpdate(_ displayLink: CADisplayLink) {
-        guard let scrollView = self.scrollView else { return }
+        guard let scrollView = scrollView else { return }
         
         if updateDestinationAutoScroll() {
             updateDestinationRow()

@@ -137,16 +137,16 @@
 		DCC9B9C0219D79EC005D4352 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				DCC9BA08219D7B18005D4352 /* DragTableViewCell */,
+				DCC9B9CD219D79ED005D4352 /* Info.plist */,
+				DCC9B9C1219D79EC005D4352 /* AppDelegate.swift */,
 				DCC9BA00219D7AF8005D4352 /* CollectionViewController.swift */,
 				DCC9BA01219D7AF8005D4352 /* Reusable+Extensions.swift */,
-				DCC9B9FF219D7AF8005D4352 /* ScrollViewController.swift */,
-				DCC9B9C1219D79EC005D4352 /* AppDelegate.swift */,
-				DCC9B9C5219D79EC005D4352 /* Main.storyboard */,
-				DCC9B9C8219D79ED005D4352 /* Assets.xcassets */,
-				DCC9B9CA219D79ED005D4352 /* LaunchScreen.storyboard */,
-				DCC9B9CD219D79ED005D4352 /* Info.plist */,
 				DCC9B9FC219D7AA7005D4352 /* RootViewController.swift */,
+				DCC9B9FF219D7AF8005D4352 /* ScrollViewController.swift */,
+				DCC9B9C8219D79ED005D4352 /* Assets.xcassets */,
+				DCC9BA08219D7B18005D4352 /* DragTableViewCell */,
+				DCC9B9CA219D79ED005D4352 /* LaunchScreen.storyboard */,
+				DCC9B9C5219D79EC005D4352 /* Main.storyboard */,
 			);
 			path = Example;
 			sourceTree = "<group>";

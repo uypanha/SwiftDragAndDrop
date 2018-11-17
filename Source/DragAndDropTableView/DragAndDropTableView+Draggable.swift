@@ -22,8 +22,13 @@
 
 import UIKit
 
-public protocol DraggableTableCell where Self: UITableViewCell {
+/**
+A`UITableViewCell` must adopt the `DraggableTableCell` protocol if the cell want to representation another view as snapshot instead of cell view. This protocol defines methods for handling the representationImage.
+ */
+public protocol DraggableTableCell {
+    
     func representationImage() -> UIView?
+    
 }
 
 // MARK: - DraggableViewDelegate
