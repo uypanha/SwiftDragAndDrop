@@ -24,7 +24,7 @@ import UIKit
 
 extension CGRect {
     
-    public var area: CGFloat {
+    var area: CGFloat {
         return self.size.width * self.size.height
     }
     

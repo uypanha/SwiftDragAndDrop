@@ -41,7 +41,7 @@ extension DragAndDropManager: UIGestureRecognizerDelegate {
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         
-        for view in self.views where view is DraggableViewDelegate  {
+        for view in views where view is DraggableViewDelegate  {
             
             let draggable = view as! DraggableViewDelegate
             
