@@ -74,7 +74,7 @@ extension DragAndDropTableView: DraggableViewDelegate {
         
         let cellView: UIView = (cell as? DraggableTableCell)?.representationImage() ?? cell
         
-        UIGraphicsBeginImageContextWithOptions(cellView.bounds.size, cellView.isOpaque, 0)
+        UIGraphicsBeginImageContextWithOptions(cellView.bounds.size, false, 0)
         cellView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
