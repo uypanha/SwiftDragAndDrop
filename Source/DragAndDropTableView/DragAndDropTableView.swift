@@ -31,7 +31,7 @@ public protocol DragAndDropTableViewDataSource: UITableViewDataSource {
     
 //    func numberOfDraggableCells(in tableView: UITableView) -> Int
     func tableView(_ tableView: UITableView, indexPathOf dataItem: AnyObject) -> IndexPath?
-    func tableView(_ tableView: UITableView, dataItemAt indexPath: IndexPath) -> AnyObject
+    func tableView(_ tableView: UITableView, dataItemAt indexPath: IndexPath) -> AnyObject?
     
     func tableView(_ tableView: UITableView, moveDataItem from: IndexPath, to: IndexPath) -> Void
     func tableView(_ tableView: UITableView, insert dataItem : AnyObject, atIndexPath indexPath: IndexPath) -> Void
