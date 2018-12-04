@@ -91,7 +91,11 @@ extension DragAndDropTableView: DroppableViewDelegate {
         
         if let idx = self.draggingIndexPath {
             if let cell = self.cellForRow(at: idx) {
-                cell.isHidden = false
+                if cell is DraggableTableCell {
+                    (cell as? DraggableTableCell)?.cellDidFinishedDragging()
+                } else {
+                    cell.isHidden = false
+                }
             }
         }
         
@@ -100,13 +104,10 @@ extension DragAndDropTableView: DroppableViewDelegate {
     
     public func droppableView(dropData item : AnyObject, atRect : CGRect) -> Void {
         
-        // show hidden cell
-        if  let index = draggingIndexPath,
-            let cell = self.cellForRow(at: index), cell.isHidden == true {
-            
-            cell.alpha = 1
-            cell.isHidden = false
+        if let index = draggingIndexPath {
             (self.delegate as? DragAndDropTableViewDelegate)?.tableView(self, didDropAt: index)
+        } else if let indexPath = (dataSource as? DragAndDropTableViewDataSource)?.tableView(self, indexPathOf: item) {
+            (self.delegate as? DragAndDropTableViewDelegate)?.tableView(self, didDropAt: indexPath)
         }
         
         self.draggingIndexPath = nil

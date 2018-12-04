@@ -92,7 +92,7 @@ extension DragAndDropManager {
         guard let bundle = self.bundle else { return false }
         
         if let droppable = bundle.destinationDroppableView as? DroppableViewDelegate {
-           return droppable.droppableView(autoScroll: autoScrollDisplayLink, lastAutoScroll: lastAutoScrollTimeStamp, snapshotView: bundle.snapshotView.frame)
+            return droppable.droppableView(autoScroll: autoScrollDisplayLink, lastAutoScroll: lastAutoScrollTimeStamp, snapshotView: bundle.snapshotView.frame)
         }
         
         return false
@@ -117,7 +117,7 @@ extension DragAndDropManager {
                     animations: {
                         bundle.snapshotView.center = cellRectCenter
                 }, completion: { _ in
-                        completion()
+                    completion()
                 })
                 return
             }

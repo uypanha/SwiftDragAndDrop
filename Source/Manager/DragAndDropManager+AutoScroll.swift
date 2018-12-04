@@ -33,10 +33,10 @@ extension DragAndDropManager {
         let safeAreaFrame: CGRect
         if #available(iOS 11, *) {
             safeAreaFrame = UIEdgeInsetsInsetRect(scrollView.frame, scrollView.safeAreaInsets)
-                //scrollView.frame.inset(by: scrollView.safeAreaInsets)
+            //scrollView.frame.inset(by: scrollView.safeAreaInsets)
         } else {
             safeAreaFrame = UIEdgeInsetsInsetRect(scrollView.frame, scrollView.scrollIndicatorInsets)
-                //scrollView.frame.inset(by: scrollView.scrollIndicatorInsets)
+            //scrollView.frame.inset(by: scrollView.scrollIndicatorInsets)
         }
         
         let distanceToLeft = max(snapshotView.frame.minX - safeAreaFrame.minX, 0)

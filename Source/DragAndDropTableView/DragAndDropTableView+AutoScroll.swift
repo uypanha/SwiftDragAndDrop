@@ -28,10 +28,10 @@ extension DragAndDropTableView {
         let safeAreaFrame: CGRect
         if #available(iOS 11, *) {
             safeAreaFrame = UIEdgeInsetsInsetRect(self.frame, self.safeAreaInsets)
-                //self.frame.inset(by: self.safeAreaInsets)
+            //self.frame.inset(by: self.safeAreaInsets)
         } else {
             safeAreaFrame = UIEdgeInsetsInsetRect(self.frame, self.scrollIndicatorInsets)
-                // self.frame.inset(by: self.scrollIndicatorInsets)
+            // self.frame.inset(by: self.scrollIndicatorInsets)
         }
         
         let distanceToTop = max(rect.minY - safeAreaFrame.minY, 0)
