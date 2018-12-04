@@ -23,11 +23,15 @@
 import UIKit
 
 /**
-A`UITableViewCell` must adopt the `DraggableTableCell` protocol if the cell want to representation another view as snapshot instead of cell view. This protocol defines methods for handling the representationImage.
+ A`UITableViewCell` must adopt the `DraggableTableCell` protocol if the cell want to representation another view as snapshot instead of cell view. This protocol defines methods for handling the representationImage, how cell look like of being dragging and after it's dropped.
  */
 public protocol DraggableTableCell {
     
     func representationImage() -> UIView?
+    
+    func cellDidBeginDragging()
+    
+    func cellDidFinishedDragging()
     
 }
 
@@ -104,7 +108,11 @@ extension DragAndDropTableView: DraggableViewDelegate {
         self.draggingIndexPath = self.indexPathForRow(at: point)
         if let indexToReload = self.draggingIndexPath {
             if let cell = self.cellForRow(at: indexToReload) {
-                cell.isHidden = true
+                if cell is DraggableTableCell {
+                    (cell as? DraggableTableCell)?.cellDidBeginDragging()
+                } else {
+                    cell.isHidden = true
+                }
             }
             
             (self.delegate as? DragAndDropTableViewDelegate)?.tableViewDidBeginDragging(self, at: indexToReload)
@@ -115,7 +123,11 @@ extension DragAndDropTableView: DraggableViewDelegate {
         
         if let idx = self.draggingIndexPath {
             if let cell = self.cellForRow(at: idx) {
-                cell.isHidden = false
+                if cell is DraggableTableCell {
+                    (cell as? DraggableTableCell)?.cellDidFinishedDragging()
+                } else {
+                    cell.isHidden = false
+                }
             }
             
             if isDroppedOnSource {

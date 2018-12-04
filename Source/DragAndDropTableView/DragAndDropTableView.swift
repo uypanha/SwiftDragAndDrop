@@ -29,7 +29,7 @@ import UIKit
  */
 public protocol DragAndDropTableViewDataSource: UITableViewDataSource {
     
-//    func numberOfDraggableCells(in tableView: UITableView) -> Int
+    //    func numberOfDraggableCells(in tableView: UITableView) -> Int
     func tableView(_ tableView: UITableView, indexPathOf dataItem: AnyObject) -> IndexPath?
     func tableView(_ tableView: UITableView, dataItemAt indexPath: IndexPath) -> AnyObject?
     
@@ -83,7 +83,7 @@ open class DragAndDropTableView: UITableView, DragAndDropDelegate {
     
     // MARK: - Public interface
     
-     /// Whether droppable is enabled.
+    /// Whether droppable is enabled.
     public var isDroppable: Bool = true
     
     public var draggingIndexPath : IndexPath?
@@ -130,12 +130,12 @@ open class DragAndDropTableView: UITableView, DragAndDropDelegate {
             let cellIsFirstCell = self.indexPath(for: $0) == IndexPath(row: 0, section: 0)
             
             return !cellOverlapsTopBounds || cellIsFirstCell
-        }.forEach { visible in
-            let intersection = visible.frame.intersection(rect)
-            if (intersection.width * intersection.height) > overlappingArea {
-                overlappingArea = intersection.width * intersection.height
-                cellCandidate = visible
-            }
+            }.forEach { visible in
+                let intersection = visible.frame.intersection(rect)
+                if (intersection.width * intersection.height) > overlappingArea {
+                    overlappingArea = intersection.width * intersection.height
+                    cellCandidate = visible
+                }
         }
         
         if let cellRetrieved = cellCandidate, let indexPath = self.indexPath(for: cellRetrieved), dataSource?.tableView(self, cellIsDroppableAt: indexPath) == true {
