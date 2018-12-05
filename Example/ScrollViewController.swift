@@ -192,7 +192,7 @@ class TodoDragAndDropTableView: DragAndDropTableView, DragAndDropTableViewDataSo
         return nil
     }
     
-    func tableView(_ tableView: UITableView, dataItemAt indexPath: IndexPath) -> AnyObject {
+    func tableView(_ tableView: UITableView, dataItemAt indexPath: IndexPath) -> AnyObject? {
         return data[indexPath.row]
     }
     
