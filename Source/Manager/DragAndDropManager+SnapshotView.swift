@@ -101,8 +101,7 @@ extension DragAndDropManager {
         transformAnimation.fromValue = 1
         transformAnimation.toValue = self.cellScale
         transformAnimation.duration = self.animationDuration
-        transformAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        //CAMediaTimingFunction(name: .easeInEaseOut)
+        CAMediaTimingFunction(name: .easeInEaseOut)
         
         snapshotView.layer.add(opacityAnimation, forKey: nil)
         snapshotView.layer.add(shadowAnimation, forKey: nil)
@@ -126,8 +125,7 @@ extension DragAndDropManager {
         transformAnimation.fromValue = cellScale
         transformAnimation.toValue = 1
         transformAnimation.duration = animationDuration
-        transformAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        // CAMediaTimingFunction(name: .easeInEaseOut)
+        CAMediaTimingFunction(name: .easeInEaseOut)
         
         snapshotView.layer.add(opacityAnimation, forKey: nil)
         snapshotView.layer.add(shadowAnimation, forKey: nil)
