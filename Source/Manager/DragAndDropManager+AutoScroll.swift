@@ -32,11 +32,9 @@ extension DragAndDropManager {
         
         let safeAreaFrame: CGRect
         if #available(iOS 11, *) {
-            safeAreaFrame = UIEdgeInsetsInsetRect(scrollView.frame, scrollView.safeAreaInsets)
-            //scrollView.frame.inset(by: scrollView.safeAreaInsets)
+            safeAreaFrame = scrollView.frame.inset(by: scrollView.safeAreaInsets)
         } else {
-            safeAreaFrame = UIEdgeInsetsInsetRect(scrollView.frame, scrollView.scrollIndicatorInsets)
-            //scrollView.frame.inset(by: scrollView.scrollIndicatorInsets)
+            safeAreaFrame = scrollView.frame.inset(by: scrollView.scrollIndicatorInsets)
         }
         
         let distanceToLeft = max(snapshotView.frame.minX - safeAreaFrame.minX, 0)
@@ -53,8 +51,7 @@ extension DragAndDropManager {
     
     func activateAutoScrollDisplayLink(_ recogniser: UILongPressGestureRecognizer) {
         autoScrollDisplayLink = CADisplayLink(target: self, selector: #selector(handleDisplayLinkUpdate))
-        autoScrollDisplayLink?.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
-        //autoScrollDisplayLink?.add(to: .main, forMode: .default)
+        autoScrollDisplayLink?.add(to: .main, forMode: .default)
         lastAutoScrollTimeStamp = nil
     }
     
