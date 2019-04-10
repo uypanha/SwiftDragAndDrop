@@ -24,7 +24,7 @@ import UIKit
 
 extension DragAndDropManager {
     
-    func createSnapshotViewForCell(_ recogniser : UILongPressGestureRecognizer) {
+    func createSnapshotView(_ recogniser : UILongPressGestureRecognizer) {
         self.removeSnapshotView()
         for view in views where view is DraggableViewDelegate  {
             

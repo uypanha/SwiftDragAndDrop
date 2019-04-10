@@ -187,7 +187,7 @@ public class DragAndDropManager: NSObject {
     
     // MARK: - Reordering
     func beginReorder(_ recogniser : UILongPressGestureRecognizer) {
-        createSnapshotViewForCell(recogniser)
+        createSnapshotView(recogniser)
         animateSnapshotViewIn()
         if self.scrollView != nil {
             activateAutoScrollDisplayLink(recogniser)

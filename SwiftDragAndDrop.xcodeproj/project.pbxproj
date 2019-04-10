@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC415810225DC73A00668A3D /* DragAndDropPagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */; };
 		DCC9B9B5219D797D005D4352 /* SwiftDragAndDrop.h in Headers */ = {isa = PBXBuildFile; fileRef = DCC9B9B3219D797D005D4352 /* SwiftDragAndDrop.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DCC9B9C2219D79EC005D4352 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9C1219D79EC005D4352 /* AppDelegate.swift */; };
 		DCC9B9C7219D79EC005D4352 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC9B9C5219D79EC005D4352 /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropPagingScrollView.swift; sourceTree = "<group>"; };
 		DCC9B9B0219D797D005D4352 /* SwiftDragAndDrop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDragAndDrop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC9B9B3219D797D005D4352 /* SwiftDragAndDrop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftDragAndDrop.h; sourceTree = "<group>"; };
 		DCC9B9B4219D797D005D4352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC41580E225DC70A00668A3D /* DragAndDropPagingScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */,
+			);
+			path = DragAndDropPagingScrollView;
+			sourceTree = "<group>";
+		};
 		DCC9B9A6219D797D005D4352 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +164,7 @@
 		DCC9B9D1219D7A06005D4352 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				DC41580E225DC70A00668A3D /* DragAndDropPagingScrollView */,
 				DCC9B9EF219D7A54005D4352 /* DragAndDropTableView */,
 				DCC9B9DF219D7A45005D4352 /* Manager */,
 				DCC9B9D5219D7A1D005D4352 /* AutoScroll+Constant.swift */,
@@ -318,6 +329,7 @@
 			files = (
 				DCC9B9E9219D7A50005D4352 /* DragAndDropManager+SnapshotView.swift in Sources */,
 				DCC9B9E7219D7A50005D4352 /* DragAndDropManager+GestureRecognizer.swift in Sources */,
+				DC415810225DC73A00668A3D /* DragAndDropPagingScrollView.swift in Sources */,
 				DCC9B9ED219D7A50005D4352 /* DragAndDropManager+AutoScroll.swift in Sources */,
 				DCC9B9E5219D7A50005D4352 /* DragAndDropManager+Destination.swift in Sources */,
 				DCC9B9D8219D7A1D005D4352 /* CGRect+Extensions.swift in Sources */,
