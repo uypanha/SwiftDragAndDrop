@@ -32,7 +32,7 @@ public protocol DragAndDropDelegate {
 
 public extension DragAndDropDelegate where Self: UITableView {
     
-    public func dragAndDropViewBeginUpdate(_ update: () -> Void, _ finished: @escaping () -> Void) {
+    func dragAndDropViewBeginUpdate(_ update: () -> Void, _ finished: @escaping () -> Void) {
         if #available(iOS 11.0, *) {
             self.performBatchUpdates({
                 update()
@@ -45,7 +45,7 @@ public extension DragAndDropDelegate where Self: UITableView {
         }
     }
     
-    public func dragAndDropViewEndUpdate() {
+    func dragAndDropViewEndUpdate() {
         guard #available(iOS 11.0, *) else {
             // Fallback on earlier versions backward of iOS 11
             self.endUpdates()
