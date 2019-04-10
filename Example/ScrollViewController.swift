@@ -11,20 +11,12 @@ import SwiftDragAndDrop
 
 class ScrollViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: DragAndDropPagingScrollView!
     
     var titles = ["Backlog", "To Do", "In Progress", "Fixed", "Done", "Released", "Bug of Release"]
-    var slides:[UIView] = []
     
     var dragAndDropManager : DragAndDropManager?
     var data  = [[DataItem]]()
-    
-    fileprivate var pageWidth: CGFloat {
-        get {
-            return scrollView.frame.width - 40
-        }
-    }
-    fileprivate let spacingWidth: CGFloat = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,61 +36,12 @@ class ScrollViewController: UIViewController {
             index += 1
         }
         
-        scrollView.delegate = self
-        
         // Do any additional setup after loading the view.
-        self.removeAllSubView()
-        self.slides = self.createSlides()
-        setupSlideScrollView(slides: slides)
-        self.dragAndDropManager = DragAndDropManager(canvas: self.scrollView, tableViews: self.slides)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        self.prepareSlideViews()
+        self.scrollView.datasource = self
     }
 }
 
 extension ScrollViewController {
-    
-    func setupSlideScrollView(slides : [UIView]) {
-        slides.forEach { slide in
-            scrollView.addSubview(slide)
-        }
-        self.prepareSlideViews()
-    }
-    
-    func prepareSlideViews() {
-        let pageHeight = scrollView.frame.height
-        
-        scrollView.contentSize = CGSize(width: pageWidth * CGFloat(slides.count) + (spacingWidth * CGFloat(slides.count - 1)), height: pageHeight)
-        
-        for i in 0 ..< self.slides.count {
-            self.slides[i].frame = CGRect(x: (pageWidth + spacingWidth) * CGFloat(i), y: 0, width: pageWidth, height: pageHeight)
-        }
-    }
-    
-    func removeAllSubView() {
-        scrollView.subviews.forEach { subView in
-            subView.removeFromSuperview()
-        }
-    }
-    
-    func totalSafeArea() -> CGFloat {
-        var topSafeArea: CGFloat
-        var bottomSafeArea: CGFloat
-        
-        if #available(iOS 11.0, *) {
-            topSafeArea = view.safeAreaInsets.top
-            bottomSafeArea = view.safeAreaInsets.bottom
-        } else {
-            topSafeArea = topLayoutGuide.length
-            bottomSafeArea = bottomLayoutGuide.length
-        }
-        
-        return topSafeArea + bottomSafeArea
-    }
     
     func createSlides() -> [UIView] {
         var index = 0
@@ -124,53 +67,37 @@ extension ScrollViewController {
     }
 }
 
-extension ScrollViewController: UIScrollViewDelegate {
+extension ScrollViewController: DragAndDropPagingScrollViewDataSource {
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        // Stop scrollView sliding:
-        targetContentOffset.pointee = scrollView.contentOffset
-        
-        if scrollView == scrollView {
-            let maxIndex = slides.count - 1
-            let targetX: CGFloat = scrollView.contentOffset.x + velocity.x * 60.0
-            var targetIndex = Int(round(Double(targetX / (pageWidth + spacingWidth))))
-            var additionalWidth: CGFloat = 0
-            var isOverScrolled = false
-            
-            if targetIndex <= 0 {
-                targetIndex = 0
-            } else {
-                additionalWidth = 20
-            }
-            
-            if targetIndex > maxIndex {
-                targetIndex = maxIndex
-                isOverScrolled = true
-            }
-            
-            let velocityX = velocity.x
-            var newOffset = CGPoint(x: (CGFloat(targetIndex) * (self.pageWidth + self.spacingWidth)) - additionalWidth, y: 0)
-            if velocityX == 0 {
-                // when velocityX is 0, the jumping animation will occured
-                // if we don't set targetContentOffset.pointee to new offset
-                if !isOverScrolled &&  targetIndex == maxIndex {
-                    newOffset.x = scrollView.contentSize.width - scrollView.frame.width
-                }
-                targetContentOffset.pointee = newOffset
-            }
-            
-            // Damping equal 1 => no oscillations => decay animation:
-            UIView.animate(
-                withDuration: 0.3, delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: velocityX,
-                options: .allowUserInteraction,
-                animations: {
-                    scrollView.contentOffset = newOffset
-                    scrollView.layoutIfNeeded()
-            }, completion: nil)
-        }
+    func scrollView(_ scrollView: DragAndDropPagingScrollView, moveDataItem from: Int, to: Int) {
+    }
+    
+    func scrollView(_ scrollView: DragAndDropPagingScrollView, dataItemAt index: Int) -> AnyObject? {
+        return nil
+    }
+    
+    func scrollView(_ scrollView: DragAndDropPagingScrollView, indexOf dataItem: AnyObject) -> Int? {
+        return nil
+    }
+    
+    func numberOfColumns(in scrollView: DragAndDropPagingScrollView) -> Int {
+        return self.titles.count
+    }
+    
+    func scrollView(_ scrollView: DragAndDropPagingScrollView, viewForColumnAt index: Int) -> UIView {
+        let tableView = TodoDragAndDropTableView()
+        self.prepareTableView(tableView: tableView)
+        tableView.title = titles[index]
+        tableView.data = data[index]
+        tableView.register(DragTableViewCell.self)
+        tableView.dataSource = tableView.self
+        tableView.delegate = tableView.self
+        tableView.backgroundColor = UIColor.white
+        return tableView
+    }
+    
+    func scrollView(_ scrollView: DragAndDropPagingScrollView, didLoadedViewColumns views: [UIView]) {
+        self.dragAndDropManager = DragAndDropManager(canvas: self.scrollView, tableViews: views)
     }
 }
 
