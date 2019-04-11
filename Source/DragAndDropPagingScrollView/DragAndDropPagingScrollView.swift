@@ -61,7 +61,7 @@ public extension DragAndDropPagingScrollViewDataSource {
 open class DragAndDropPagingScrollView: UIScrollView {
     
     // MARK: - Public properties
-    public var datasource: DragAndDropPagingScrollViewDataSource? {
+    open var datasource: DragAndDropPagingScrollViewDataSource? {
         didSet {
             self.reloadData()
         }
@@ -72,25 +72,25 @@ open class DragAndDropPagingScrollView: UIScrollView {
     public var draggingIndex: Int?
     
     public lazy var pageWidth: CGFloat = { [unowned self] in
-        return self.frame.width - 32
+        return self.frame.width - 40
     }()
     public lazy var spacingWidth: CGFloat = 8
     
     public var padding: CGFloat = 12
     
-    open override func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         
         self.setUpScrollView()
     }
     
-    open override func didMoveToSuperview() {
+    override open func didMoveToSuperview() {
         super.didMoveToSuperview()
         
         reloadData()
     }
     
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         self.prepareSlideViews()
@@ -100,26 +100,26 @@ open class DragAndDropPagingScrollView: UIScrollView {
 // MARK: - Preparations & Tools
 public extension DragAndDropPagingScrollView {
     
-    private func setUpScrollView() {
+    func setUpScrollView() {
         self.delegate = self
         self.contentInset = UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding)
     }
     
-    public func reloadData() {
+    func reloadData() {
         removeAllSubView()
         columnViews = createSlides()
         setupSlideScrollView(slides: columnViews)
         datasource?.scrollView(self, didLoadedViewColumns: columnViews)
     }
     
-    fileprivate func setupSlideScrollView(slides : [UIView]) {
+    func setupSlideScrollView(slides : [UIView]) {
         slides.forEach { slide in
             self.addSubview(slide)
         }
         self.prepareSlideViews()
     }
     
-    fileprivate func prepareSlideViews() {
+    func prepareSlideViews() {
         let pageHeight = self.frame.height
         
         self.contentSize = CGSize(width: pageWidth * CGFloat(self.columnViews.count) + (spacingWidth * CGFloat(self.columnViews.count - 1)), height: pageHeight)
@@ -129,7 +129,7 @@ public extension DragAndDropPagingScrollView {
         }
     }
     
-    fileprivate func createSlides() -> [UIView] {
+    func createSlides() -> [UIView] {
         var columnViews: [UIView] = []
         if let datasource = self.datasource {
             let numberFoColumns = datasource.numberOfColumns(in: self)
@@ -142,7 +142,7 @@ public extension DragAndDropPagingScrollView {
         return columnViews
     }
     
-    fileprivate func removeAllSubView() {
+    func removeAllSubView() {
         self.subviews.forEach { subView in
             subView.removeFromSuperview()
         }

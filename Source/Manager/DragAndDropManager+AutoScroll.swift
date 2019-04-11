@@ -26,7 +26,7 @@ extension DragAndDropManager {
     
     func autoScrollVelocity() -> CGFloat {
         
-        guard let scrollView = self.scrollView, let snapshotView = bundle?.snapshotView else { return 0 }
+        guard let scrollView = self.scrollView, let snapshotView = rowBundle?.snapshotView else { return 0 }
         
         guard autoScrollEnabled else { return 0 }
         

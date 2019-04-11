@@ -16,7 +16,7 @@ class CollectionViewController: UIViewController {
     private var indexOfCellBeforeDragging = 0
     
     var titles = ["Backlog", "To Do", "In Progress", "Fixed", "Done", "Released", "Bug of Release"]
-    var data = [[DataItem]]()
+    var columnData: [ColumnDataItem] = []
     
     var dragAndDropManager : DragAndDropManager?
     var views = [UIView]()
@@ -35,7 +35,7 @@ class CollectionViewController: UIViewController {
                     return DataItem("\(i)", UIColor.randomColor())
                 })
             }
-            data.append(dataItems)
+            columnData.append(ColumnDataItem("\(index)", items: dataItems))
             index += 1
         }
         
@@ -98,7 +98,7 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
             
             self.dragAndDropManager = DragAndDropManager(canvas: self.collectionView, tableViews: self.views)
         }
-        cell.data = data[indexPath.row]
+        cell.data = columnData[indexPath.section].items
         cell.reloadData()
         return cell
     }
@@ -137,6 +137,21 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
             let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
             collectionViewLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
+    }
+}
+
+class ColumnDataItem: Equatable {
+    
+    var indexes: String
+    var items: [DataItem]
+    
+    init(_ indexes: String, items: [DataItem]) {
+        self.indexes    = indexes
+        self.items      = items
+    }
+    
+    static func ==(lhs: ColumnDataItem, rhs: ColumnDataItem) -> Bool {
+        return lhs.indexes == rhs.indexes
     }
 }
 

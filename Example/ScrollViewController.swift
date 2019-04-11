@@ -16,7 +16,7 @@ class ScrollViewController: UIViewController {
     var titles = ["Backlog", "To Do", "In Progress", "Fixed", "Done", "Released", "Bug of Release"]
     
     var dragAndDropManager : DragAndDropManager?
-    var data  = [[DataItem]]()
+    var columnData: [ColumnDataItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class ScrollViewController: UIViewController {
                     return DataItem("\(i)", UIColor.randomColor())
                 })
             }
-            data.append(dataItems)
+            columnData.append(ColumnDataItem("\(index)", items: dataItems))
             index += 1
         }
         
@@ -49,7 +49,7 @@ extension ScrollViewController {
             let tableView = TodoDragAndDropTableView()
             self.prepareTableView(tableView: tableView)
             tableView.title = title
-            tableView.data = data[index]
+            tableView.data = columnData[index]
             tableView.register(DragTableViewCell.self)
             tableView.dataSource = tableView.self
             tableView.delegate = tableView.self
@@ -69,14 +69,26 @@ extension ScrollViewController {
 
 extension ScrollViewController: DragAndDropPagingScrollViewDataSource {
     
+    func scrollView(_ scrollView: DragAndDropPagingScrollView, stylingRepresentation view: UIView) -> UIView? {
+        view.layer.cornerRadius = 10
+        return view
+    }
+    
     func scrollView(_ scrollView: DragAndDropPagingScrollView, moveDataItem from: Int, to: Int) {
     }
     
     func scrollView(_ scrollView: DragAndDropPagingScrollView, dataItemAt index: Int) -> AnyObject? {
-        return nil
+        return columnData[index]
     }
     
     func scrollView(_ scrollView: DragAndDropPagingScrollView, indexOf dataItem: AnyObject) -> Int? {
+        guard let candidate = dataItem as? ColumnDataItem else { return nil }
+        
+        for (i, item) in columnData.enumerated() {
+            if candidate != item { continue }
+            return i
+        }
+        
         return nil
     }
     
@@ -88,7 +100,7 @@ extension ScrollViewController: DragAndDropPagingScrollViewDataSource {
         let tableView = TodoDragAndDropTableView()
         self.prepareTableView(tableView: tableView)
         tableView.title = titles[index]
-        tableView.data = data[index]
+        tableView.data = columnData[index]
         tableView.register(DragTableViewCell.self)
         tableView.dataSource = tableView.self
         tableView.delegate = tableView.self
@@ -104,14 +116,14 @@ extension ScrollViewController: DragAndDropPagingScrollViewDataSource {
 class TodoDragAndDropTableView: DragAndDropTableView, DragAndDropTableViewDataSource, DragAndDropTableViewDelegate {
     
     var title = ""
-    var data = [DataItem]()
+    var data: ColumnDataItem!
     
     var cellHeightsDictionary: [IndexPath: CGFloat] = [:]
     
     func tableView(_ tableView: UITableView, indexPathOf dataItem: AnyObject) -> IndexPath? {
         guard let candidate = dataItem as? DataItem else { return nil }
         
-        for (i, item) in data.enumerated() {
+        for (i, item) in data.items.enumerated() {
             if candidate != item { continue }
             return IndexPath(item: i, section: 0)
         }
@@ -120,27 +132,27 @@ class TodoDragAndDropTableView: DragAndDropTableView, DragAndDropTableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, dataItemAt indexPath: IndexPath) -> AnyObject? {
-        return data[indexPath.row]
+        return data.items[indexPath.row]
     }
     
     func tableView(_ tableView: UITableView, moveDataItem from: IndexPath, to: IndexPath) {
-        let fromDataItem: DataItem = data[from.item]
-        data.remove(at: from.item)
-        data.insert(fromDataItem, at: to.item)
+        let fromDataItem: DataItem = data.items[from.item]
+        data.items.remove(at: from.item)
+        data.items.insert(fromDataItem, at: to.item)
     }
     
     func tableView(_ tableView: UITableView, insert dataItem: AnyObject, atIndexPath indexPath: IndexPath) {
         if let di = dataItem as? DataItem {
-            data.insert(di, at: indexPath.item)
+            data.items.insert(di, at: indexPath.item)
         }
     }
     
     func tableView(_ tableView: UITableView, deleteDataItemAt indexPath: IndexPath) {
-        data.remove(at: indexPath.item)
+        data.items.remove(at: indexPath.item)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data.count
+        return self.data.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -148,8 +160,8 @@ class TodoDragAndDropTableView: DragAndDropTableView, DragAndDropTableViewDataSo
         if (tableView as? DragAndDropTableView)?.isDraggingCell(at: indexPath) == true {
             cell.isHidden = true
         }
-        cell.title = self.data[indexPath.row].indexes
-        cell.color = self.data[indexPath.row].colour
+        cell.title = self.data.items[indexPath.row].indexes
+        cell.color = self.data.items[indexPath.row].colour
         return cell
     }
     

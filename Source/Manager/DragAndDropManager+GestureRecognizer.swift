@@ -36,23 +36,3 @@ extension DragAndDropManager {
     }
     
 }
-
-extension DragAndDropManager: UIGestureRecognizerDelegate {
-    
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        
-        for view in views where view is DraggableViewDelegate  {
-            
-            let draggable = view as! DraggableViewDelegate
-            
-            let touchPointInView = touch.location(in: view)
-            
-            guard draggable.draggableView(canDragAt: touchPointInView) else { continue }
-            if let _ = draggable.draggableView(dataItemAt: touchPointInView) {
-                return true
-            }
-        }
-        
-        return false
-    }
-}

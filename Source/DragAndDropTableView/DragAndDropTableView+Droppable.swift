@@ -91,8 +91,8 @@ extension DragAndDropTableView: DroppableViewDelegate {
         
         if let idx = self.draggingIndexPath {
             if let cell = self.cellForRow(at: idx) {
-                if cell is DraggableTableCell {
-                    (cell as? DraggableTableCell)?.cellDidFinishedDragging()
+                if cell is DraggableItemViewDelegate {
+                    (cell as? DraggableItemViewDelegate)?.cellDidFinishedDragging()
                 } else {
                     cell.isHidden = false
                 }

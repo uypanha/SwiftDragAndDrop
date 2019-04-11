@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DC415810225DC73A00668A3D /* DragAndDropPagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */; };
-		DC415811225DD41B00668A3D /* DragAndDropPagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */; };
+		DC415813225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415812225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift */; };
 		DCC9B9B5219D797D005D4352 /* SwiftDragAndDrop.h in Headers */ = {isa = PBXBuildFile; fileRef = DCC9B9B3219D797D005D4352 /* SwiftDragAndDrop.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DCC9B9C2219D79EC005D4352 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9C1219D79EC005D4352 /* AppDelegate.swift */; };
 		DCC9B9C7219D79EC005D4352 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC9B9C5219D79EC005D4352 /* Main.storyboard */; };
@@ -61,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropPagingScrollView.swift; sourceTree = "<group>"; };
+		DC415812225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DragAndDropPagingScrollView+DragAndDrop.swift"; sourceTree = "<group>"; };
 		DCC9B9B0219D797D005D4352 /* SwiftDragAndDrop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDragAndDrop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC9B9B3219D797D005D4352 /* SwiftDragAndDrop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftDragAndDrop.h; sourceTree = "<group>"; };
 		DCC9B9B4219D797D005D4352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */,
+				DC415812225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift */,
 			);
 			path = DragAndDropPagingScrollView;
 			sourceTree = "<group>";
@@ -338,6 +340,7 @@
 				DCC9B9F4219D7A63005D4352 /* DragAndDropTableView.swift in Sources */,
 				DCC9B9DC219D7A1D005D4352 /* AutoScroll+Constant.swift in Sources */,
 				DCC9B9F8219D7A63005D4352 /* DragAndDropTableView+Droppable.swift in Sources */,
+				DC415813225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift in Sources */,
 				DCC9B9F6219D7A63005D4352 /* DragAndDropTableView+AutoScroll.swift in Sources */,
 				DCC9B9FA219D7A63005D4352 /* DragAndDropTableView+Draggable.swift in Sources */,
 			);
@@ -347,7 +350,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC415811225DD41B00668A3D /* DragAndDropPagingScrollView.swift in Sources */,
 				DCC9BA0C219D7B1F005D4352 /* DragTableViewCell.swift in Sources */,
 				DCC9BA05219D7AF8005D4352 /* CollectionViewController.swift in Sources */,
 				DCC9BA15219D98EB005D4352 /* RootViewController.swift in Sources */,
