@@ -267,6 +267,7 @@ public class DragAndDropManager: NSObject {
     func updateReoderColumn(_ recogniser: UIGestureRecognizer) {
         let pointOnCanvas = recogniser.location(in: recogniser.view)
         updateColumnSnapshotViewPosition(pointOnCanvas)
+        updateDestinationColumn()
     }
     
     // MARK: End Reorder

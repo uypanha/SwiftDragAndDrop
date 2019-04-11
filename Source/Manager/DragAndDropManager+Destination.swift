@@ -22,6 +22,7 @@
 
 import UIKit
 
+// MARK: - Row Tools
 extension DragAndDropManager {
     
     @discardableResult func updateDestinationRow() -> Bool {
@@ -123,6 +124,16 @@ extension DragAndDropManager {
             }
         }
         completion()
+    }
+}
+
+// MARK: - Columns Tools
+extension DragAndDropManager {
+    
+    @discardableResult func updateDestinationColumn() -> Bool {
+        guard let bundle = self.columnBundle else { return false }
+        
+        return false
     }
     
     func updateColumnSnapshotViewOut(completion: @escaping () -> Void) {
