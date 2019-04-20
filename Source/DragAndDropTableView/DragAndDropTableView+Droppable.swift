@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018 Phanha UY
+// Copyright (c) 2019 Phanha UY
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -92,7 +92,7 @@ extension DragAndDropTableView: DroppableViewDelegate {
         if let idx = self.draggingIndexPath {
             if let cell = self.cellForRow(at: idx) {
                 if cell is DraggableItemViewDelegate {
-                    (cell as? DraggableItemViewDelegate)?.cellDidFinishedDragging()
+                    (cell as? DraggableItemViewDelegate)?.didFinishedDragging()
                 } else {
                     cell.isHidden = false
                 }

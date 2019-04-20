@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018 Phanha UY
+// Copyright (c) 2019 Phanha UY
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,19 +21,6 @@
 //
 
 import UIKit
-
-/**
- A`UITableViewCell` must adopt the `DraggableTableCell` protocol if the cell want to representation another view as snapshot instead of cell view. This protocol defines methods for handling the representationImage, how cell look like of being dragging and after it's dropped.
- */
-public protocol DraggableItemViewDelegate {
-    
-    func representationImage() -> UIView?
-    
-    func cellDidBeginDragging()
-    
-    func cellDidFinishedDragging()
-    
-}
 
 // MARK: - DraggableViewDelegate
 extension DragAndDropTableView: DraggableViewDelegate {
@@ -109,7 +96,7 @@ extension DragAndDropTableView: DraggableViewDelegate {
         if let indexToReload = self.draggingIndexPath {
             if let cell = self.cellForRow(at: indexToReload) {
                 if cell is DraggableItemViewDelegate {
-                    (cell as? DraggableItemViewDelegate)?.cellDidBeginDragging()
+                    (cell as? DraggableItemViewDelegate)?.didBeginDragging()
                 } else {
                     cell.isHidden = true
                 }
@@ -124,7 +111,7 @@ extension DragAndDropTableView: DraggableViewDelegate {
         if let idx = self.draggingIndexPath {
             if let cell = self.cellForRow(at: idx) {
                 if cell is DraggableItemViewDelegate {
-                    (cell as? DraggableItemViewDelegate)?.cellDidFinishedDragging()
+                    (cell as? DraggableItemViewDelegate)?.didFinishedDragging()
                 } else {
                     cell.isHidden = false
                 }

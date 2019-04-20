@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018 Phanha UY
+// Copyright (c) 2019 Phanha UY
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -58,11 +58,12 @@ extension DragAndDropManager {
             let pointOnCanvas = recogniser.location(in: self.canvas)
             let offset = CGPoint(x: pointOnCanvas.x - representation.frame.origin.x, y: 0)
             
-            if let dataItem: AnyObject = dragAndDrop.dragAndDropView(dataItemAt: touchPointInView) {
+            if let dataItem: AnyObject = dragAndDrop.dragAndDropView(dataItemAt: touchPointInView), let viewColumn = viewColumn(at: touchPointInView) {
                 
                 self.removeRowSnapshotView()
                 self.columnBundle = ColumnReorderBundle(
                     offset: offset,
+                    draggingView: viewColumn,
                     snapshotView: representation,
                     dataItem : dataItem
                 )
@@ -198,5 +199,14 @@ extension DragAndDropManager {
         snapshotView.layer.opacity = 1
         snapshotView.layer.shadowOpacity = 0
         snapshotView.layer.transform = CATransform3DIdentity
+    }
+    
+    public func viewColumn(at point: CGPoint) -> UIView? {
+        if self.columnViews.count > 0 {
+            for index in 0...(self.columnViews.count - 1) {
+                if self.columnViews[index].frame.contains(point) { return self.columnViews[index] }
+            }
+        }
+        return nil
     }
 }

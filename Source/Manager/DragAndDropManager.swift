@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018 Phanha UY
+// Copyright (c) 2019 Phanha UY
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -58,7 +58,9 @@ public protocol DragAndDropPagingScrollViewDelegate {
     
     var draggingIndex: Int? { get set }
     
-    func dragAndDropView(canDragAt point : CGPoint) -> Bool
+    func dragAndDropView(canDragAt point: CGPoint) -> Bool
+    
+    func dragAndDropView(canDropAt rect: CGRect) -> Bool
     
     func dragAndDropView(representationImageAt point : CGPoint) -> UIView?
     
@@ -66,18 +68,20 @@ public protocol DragAndDropPagingScrollViewDelegate {
     
     func dragAndDropView(dataItemAt point : CGPoint) -> AnyObject?
     
-    func dragAndDropView(dragData item : AnyObject) -> Void
+    func dragAndDropView(dragData item : AnyObject)
+    
+    func dragAndDropView(willMove item: AnyObject, inRect rect: CGRect)
     
     func draggingViewRect() -> CGRect?
     
-    /* optional */ func dragAndDropView(didBeginDraggingAt point: CGPoint) -> Void
+    /* optional */ func dragAndDropView(didBeginDraggingAt point: CGPoint)
     /* optional */ func dragAndDropViewDidFinishDragging()
     /* optional */ func isDraggingColumn(at index: Int) -> Bool
 }
 
 public extension DragAndDropPagingScrollViewDelegate {
     
-    func dragAndDropView(didBeginDraggingAt point: CGPoint) -> Void {}
+    func dragAndDropView(didBeginDraggingAt point: CGPoint) {}
     
     func dragAndDropViewDidFinishDragging() {}
     
@@ -182,6 +186,7 @@ public class DragAndDropManager: NSObject {
     // MARK: - Internal Bundle
     struct ColumnReorderBundle {
         var offset : CGPoint = CGPoint.zero
+        var draggingView: UIView
         var snapshotView : UIView
         var dataItem : AnyObject
     }

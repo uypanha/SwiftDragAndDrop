@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DC415810225DC73A00668A3D /* DragAndDropPagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */; };
 		DC415813225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415812225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift */; };
+		DC41581822684FC500668A3D /* DraggableItemViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41581722684FC500668A3D /* DraggableItemViewDelegate.swift */; };
+		DC41581B226851D300668A3D /* TodoDragAndDropTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415819226851A200668A3D /* TodoDragAndDropTableView.swift */; };
 		DCC9B9B5219D797D005D4352 /* SwiftDragAndDrop.h in Headers */ = {isa = PBXBuildFile; fileRef = DCC9B9B3219D797D005D4352 /* SwiftDragAndDrop.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DCC9B9C2219D79EC005D4352 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC9B9C1219D79EC005D4352 /* AppDelegate.swift */; };
 		DCC9B9C7219D79EC005D4352 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC9B9C5219D79EC005D4352 /* Main.storyboard */; };
@@ -62,6 +64,8 @@
 /* Begin PBXFileReference section */
 		DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropPagingScrollView.swift; sourceTree = "<group>"; };
 		DC415812225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DragAndDropPagingScrollView+DragAndDrop.swift"; sourceTree = "<group>"; };
+		DC41581722684FC500668A3D /* DraggableItemViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableItemViewDelegate.swift; sourceTree = "<group>"; };
+		DC415819226851A200668A3D /* TodoDragAndDropTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDragAndDropTableView.swift; sourceTree = "<group>"; };
 		DCC9B9B0219D797D005D4352 /* SwiftDragAndDrop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDragAndDrop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC9B9B3219D797D005D4352 /* SwiftDragAndDrop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftDragAndDrop.h; sourceTree = "<group>"; };
 		DCC9B9B4219D797D005D4352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				DCC9BA01219D7AF8005D4352 /* Reusable+Extensions.swift */,
 				DCC9B9FC219D7AA7005D4352 /* RootViewController.swift */,
 				DCC9B9FF219D7AF8005D4352 /* ScrollViewController.swift */,
+				DC415819226851A200668A3D /* TodoDragAndDropTableView.swift */,
 				DCC9B9C8219D79ED005D4352 /* Assets.xcassets */,
 				DCC9BA08219D7B18005D4352 /* DragTableViewCell */,
 				DCC9B9CA219D79ED005D4352 /* LaunchScreen.storyboard */,
@@ -172,6 +177,7 @@
 				DCC9B9DF219D7A45005D4352 /* Manager */,
 				DCC9B9D5219D7A1D005D4352 /* AutoScroll+Constant.swift */,
 				DCC9B9D3219D7A1C005D4352 /* CGRect+Extensions.swift */,
+				DC41581722684FC500668A3D /* DraggableItemViewDelegate.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -335,6 +341,7 @@
 				DC415810225DC73A00668A3D /* DragAndDropPagingScrollView.swift in Sources */,
 				DCC9B9ED219D7A50005D4352 /* DragAndDropManager+AutoScroll.swift in Sources */,
 				DCC9B9E5219D7A50005D4352 /* DragAndDropManager+Destination.swift in Sources */,
+				DC41581822684FC500668A3D /* DraggableItemViewDelegate.swift in Sources */,
 				DCC9B9D8219D7A1D005D4352 /* CGRect+Extensions.swift in Sources */,
 				DCC9B9EB219D7A50005D4352 /* DragAndDropManager.swift in Sources */,
 				DCC9B9F4219D7A63005D4352 /* DragAndDropTableView.swift in Sources */,
@@ -355,6 +362,7 @@
 				DCC9BA15219D98EB005D4352 /* RootViewController.swift in Sources */,
 				DCC9BA07219D7AF8005D4352 /* Reusable+Extensions.swift in Sources */,
 				DCC9BA03219D7AF8005D4352 /* ScrollViewController.swift in Sources */,
+				DC41581B226851D300668A3D /* TodoDragAndDropTableView.swift in Sources */,
 				DCC9B9C2219D79EC005D4352 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

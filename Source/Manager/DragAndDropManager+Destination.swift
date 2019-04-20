@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018 Phanha UY
+// Copyright (c) 2019 Phanha UY
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -133,7 +133,42 @@ extension DragAndDropManager {
     @discardableResult func updateDestinationColumn() -> Bool {
         guard let bundle = self.columnBundle else { return false }
         
+        let pointOnDetectedView = self.canvas.convert(bundle.snapshotView.center, to: self.viewToDetect)
+        var draggingFrame = bundle.snapshotView.frame
+        draggingFrame.origin = CGPoint(x: pointOnDetectedView.x - bundle.offset.x, y: pointOnDetectedView.y - bundle.offset.y)
+        
+        var overlappingAreaMAX: CGFloat = 0.0
+        var mainOverView: UIView?
+
+        for view in self.columnViews {
+            let viewFrameOnCanvas = self.convertRectToCanvas(view.frame, fromView: view)
+            
+            let overlappingAreaCurrent = draggingFrame.intersection(viewFrameOnCanvas).area
+            
+            if overlappingAreaCurrent > overlappingAreaMAX {
+                overlappingAreaMAX = overlappingAreaCurrent
+                mainOverView = view
+            }
+        }
+        
+        if let dragAndDrop = self.scrollView as? DragAndDropPagingScrollViewDelegate {
+            if let overView = mainOverView {
+                let rect = viewToDetect.convert(draggingFrame, to: self.viewToDetect)
+                if dragAndDrop.dragAndDropView(canDropAt: rect) {
+                    updateReoderColumns(dragAndDrop, overView, at: rect)
+                }
+            }
+        }
+        
         return false
+    }
+    
+    fileprivate func updateReoderColumns(_ dragAndDrop: DragAndDropPagingScrollViewDelegate, _ mainOverView: UIView?, at rect: CGRect) {
+        
+        guard let bundle = self.columnBundle else { return }
+        if bundle.draggingView == mainOverView { return }
+        
+        dragAndDrop.dragAndDropView(willMove: bundle.dataItem, inRect: rect)
     }
     
     func updateColumnSnapshotViewOut(completion: @escaping () -> Void) {

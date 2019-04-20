@@ -1,9 +1,23 @@
 //
-//  DragAndDropPagingScrollView+DragAndDrop.swift
-//  SwiftDragAndDrop
+// Copyright (c) 2019 Phanha UY
 //
-//  Created by Phanha Uy on 4/11/19.
-//  Copyright © 2019 Phanha Uy. All rights reserved.
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 //
 
 import UIKit
@@ -24,7 +38,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
             if indexToReload < self.columnViews.count {
                 let view = columnViews[indexToReload]
                 if view is DraggableItemViewDelegate {
-                    (view as? DraggableItemViewDelegate)?.cellDidBeginDragging()
+                    (view as? DraggableItemViewDelegate)?.didBeginDragging()
                 } else {
                     view.isHidden = true
                 }
@@ -37,7 +51,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
         if let indexToReload = self.draggingIndex {
             let view = columnViews[indexToReload]
             if view is DraggableItemViewDelegate {
-                (view as? DraggableItemViewDelegate)?.cellDidFinishedDragging()
+                (view as? DraggableItemViewDelegate)?.didFinishedDragging()
             } else {
                 view.isHidden = false
             }
@@ -92,12 +106,74 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
         return false
     }
     
+    public func dragAndDropView(canDropAt rect: CGRect) -> Bool {
+        return (self.indexForViewOverlappingRect(rect) != nil)
+    }
+    
+    public func dragAndDropView(willMove item: AnyObject, inRect rect: CGRect) {
+        if let fromIndex = self.draggingIndex, let toIndex = self.indexForViewOverlappingRect(rect) {
+            print("moving indexs: from(\(fromIndex) - to(\(toIndex)))")
+            if fromIndex != toIndex {
+                self.datasource?.scrollView(self, moveDataItem: fromIndex, to: toIndex)
+                self.draggingIndex = toIndex
+                self.moveColumns(from: fromIndex, to: toIndex)
+            }
+        }
+    }
+    
     public func indexForColumn(at point: CGPoint) -> Int? {
         if self.columnViews.count > 0 {
             for index in 0...(self.columnViews.count - 1) {
-                if self.columnViews[index].frame.contains(point) { return index }
+                if self.columnViews[index].frame.contains(point) {
+                    return index
+                }
             }
         }
         return nil
+    }
+    
+    public func indexForViewOverlappingRect( _ rect : CGRect) -> Int? {
+        var overlappingArea : CGFloat = 0.0
+        var viewCandidate: UIView?
+        
+        let lastIndex: Int = self.columnViews.count > 0 ? self.columnViews.count - 1 : 0
+        
+        let visibleColumns = self.columnViews
+        if visibleColumns.count == 0 {
+            return lastIndex
+        }
+        
+        if  rect.origin.y > self.contentSize.height {
+            if self.datasource?.scrollView(self, columnIsDroppableAt: lastIndex) == true {
+                return lastIndex
+            }
+            return nil
+        }
+        
+        visibleColumns.forEach { view in
+            let intersection = view.frame.intersection(rect)
+            if (intersection.width * intersection.height) > overlappingArea {
+                overlappingArea = intersection.width * intersection.height
+                viewCandidate = view
+            }
+        }
+        
+        if let viewRetrieved = viewCandidate, let index = self.columnViews.firstIndex(of: viewRetrieved), self.datasource?.scrollView(self, columnIsDroppableAt: index) == true {
+            return index
+        }
+        return nil
+    }
+    
+    public func moveColumns(from index: Int, to: Int) {
+        let fromFrame = self.columnViews[index].frame
+        let toFrame = self.columnViews[to].frame
+        
+        self.columnViews[index].frame = toFrame
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.columnViews[to].frame = fromFrame
+        }) { _ in
+            self.reloadData()
+        }
     }
 }
