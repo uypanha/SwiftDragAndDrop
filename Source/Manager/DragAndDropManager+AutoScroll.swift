@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018 Phanha UY
+// Copyright (c) 2019 Phanha UY
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@ extension DragAndDropManager {
     
     func autoScrollVelocity() -> CGFloat {
         
-        guard let scrollView = self.scrollView, let snapshotView = bundle?.snapshotView else { return 0 }
+        guard let scrollView = self.scrollView, let snapshotView = rowBundle?.snapshotView ?? columnBundle?.snapshotView else { return 0 }
         
         guard autoScrollEnabled else { return 0 }
         
@@ -65,7 +65,11 @@ extension DragAndDropManager {
         guard let scrollView = scrollView else { return }
         
         if updateDestinationAutoScroll() {
-            updateDestinationRow()
+            if self.rowBundle != nil {
+                updateDestinationRow()
+            } else if columnBundle != nil {
+                updateDestinationColumn()
+            }
         } else {
             if let lastAutoScrollTimeStamp = lastAutoScrollTimeStamp {
                 let scrollVelocity = autoScrollVelocity()
@@ -90,7 +94,11 @@ extension DragAndDropManager {
                     scrollView.contentOffset.x = min(maxContentOffset, scrollView.contentOffset.x)
                     scrollView.contentOffset.x = max(minContentOffset, scrollView.contentOffset.x)
                     
-                    updateDestinationRow()
+                    if self.rowBundle != nil {
+                        updateDestinationRow()
+                    } else if columnBundle != nil {
+                        updateDestinationColumn()
+                    }
                 }
             }
         }

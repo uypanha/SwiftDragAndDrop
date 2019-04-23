@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018 Phanha UY
+// Copyright (c) 2019 Phanha UY
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -51,6 +51,40 @@ public extension DragAndDropDelegate where Self: UITableView {
             self.endUpdates()
             return
         }
+    }
+}
+
+public protocol DragAndDropPagingScrollViewDelegate {
+    
+    var draggingIndex: Int? { get set }
+    
+    func dragAndDropView(canDragAt point: CGPoint) -> Bool
+    
+    func dragAndDropView(canDropAt rect: CGRect) -> Bool
+    
+    func dragAndDropView(representationImageAt point : CGPoint) -> UIView?
+    
+    func dragAndDropView(stylingRepresentationView view: UIView) -> UIView?
+    
+    func dragAndDropView(dataItemAt point : CGPoint) -> AnyObject?
+    
+    func dragAndDropView(willMove item: AnyObject, inRect rect: CGRect)
+    
+    func draggingViewRect() -> CGRect?
+    
+    /* optional */ func dragAndDropView(didBeginDraggingAt point: CGPoint)
+    /* optional */ func dragAndDropViewDidFinishDragging()
+    /* optional */ func isDraggingColumn(at index: Int) -> Bool
+}
+
+public extension DragAndDropPagingScrollViewDelegate {
+    
+    func dragAndDropView(didBeginDraggingAt point: CGPoint) {}
+    
+    func dragAndDropViewDidFinishDragging() {}
+    
+    func isDraggingColumn(at index: Int) -> Bool {
+        return draggingIndex == index
     }
 }
 
@@ -108,7 +142,9 @@ public class DragAndDropManager: NSObject {
     
     var canvas : UIView
     var scrollView: UIScrollView? = nil
-    var views : [UIView]
+    
+    var columnViews: [UIView]
+    var tableViews: [UIView]
     
     var viewToDetect: UIView {
         get {
@@ -126,10 +162,13 @@ public class DragAndDropManager: NSObject {
     public var animationDuration: TimeInterval = 0.2
     
     /// The opacity of the selected cell.
-    public var cellOpacity: CGFloat = 1
+    public var snapshotOpacity: CGFloat = 1
+    
+    /// The scale factor for the selected column.
+    public var columnSnapShotScale: CGFloat = 1
     
     /// The scale factor for the selected cell.
-    public var cellScale: CGFloat = 1
+    public var rowSnapShotScale: CGFloat = 1
     
     /// The shadow color for the selected cell.
     public var shadowColor: UIColor = .black
@@ -147,7 +186,14 @@ public class DragAndDropManager: NSObject {
     public var autoScrollEnabled = true
     
     // MARK: - Internal Bundle
-    struct ReorderBundle {
+    struct ColumnReorderBundle {
+        var offset : CGPoint = CGPoint.zero
+        var draggingView: UIView
+        var snapshotView : UIView
+        var dataItem : AnyObject
+    }
+    
+    struct RowReorderBundle {
         var offset : CGPoint = CGPoint.zero
         var sourceDraggableView : UIView
         var destinationDroppableView : UIView?
@@ -155,16 +201,16 @@ public class DragAndDropManager: NSObject {
         var dataItem : AnyObject
     }
     
-    var bundle : ReorderBundle?
+    var columnBundle: ColumnReorderBundle?
+    var rowBundle: RowReorderBundle?
     
     lazy var reorderGestureRecognizer: UILongPressGestureRecognizer = {
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(DragAndDropManager.updateForLongPress(_:)))
-        gestureRecognizer.delegate = self
-        gestureRecognizer.minimumPressDuration = 0.3
+        gestureRecognizer.minimumPressDuration = 0.5
         return gestureRecognizer
     }()
     
-    public init(canvas : UIView, tableViews : [UIView]) {
+    public init(canvas: UIView, tableViews: [UIView], columnViews: [UIView] = []) {
         
         guard let superView = canvas.superview else {
             fatalError("Canvas must be inside a view")
@@ -173,7 +219,12 @@ public class DragAndDropManager: NSObject {
             self.scrollView = scrollView
         }
         self.canvas = superView
-        self.views = tableViews
+        self.tableViews = tableViews
+        if columnViews.isEmpty {
+            self.columnViews = tableViews
+        } else {
+            self.columnViews = columnViews
+        }
         
         super.init()
         
@@ -181,34 +232,69 @@ public class DragAndDropManager: NSObject {
         self.canvas.addGestureRecognizer(self.reorderGestureRecognizer)
     }
     
+    public func setSubViews(_ tableViews: [UIView], columnViews: [UIView] = []) {
+        self.tableViews = tableViews
+        if columnViews.isEmpty {
+            self.columnViews = tableViews
+        } else {
+            self.columnViews = columnViews
+        }
+    }
+    
     public func append(element tableView: UIView) {
-        self.views.append(tableView)
+        self.tableViews.append(tableView)
     }
     
     // MARK: - Reordering
     func beginReorder(_ recogniser : UILongPressGestureRecognizer) {
-        createSnapshotViewForCell(recogniser)
+        createSnapshotView(recogniser)
         animateSnapshotViewIn()
         if self.scrollView != nil {
             activateAutoScrollDisplayLink(recogniser)
         }
         
-        guard let bundle = self.bundle else { return }
-        let sourceDraggable : DraggableViewDelegate = bundle.sourceDraggableView as! DraggableViewDelegate
-        let pointOnSourceDraggable = recogniser.location(in: bundle.sourceDraggableView)
-        sourceDraggable.draggableView(didBeginDraggingAt: pointOnSourceDraggable)
+        if let bundle = self.rowBundle {
+            let sourceDraggable: DraggableViewDelegate = bundle.sourceDraggableView as! DraggableViewDelegate
+            let pointOnSourceDraggable = recogniser.location(in: bundle.sourceDraggableView)
+            sourceDraggable.draggableView(didBeginDraggingAt: pointOnSourceDraggable)
+        } else if let _ = self.columnBundle {
+            if let dragAndDrop = self.scrollView as? DragAndDropPagingScrollViewDelegate {
+                let touchPointInView = recogniser.location(in: self.scrollView)
+                dragAndDrop.dragAndDropView(didBeginDraggingAt: touchPointInView)
+            }
+        }
     }
     
+    // MARK: - Update Reorder
     func updateReorder(_ recogniser: UIGestureRecognizer) {
-        guard let _ = self.bundle else { return }
-        
+        if let _ = self.rowBundle {
+            updateReoderRow(recogniser)
+        } else if let _ = self.columnBundle {
+            updateReoderColumn(recogniser)
+        }
+    }
+    
+    func updateReoderRow(_ recogniser: UIGestureRecognizer) {
         let pointOnCanvas = recogniser.location(in: recogniser.view)
-        updateSnapshotViewPosition(pointOnCanvas)
+        updateRowSnapshotViewPosition(pointOnCanvas)
         updateDestinationRow()
     }
     
+    func updateReoderColumn(_ recogniser: UIGestureRecognizer) {
+        let pointOnCanvas = recogniser.location(in: recogniser.view)
+        updateColumnSnapshotViewPosition(pointOnCanvas)
+        updateDestinationColumn()
+    }
+    
+    // MARK: End Reorder
     func endReorder(_ recogniser: UIGestureRecognizer) {
-        guard let bundle = self.bundle else { return }
+        endReorderRow(recogniser)
+        endReorderColumn(recogniser)
+        clearAutoScrollDisplayLink()
+    }
+    
+    func endReorderRow(_ recogniser: UIGestureRecognizer) {
+        guard let bundle = self.rowBundle else { return }
         
         let pointOnDetectedView = recogniser.location(in: self.viewToDetect)
         let sourceDraggable : DraggableViewDelegate = bundle.sourceDraggableView as! DraggableViewDelegate
@@ -227,7 +313,7 @@ public class DragAndDropManager: NSObject {
         }
         
         animateSnapshotViewOut()
-        updateSnapshotViewOut(destinationView: destinationView) {
+        updateRowSnapshotViewOut(destinationView: destinationView) {
             var isDropppedOnSource = true
             if droppable != nil {
                 // Update the frame of the representation image
@@ -239,9 +325,21 @@ public class DragAndDropManager: NSObject {
             }
             
             sourceDraggable.draggableViewDidFinishDragging(isDropppedOnSource)
-            self.removeSnapshotView()
+            self.removeRowSnapshotView()
         }
-        clearAutoScrollDisplayLink()
+    }
+    
+    func endReorderColumn(_ recogniser: UIGestureRecognizer) {
+        guard let _ = self.columnBundle else { return }
+        
+        // if we are actually dropping over a new position.
+//        let pointOnDetectedView = recogniser.location(in: self.viewToDetect)
+        animateSnapshotViewOut()
+        updateColumnSnapshotViewOut {
+            
+            (self.scrollView as? DragAndDropPagingScrollViewDelegate)?.dragAndDropViewDidFinishDragging()
+            self.removeColumnSnapshitView()
+        }
     }
     
     // MARK: Helper Methods

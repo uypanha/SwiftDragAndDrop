@@ -4,6 +4,9 @@ SwiftDragAndDrop is an extended UITableView that lets you add long-press drag-an
 
 ![Demo](Resources/demo.gif)
 
+## Breaking Changes
+- Refactored usage classes and protocols
+
 ## Features
 
 - Smooth animations
