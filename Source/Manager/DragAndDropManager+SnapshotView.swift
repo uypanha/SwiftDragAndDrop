@@ -45,7 +45,7 @@ extension DragAndDropManager {
             representation.frame = self.canvas.convert(representation.frame, from: scrollView)
             representation.layer.masksToBounds = false
             representation.layer.opacity = Float(snapshotOpacity)
-            representation.layer.transform = CATransform3DMakeScale(snapShotScale, snapShotScale, 1)
+            representation.layer.transform = CATransform3DMakeScale(columnSnapShotScale, columnSnapShotScale, 1)
             
             representation.layer.shadowColor = shadowColor.cgColor
             representation.layer.shadowOpacity = Float(shadowOpacity)
@@ -87,7 +87,7 @@ extension DragAndDropManager {
                 representation.frame = self.canvas.convert(representation.frame, from: view)
                 representation.layer.masksToBounds = false
                 representation.layer.opacity = Float(snapshotOpacity)
-                representation.layer.transform = CATransform3DMakeScale(snapShotScale, snapShotScale, 1)
+                representation.layer.transform = CATransform3DMakeScale(rowSnapShotScale, rowSnapShotScale, 1)
                 
                 representation.layer.shadowColor = shadowColor.cgColor
                 representation.layer.shadowOpacity = Float(shadowOpacity)
@@ -164,7 +164,7 @@ extension DragAndDropManager {
         
         let transformAnimation = CABasicAnimation(keyPath: "transform.scale")
         transformAnimation.fromValue = 1
-        transformAnimation.toValue = self.snapShotScale
+        transformAnimation.toValue = self.rowBundle != nil ? self.rowSnapShotScale : self.columnSnapShotScale
         transformAnimation.duration = self.animationDuration
         transformAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         
@@ -187,7 +187,7 @@ extension DragAndDropManager {
         shadowAnimation.duration = animationDuration
         
         let transformAnimation = CABasicAnimation(keyPath: "transform.scale")
-        transformAnimation.fromValue = snapShotScale
+        transformAnimation.fromValue = self.rowBundle != nil ? self.rowSnapShotScale : self.columnSnapShotScale
         transformAnimation.toValue = 1
         transformAnimation.duration = animationDuration
         transformAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)

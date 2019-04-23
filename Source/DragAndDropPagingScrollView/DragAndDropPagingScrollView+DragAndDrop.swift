@@ -43,7 +43,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
                     view.isHidden = true
                 }
             }
-//            (self.delegate as? DragAndDropTableViewDelegate)?.tableViewDidBeginDragging(self, at: indexToReload)
+            self.pagingDelegate?.scrollViewDidBeginDragging(self, at: indexToReload)
         }
     }
     
@@ -55,16 +55,11 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
             } else {
                 view.isHidden = false
             }
-            //            if isDroppedOnSource {
-            //                (self.delegate as? DragAndDropTableViewDelegate)?.tableView(self, didDropAt: idx)
-            //            }
+            self.pagingDelegate?.scrollView(self, didDropAt: indexToReload)
         }
         
-//        (self as? DragAndDropTableViewDelegate)?.tableViewDidFinishDragging(self)
+        self.pagingDelegate?.scrollViewDidFinishDragging(self)
         self.draggingIndex = nil
-    }
-    
-    public func dragAndDropView(dragData item: AnyObject) {
     }
     
     public func dragAndDropView(dataItemAt point: CGPoint) -> AnyObject? {
@@ -112,7 +107,6 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
     
     public func dragAndDropView(willMove item: AnyObject, inRect rect: CGRect) {
         if let fromIndex = self.draggingIndex, let toIndex = self.indexForViewOverlappingRect(rect) {
-            print("moving indexs: from(\(fromIndex) - to(\(toIndex)))")
             if fromIndex != toIndex {
                 self.datasource?.scrollView(self, moveDataItem: fromIndex, to: toIndex)
                 self.draggingIndex = toIndex
@@ -124,7 +118,9 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
     public func indexForColumn(at point: CGPoint) -> Int? {
         if self.columnViews.count > 0 {
             for index in 0...(self.columnViews.count - 1) {
-                if self.columnViews[index].frame.contains(point) {
+                if self.movingColumns.contains(where: { (from, to) -> Bool in return index == from }) {
+                    return nil
+                } else if self.columnViews[index].frame.contains(point) {
                     return index
                 }
             }
@@ -138,7 +134,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
         
         let lastIndex: Int = self.columnViews.count > 0 ? self.columnViews.count - 1 : 0
         
-        let visibleColumns = self.columnViews
+        let visibleColumns = self.visibleColumnViews
         if visibleColumns.count == 0 {
             return lastIndex
         }
@@ -165,15 +161,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
     }
     
     public func moveColumns(from index: Int, to: Int) {
-        let fromFrame = self.columnViews[index].frame
-        let toFrame = self.columnViews[to].frame
-        
-        self.columnViews[index].frame = toFrame
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            self.columnViews[to].frame = fromFrame
-        }) { _ in
-            self.reloadData()
-        }
+        self.movingColumns.append((index, to))
+        self.reloadColumns()
     }
 }

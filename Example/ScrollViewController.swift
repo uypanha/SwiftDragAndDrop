@@ -32,7 +32,7 @@ class ScrollViewController: UIViewController {
                     return DataItem("\(i)", UIColor.randomColor())
                 })
             }
-            columnData.append(ColumnDataItem("\(index)", items: dataItems))
+            columnData.append(ColumnDataItem("\(index)",title: title, items: dataItems))
             index += 1
         }
         
@@ -102,7 +102,7 @@ extension ScrollViewController: DragAndDropPagingScrollViewDataSource {
     func scrollView(_ scrollView: DragAndDropPagingScrollView, viewForColumnAt index: Int) -> UIView {
         let tableView = TodoDragAndDropTableView()
         self.prepareTableView(tableView: tableView)
-        tableView.title = titles[index]
+        tableView.title = columnData[index].title
         tableView.data = columnData[index]
         tableView.register(DragTableViewCell.self)
         tableView.dataSource = tableView.self
@@ -112,6 +112,11 @@ extension ScrollViewController: DragAndDropPagingScrollViewDataSource {
     }
     
     func scrollView(_ scrollView: DragAndDropPagingScrollView, didLoadedViewColumns views: [UIView]) {
-        self.dragAndDropManager = DragAndDropManager(canvas: self.scrollView, tableViews: views)
+        if self.dragAndDropManager == nil {
+            self.dragAndDropManager = DragAndDropManager(canvas: self.scrollView, tableViews: views)
+            self.dragAndDropManager?.columnSnapShotScale = 0.9
+        } else {
+            self.dragAndDropManager?.setSubViews(views)
+        }
     }
 }

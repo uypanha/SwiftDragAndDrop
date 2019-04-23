@@ -57,6 +57,18 @@ public extension DragAndDropPagingScrollViewDataSource {
     func scrollView(_ scrollView: DragAndDropPagingScrollView, didLoadedViewColumns views: [UIView]) {}
 }
 
+/**
+ The delegate of a `DragAndDropPagingScrollView` must adopt the `DragAndDropScrollViewViewDelegate` protocol. This protocol defines methods for handling the drag and drop of columns.
+ */
+public protocol DragAndDropScrollViewViewDelegate {
+    
+    func scrollViewDidBeginDragging(_ scrollView: UIScrollView, at index: Int)
+    
+    func scrollViewDidFinishDragging(_ scrollView: UIScrollView)
+    
+    func scrollView(_ scrollView: UIScrollView, didDropAt index: Int)
+}
+
 // MARK: - DragAndDropPagingScrollView
 open class DragAndDropPagingScrollView: UIScrollView {
     
@@ -67,7 +79,13 @@ open class DragAndDropPagingScrollView: UIScrollView {
         }
     }
     
+    open var pagingDelegate: DragAndDropScrollViewViewDelegate?
+    
     public var columnViews: [UIView] = []
+    
+    public var visibleColumnViews: [UIView] {
+        get { return self.fetchingVisibleColumnViews() }
+    }
     
     public var draggingIndex: Int?
     
@@ -77,6 +95,9 @@ open class DragAndDropPagingScrollView: UIScrollView {
     public lazy var spacingWidth: CGFloat = 8
     
     public var padding: CGFloat = 12
+    
+    // MARK: - Private properties
+    var movingColumns: [(Int, Int)] = []
     
     override open func awakeFromNib() {
         super.awakeFromNib()
@@ -112,6 +133,16 @@ public extension DragAndDropPagingScrollView {
         datasource?.scrollView(self, didLoadedViewColumns: columnViews)
     }
     
+    func reloadColumns(animate: Bool = true) {
+        self.movingColumns.forEach { (from, to) in
+            let temp = self.columnViews[from]
+            self.columnViews[from] = self.columnViews[to]
+            self.columnViews[to] = temp
+        }
+        self.prepareSlideViews(animate: animate)
+        datasource?.scrollView(self, didLoadedViewColumns: columnViews)
+    }
+    
     func setupSlideScrollView(slides : [UIView]) {
         slides.forEach { slide in
             self.addSubview(slide)
@@ -119,13 +150,22 @@ public extension DragAndDropPagingScrollView {
         self.prepareSlideViews()
     }
     
-    func prepareSlideViews() {
+    func prepareSlideViews(animate: Bool = true) {
         let pageHeight = self.frame.height
         
         self.contentSize = CGSize(width: pageWidth * CGFloat(self.columnViews.count) + (spacingWidth * CGFloat(self.columnViews.count - 1)), height: pageHeight)
         
         for i in 0 ..< self.columnViews.count {
-            self.columnViews[i].frame = CGRect(x: (pageWidth + spacingWidth) * CGFloat(i), y: 0, width: pageWidth, height: pageHeight)
+            if animate && self.movingColumns.contains(where: { (from, to) -> Bool in return i == from }) {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.columnViews[i].frame = CGRect(x: (self.pageWidth + self.spacingWidth) * CGFloat(i), y: 0, width: self.pageWidth, height: pageHeight)
+                }) { _ in
+                    self.movingColumns.removeAll { (from, to) -> Bool in return i == from }
+                }
+            } else {
+                self.columnViews[i].frame = CGRect(x: (pageWidth + spacingWidth) * CGFloat(i), y: 0, width: pageWidth, height: pageHeight)
+                self.movingColumns.removeAll { (from, to) -> Bool in return i == from }
+            }
         }
     }
     
@@ -146,6 +186,21 @@ public extension DragAndDropPagingScrollView {
         self.subviews.forEach { subView in
             subView.removeFromSuperview()
         }
+    }
+    
+    func fetchingVisibleColumnViews() -> [UIView] {
+        if self.columnViews.isEmpty {
+            return []
+        }
+        
+        var views: [UIView] = []
+        for index in 0...(self.columnViews.count - 1) {
+            if !self.movingColumns.contains(where: { (from, to) -> Bool in return index == from }) {
+                views.append(self.columnViews[index])
+            }
+        }
+        
+        return views
     }
 }
 

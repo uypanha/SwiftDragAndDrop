@@ -1,9 +1,23 @@
 //
-//  CollectionViewController.swift
-//  SwiftDragAndDrop
+// Copyright (c) 2019 Phanha UY
 //
-//  Created by Phanha Uy on 11/6/18.
-//  Copyright © 2019 Phanha Uy. All rights reserved.
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 //
 
 import UIKit
@@ -35,7 +49,7 @@ class CollectionViewController: UIViewController {
                     return DataItem("\(i)", UIColor.randomColor())
                 })
             }
-            columnData.append(ColumnDataItem("\(index)", items: dataItems))
+            columnData.append(ColumnDataItem("\(index)", title: title, items: dataItems))
             index += 1
         }
         
@@ -137,35 +151,6 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
             let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
             collectionViewLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
-    }
-}
-
-class ColumnDataItem: Equatable {
-    
-    var indexes: String
-    var items: [DataItem]
-    
-    init(_ indexes: String, items: [DataItem]) {
-        self.indexes    = indexes
-        self.items      = items
-    }
-    
-    static func ==(lhs: ColumnDataItem, rhs: ColumnDataItem) -> Bool {
-        return lhs.indexes == rhs.indexes
-    }
-}
-
-class DataItem : Equatable {
-    
-    var indexes: String
-    var colour: UIColor
-    init(_ indexes: String, _ colour: UIColor = UIColor.clear) {
-        self.indexes    = indexes
-        self.colour     = colour
-    }
-    
-    static func ==(lhs: DataItem, rhs: DataItem) -> Bool {
-        return lhs.indexes == rhs.indexes && lhs.colour == rhs.colour
     }
 }
 

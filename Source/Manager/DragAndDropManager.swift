@@ -68,8 +68,6 @@ public protocol DragAndDropPagingScrollViewDelegate {
     
     func dragAndDropView(dataItemAt point : CGPoint) -> AnyObject?
     
-    func dragAndDropView(dragData item : AnyObject)
-    
     func dragAndDropView(willMove item: AnyObject, inRect rect: CGRect)
     
     func draggingViewRect() -> CGRect?
@@ -144,6 +142,7 @@ public class DragAndDropManager: NSObject {
     
     var canvas : UIView
     var scrollView: UIScrollView? = nil
+    
     var columnViews: [UIView]
     var tableViews: [UIView]
     
@@ -165,8 +164,11 @@ public class DragAndDropManager: NSObject {
     /// The opacity of the selected cell.
     public var snapshotOpacity: CGFloat = 1
     
+    /// The scale factor for the selected column.
+    public var columnSnapShotScale: CGFloat = 1
+    
     /// The scale factor for the selected cell.
-    public var snapShotScale: CGFloat = 1
+    public var rowSnapShotScale: CGFloat = 1
     
     /// The shadow color for the selected cell.
     public var shadowColor: UIColor = .black
@@ -228,6 +230,15 @@ public class DragAndDropManager: NSObject {
         
         self.canvas.isMultipleTouchEnabled = false
         self.canvas.addGestureRecognizer(self.reorderGestureRecognizer)
+    }
+    
+    public func setSubViews(_ tableViews: [UIView], columnViews: [UIView] = []) {
+        self.tableViews = tableViews
+        if columnViews.isEmpty {
+            self.columnViews = tableViews
+        } else {
+            self.columnViews = columnViews
+        }
     }
     
     public func append(element tableView: UIView) {
