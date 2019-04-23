@@ -22,10 +22,34 @@
 
 import UIKit
 
-let autoScrollThreshold: CGFloat = 1
-let autoScrollMinVelocity: CGFloat = 60
-let autoScrollMaxVelocity: CGFloat = 280
+class ColumnDataItem: Equatable {
+    
+    var indexes: String
+    var title: String
+    var items: [DataItem]
+    
+    init(_ indexes: String, title: String, items: [DataItem]) {
+        self.indexes    = indexes
+        self.title      = title
+        self.items      = items
+    }
+    
+    static func ==(lhs: ColumnDataItem, rhs: ColumnDataItem) -> Bool {
+        return lhs.indexes == rhs.indexes
+    }
+}
 
-func mapValue(_ value: CGFloat, inRangeWithMin minA: CGFloat, max maxA: CGFloat, toRangeWithMin minB: CGFloat, max maxB: CGFloat) -> CGFloat {
-    return (value - minA) * (maxB - minB) / (maxA - minA) + minB
+class DataItem : Equatable {
+    
+    var indexes: String
+    var colour: UIColor
+    
+    init(_ indexes: String, _ colour: UIColor = UIColor.clear) {
+        self.indexes    = indexes
+        self.colour     = colour
+    }
+    
+    static func ==(lhs: DataItem, rhs: DataItem) -> Bool {
+        return lhs.indexes == rhs.indexes && lhs.colour == rhs.colour
+    }
 }

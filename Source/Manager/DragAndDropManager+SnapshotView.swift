@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018 Phanha UY
+// Copyright (c) 2019 Phanha UY
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,59 @@ import UIKit
 
 extension DragAndDropManager {
     
-    func createSnapshotViewForCell(_ recogniser : UILongPressGestureRecognizer) {
-        self.removeSnapshotView()
-        for view in views where view is DraggableViewDelegate  {
+    func createSnapshotView(_ recogniser : UILongPressGestureRecognizer) {
+        self.removeColumnSnapshitView()
+        self.removeRowSnapshotView()
+        
+        createRowSnapshotView(recogniser)
+        if self.rowBundle != nil { return }
+        
+        createColumnSnapshotView(recogniser)
+    }
+    
+    fileprivate func createColumnSnapshotView(_ recogniser : UILongPressGestureRecognizer) {
+        if let dragAndDrop = self.scrollView as? DragAndDropPagingScrollViewDelegate {
+            
+            let touchPointInView = recogniser.location(in: self.scrollView)
+            
+            guard dragAndDrop.dragAndDropView(canDragAt: touchPointInView) == true else { return }
+            guard var representation = dragAndDrop.dragAndDropView(representationImageAt: touchPointInView) else { return }
+            
+            representation.frame = self.canvas.convert(representation.frame, from: scrollView)
+            representation.layer.masksToBounds = false
+            representation.layer.opacity = Float(snapshotOpacity)
+            representation.layer.transform = CATransform3DMakeScale(columnSnapShotScale, columnSnapShotScale, 1)
+            
+            representation.layer.shadowColor = shadowColor.cgColor
+            representation.layer.shadowOpacity = Float(shadowOpacity)
+            representation.layer.shadowRadius = shadowRadius
+            representation.layer.shadowOffset = shadowOffset
+            if let decoredView = dragAndDrop.dragAndDropView(stylingRepresentationView: representation) {
+                representation = decoredView
+            }
+            
+            let pointOnCanvas = recogniser.location(in: self.canvas)
+            let offset = CGPoint(x: pointOnCanvas.x - representation.frame.origin.x, y: 0)
+            
+            if let dataItem: AnyObject = dragAndDrop.dragAndDropView(dataItemAt: touchPointInView), let viewColumn = viewColumn(at: touchPointInView) {
+                
+                self.removeRowSnapshotView()
+                self.columnBundle = ColumnReorderBundle(
+                    offset: offset,
+                    draggingView: viewColumn,
+                    snapshotView: representation,
+                    dataItem : dataItem
+                )
+                
+                guard let bundle = self.columnBundle else { return }
+                self.canvas.addSubview(bundle.snapshotView)
+                return
+            }
+        }
+    }
+    
+    fileprivate func createRowSnapshotView(_ recogniser : UILongPressGestureRecognizer) {
+        for view in tableViews where view is DraggableViewDelegate  {
             
             if let draggable = view as? DraggableViewDelegate {
                 let touchPointInView = recogniser.location(in: view)
@@ -36,8 +86,8 @@ extension DragAndDropManager {
                 guard var representation = draggable.draggableView(representationImageAt: touchPointInView) else { continue }
                 representation.frame = self.canvas.convert(representation.frame, from: view)
                 representation.layer.masksToBounds = false
-                representation.layer.opacity = Float(cellOpacity)
-                representation.layer.transform = CATransform3DMakeScale(cellScale, cellScale, 1)
+                representation.layer.opacity = Float(snapshotOpacity)
+                representation.layer.transform = CATransform3DMakeScale(rowSnapShotScale, rowSnapShotScale, 1)
                 
                 representation.layer.shadowColor = shadowColor.cgColor
                 representation.layer.shadowOpacity = Float(shadowOpacity)
@@ -52,8 +102,8 @@ extension DragAndDropManager {
                 
                 if let dataItem: AnyObject = draggable.draggableView(dataItemAt: touchPointInView) {
                     
-                    self.removeSnapshotView()
-                    self.bundle = ReorderBundle(
+                    self.removeRowSnapshotView()
+                    self.rowBundle = RowReorderBundle(
                         offset: offset,
                         sourceDraggableView: view,
                         destinationDroppableView : view is DroppableViewDelegate ? view : nil,
@@ -61,7 +111,7 @@ extension DragAndDropManager {
                         dataItem : dataItem
                     )
                     
-                    guard let bundle = self.bundle else { return }
+                    guard let bundle = self.rowBundle else { return }
                     self.canvas.addSubview(bundle.snapshotView)
                     return
                 }
@@ -69,27 +119,42 @@ extension DragAndDropManager {
         }
     }
     
-    func removeSnapshotView() {
-        guard let bundle = self.bundle else { return }
-        bundle.snapshotView.removeFromSuperview()
+    func removeColumnSnapshitView() {
+        guard let columnBundle = self.columnBundle else { return }
+        columnBundle.snapshotView.removeFromSuperview()
         
-        self.bundle = nil
+        self.columnBundle = nil
     }
     
-    func updateSnapshotViewPosition(_ pointOnCanvas: CGPoint) {
-        guard let bundle = self.bundle else { return }
+    func removeRowSnapshotView() {
+        guard let rowBundle = self.rowBundle else { return }
+        rowBundle.snapshotView.removeFromSuperview()
+        
+        self.rowBundle = nil
+    }
+    
+    func updateRowSnapshotViewPosition(_ pointOnCanvas: CGPoint) {
+        guard let bundle = self.rowBundle else { return }
         
         var repImgFrame = bundle.snapshotView.frame
         repImgFrame.origin = CGPoint(x: pointOnCanvas.x - bundle.offset.x, y: pointOnCanvas.y - bundle.offset.y);
         bundle.snapshotView.frame = repImgFrame
     }
     
+    func updateColumnSnapshotViewPosition(_ pointOnCanvas: CGPoint) {
+        guard let bundle = self.columnBundle else { return }
+        
+        var repImgFrame = bundle.snapshotView.frame
+        repImgFrame.origin = CGPoint(x: pointOnCanvas.x - bundle.offset.x, y: repImgFrame.origin.y);
+        bundle.snapshotView.frame = repImgFrame
+    }
+    
     func animateSnapshotViewIn() {
-        guard let snapshotView = self.bundle?.snapshotView else { return }
+        guard let snapshotView = self.rowBundle?.snapshotView ?? self.columnBundle?.snapshotView else { return }
         
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.fromValue = 1
-        opacityAnimation.toValue = self.cellOpacity
+        opacityAnimation.toValue = self.snapshotOpacity
         opacityAnimation.duration = self.animationDuration
         
         let shadowAnimation = CABasicAnimation(keyPath: "shadowOpacity")
@@ -99,7 +164,7 @@ extension DragAndDropManager {
         
         let transformAnimation = CABasicAnimation(keyPath: "transform.scale")
         transformAnimation.fromValue = 1
-        transformAnimation.toValue = self.cellScale
+        transformAnimation.toValue = self.rowBundle != nil ? self.rowSnapShotScale : self.columnSnapShotScale
         transformAnimation.duration = self.animationDuration
         transformAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         
@@ -109,10 +174,10 @@ extension DragAndDropManager {
     }
     
     func animateSnapshotViewOut() {
-        guard let snapshotView = self.bundle?.snapshotView else { return }
+        guard let snapshotView = self.rowBundle?.snapshotView ?? self.columnBundle?.snapshotView else { return }
         
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
-        opacityAnimation.fromValue = cellOpacity
+        opacityAnimation.fromValue = snapshotOpacity
         opacityAnimation.toValue = 1
         opacityAnimation.duration = animationDuration
         
@@ -122,7 +187,7 @@ extension DragAndDropManager {
         shadowAnimation.duration = animationDuration
         
         let transformAnimation = CABasicAnimation(keyPath: "transform.scale")
-        transformAnimation.fromValue = cellScale
+        transformAnimation.fromValue = self.rowBundle != nil ? self.rowSnapShotScale : self.columnSnapShotScale
         transformAnimation.toValue = 1
         transformAnimation.duration = animationDuration
         transformAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
@@ -134,5 +199,14 @@ extension DragAndDropManager {
         snapshotView.layer.opacity = 1
         snapshotView.layer.shadowOpacity = 0
         snapshotView.layer.transform = CATransform3DIdentity
+    }
+    
+    public func viewColumn(at point: CGPoint) -> UIView? {
+        if self.columnViews.count > 0 {
+            for index in 0...(self.columnViews.count - 1) {
+                if self.columnViews[index].frame.contains(point) { return self.columnViews[index] }
+            }
+        }
+        return nil
     }
 }
