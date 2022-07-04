@@ -25,11 +25,29 @@ import SwiftDragAndDrop
 
 class CollectionViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    private var collectionViewLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var collectionView: DragAndDropPagingCollectionView!
     private var indexOfCellBeforeDragging = 0
     
-    var titles = ["Backlog", "To Do", "In Progress", "Fixed", "Done", "Released", "Bug of Release"]
+    var titles = ["Backlog Short", "Backlog Long Terms", "To Do",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "Bug of Release", "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released"]
     var columnData: [ColumnDataItem] = []
     
     var dragAndDropManager : DragAndDropManager?
@@ -57,133 +75,159 @@ class CollectionViewController: UIViewController {
         self.prepareCollectionView()
         self.dragAndDropManager = DragAndDropManager(canvas: self.collectionView, tableViews: self.views)
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
         
-        self.configureCollectionViewLayoutItemSize()
+        self.collectionView.pageWidth = self.view.frame.width - 60
+        self.collectionView.padding = 30
     }
+}
 
+extension CollectionViewController: DragAndDropPagingCollectionViewDataSource {
+    
+    func numberOfColumns(in collectionView: DragAndDropPagingCollectionView) -> Int {
+        return self.columnData.count
+    }
+    
+    func collectionView(_ collectionView: DragAndDropPagingCollectionView, viewForColumnAt index: Int) -> UIView {
+        let tableView = DragAndDropTableViewCell()
+        tableView.data = columnData[index].items
+        self.views.insert(tableView, at: index)
+        self.dragAndDropManager?.setSubViews(self.views)
+        return tableView
+    }
 }
 
 // MARK: - Preparations
 extension CollectionViewController {
     
     fileprivate func prepareCollectionView() {
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-        
-        if let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            self.collectionViewLayout = flowLayout
-            self.collectionViewLayout.scrollDirection = .horizontal
-            self.collectionViewLayout.minimumLineSpacing = 10
-        }
+        self.collectionView.pagingDelegate = self
     }
     
     private func calculateSectionInset() -> CGFloat {
         return 20
     }
     
-    private func configureCollectionViewLayoutItemSize() {
-        let inset: CGFloat = calculateSectionInset() // This inset calculation is some magic so the next and the previous cells will peek from the sides. Don't worry about it
-        collectionViewLayout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
-        collectionViewLayout.itemSize = CGSize(width: self.collectionView.frame.width - (inset * 2), height: collectionView.frame.height)
-    }
+//    private func configureCollectionViewLayoutItemSize() {
+//        let inset: CGFloat = calculateSectionInset() // This inset calculation is some magic so the next and the previous cells will peek from the sides. Don't worry about it
+//        collectionViewLayout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
+//        collectionViewLayout.itemSize = CGSize(width: self.collectionView.frame.width - (inset * 2), height: collectionView.frame.height)
+//    }
     
-    private func indexOfMajorCell() -> Int {
-        let itemWidth = collectionViewLayout.itemSize.width
-        let proportionalOffset = collectionViewLayout.collectionView!.contentOffset.x / itemWidth
-        let index = Int(round(proportionalOffset))
-        let safeIndex = max(0, min(9/*dataSource.count - 1*/, index))
-        return safeIndex
-    }
+//    private func indexOfMajorCell() -> Int {
+//        let itemWidth = collectionViewLayout.itemSize.width
+//        let proportionalOffset = collectionViewLayout.collectionView!.contentOffset.x / itemWidth
+//        let index = Int(round(proportionalOffset))
+//        let safeIndex = max(0, min(9/*dataSource.count - 1*/, index))
+//        return safeIndex
+//    }
 }
 
-extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return titles.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: DragCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DragCollectionViewCell", for: indexPath) as! DragCollectionViewCell
-        if !self.views.contains(cell.tableView) {
-            self.views.append(cell.tableView)
-            
-            self.dragAndDropManager = DragAndDropManager(canvas: self.collectionView, tableViews: self.views)
-        }
-        cell.data = columnData[indexPath.section].items
-        cell.reloadData()
-        return cell
-    }
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.indexOfCellBeforeDragging = indexOfMajorCell()
-    }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        // Stop scrollView sliding:
-        targetContentOffset.pointee = scrollView.contentOffset
-        
-        // calculate where scrollView should snap to:
-        let indexOfMajorCell = self.indexOfMajorCell()
-        
-        // calculate conditions:
-        let swipeVelocityThreshold: CGFloat = 0.5 // after some trail and error
-        let hasEnoughVelocityToSlideToTheNextCell = indexOfCellBeforeDragging + 1 < titles.count /*dataSource.count*/ && velocity.x > swipeVelocityThreshold
-        let hasEnoughVelocityToSlideToThePreviousCell = indexOfCellBeforeDragging - 1 >= 0 && velocity.x < -swipeVelocityThreshold
-        let majorCellIsTheCellBeforeDragging = indexOfMajorCell == indexOfCellBeforeDragging
-        let didUseSwipeToSkipCell = majorCellIsTheCellBeforeDragging && (hasEnoughVelocityToSlideToTheNextCell || hasEnoughVelocityToSlideToThePreviousCell)
-        
-        if didUseSwipeToSkipCell {
-            
-            let snapToIndex = indexOfCellBeforeDragging + (hasEnoughVelocityToSlideToTheNextCell ? 1 : -1)
-            let toValue = collectionViewLayout.itemSize.width * CGFloat(snapToIndex)
-            
-            // Damping equal 1 => no oscillations => decay animation:
-            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: velocity.x, options: .allowUserInteraction, animations: {
-                scrollView.contentOffset = CGPoint(x: toValue, y: 0)
-                scrollView.layoutIfNeeded()
-            }, completion: nil)
-            
-        } else {
-            // This is a much better way to scroll to a cell:
-            let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
-            collectionViewLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        }
-    }
-}
+//extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return titles.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell: DragCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DragCollectionViewCell", for: indexPath) as! DragCollectionViewCell
+//        if !self.views.contains(cell.tableView) {
+//            self.views.append(cell.tableView)
+//
+//            self.dragAndDropManager = DragAndDropManager(canvas: self.collectionView, tableViews: self.views)
+//        }
+//        cell.data = columnData[indexPath.section].items
+//        cell.reloadData()
+//        return cell
+//    }
+//
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        self.indexOfCellBeforeDragging = indexOfMajorCell()
+//    }
+//
+//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//        // Stop scrollView sliding:
+//        targetContentOffset.pointee = scrollView.contentOffset
+//
+//        // calculate where scrollView should snap to:
+//        let indexOfMajorCell = self.indexOfMajorCell()
+//
+//        // calculate conditions:
+//        let swipeVelocityThreshold: CGFloat = 0.5 // after some trail and error
+//        let hasEnoughVelocityToSlideToTheNextCell = indexOfCellBeforeDragging + 1 < titles.count /*dataSource.count*/ && velocity.x > swipeVelocityThreshold
+//        let hasEnoughVelocityToSlideToThePreviousCell = indexOfCellBeforeDragging - 1 >= 0 && velocity.x < -swipeVelocityThreshold
+//        let majorCellIsTheCellBeforeDragging = indexOfMajorCell == indexOfCellBeforeDragging
+//        let didUseSwipeToSkipCell = majorCellIsTheCellBeforeDragging && (hasEnoughVelocityToSlideToTheNextCell || hasEnoughVelocityToSlideToThePreviousCell)
+//
+//        if didUseSwipeToSkipCell {
+//
+//            let snapToIndex = indexOfCellBeforeDragging + (hasEnoughVelocityToSlideToTheNextCell ? 1 : -1)
+//            let toValue = collectionViewLayout.itemSize.width * CGFloat(snapToIndex)
+//
+//            // Damping equal 1 => no oscillations => decay animation:
+//            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: velocity.x, options: .allowUserInteraction, animations: {
+//                scrollView.contentOffset = CGPoint(x: toValue, y: 0)
+//                scrollView.layoutIfNeeded()
+//            }, completion: nil)
+//
+//        } else {
+//            // This is a much better way to scroll to a cell:
+//            let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
+//            collectionViewLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+//        }
+//    }
+//}
 
-class DragCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var tableView: DragAndDropTableView!
+class DragAndDropTableViewCell: DragAndDropTableView {
     
     var data = [DataItem]()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    init() {
+        super.init(frame: .init(), style: .plain)
         
         // Initialization code
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        
+        self.dataSource = self
+        self.delegate = self
         self.prepareTableView()
     }
     
-    func reloadData() {
-        self.tableView.reloadData()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }
 
-extension DragCollectionViewCell {
+//class DragCollectionViewCell: UICollectionViewCell {
+//
+//    @IBOutlet weak var tableView: DragAndDropTableView!
+//
+//    var data = [DataItem]()
+//
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//
+//        // Initialization code
+//        self.tableView.dataSource = self
+//        self.tableView.delegate = self
+//
+//        self.prepareTableView()
+//    }
+//
+//    func reloadData() {
+//        self.tableView.reloadData()
+//    }
+//}
+
+extension DragAndDropTableViewCell {
     
     private func prepareTableView() {
-        self.tableView.register(DragTableViewCell.self)
-        self.tableView.tableFooterView = UIView()
+        self.register(DragTableViewCell.self)
+        self.tableFooterView = UIView()
     }
 }
 
-extension DragCollectionViewCell: DragAndDropTableViewDataSource, UITableViewDelegate {
+extension DragAndDropTableViewCell: DragAndDropTableViewDataSource, UITableViewDelegate {
     
     func numberOfDraggableCells(in tableView: UITableView) -> Int {
         if data.count > 0 {
@@ -230,7 +274,7 @@ extension DragCollectionViewCell: DragAndDropTableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DragTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         if (tableView as? DragAndDropTableView)?.isDraggingCell(at: indexPath) == true {
-            cell.isHidden = true
+            cell.backgroundColor = .green
         }
         cell.title = self.data[indexPath.row].indexes
         cell.color = self.data[indexPath.row].colour
@@ -238,11 +282,11 @@ extension DragCollectionViewCell: DragAndDropTableViewDataSource, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, cellIsDraggableAt indexPath: IndexPath) -> Bool {
-        return indexPath.row > 0
+        return true
     }
     
     func tableView(_ tableView: UITableView, cellIsDroppableAt indexPath: IndexPath) -> Bool {
-        return indexPath.row > 0
+        return true
     }
 }
 

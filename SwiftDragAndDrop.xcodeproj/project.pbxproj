@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9621B814286EA31700C73816 /* DragAndDropPagingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9621B813286EA31700C73816 /* DragAndDropPagingCollectionView.swift */; };
+		9621B816286EABB500C73816 /* DragAndDropCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9621B815286EABB500C73816 /* DragAndDropCollectionViewCell.swift */; };
 		DC415810225DC73A00668A3D /* DragAndDropPagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */; };
 		DC415813225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC415812225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift */; };
 		DC41581822684FC500668A3D /* DraggableItemViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41581722684FC500668A3D /* DraggableItemViewDelegate.swift */; };
@@ -63,6 +65,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9621B813286EA31700C73816 /* DragAndDropPagingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropPagingCollectionView.swift; sourceTree = "<group>"; };
+		9621B815286EABB500C73816 /* DragAndDropCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC41580F225DC73A00668A3D /* DragAndDropPagingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropPagingScrollView.swift; sourceTree = "<group>"; };
 		DC415812225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DragAndDropPagingScrollView+DragAndDrop.swift"; sourceTree = "<group>"; };
 		DC41581722684FC500668A3D /* DraggableItemViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableItemViewDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9621B812286EA2DB00C73816 /* DragAndDropPagingCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				9621B813286EA31700C73816 /* DragAndDropPagingCollectionView.swift */,
+				9621B815286EABB500C73816 /* DragAndDropCollectionViewCell.swift */,
+			);
+			path = DragAndDropPagingCollectionView;
+			sourceTree = "<group>";
+		};
 		DC41580E225DC70A00668A3D /* DragAndDropPagingScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,12 +188,13 @@
 		DCC9B9D1219D7A06005D4352 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				DC41580E225DC70A00668A3D /* DragAndDropPagingScrollView */,
-				DCC9B9EF219D7A54005D4352 /* DragAndDropTableView */,
-				DCC9B9DF219D7A45005D4352 /* Manager */,
 				DCC9B9D5219D7A1D005D4352 /* AutoScroll+Constant.swift */,
 				DCC9B9D3219D7A1C005D4352 /* CGRect+Extensions.swift */,
 				DC41581722684FC500668A3D /* DraggableItemViewDelegate.swift */,
+				9621B812286EA2DB00C73816 /* DragAndDropPagingCollectionView */,
+				DC41580E225DC70A00668A3D /* DragAndDropPagingScrollView */,
+				DCC9B9EF219D7A54005D4352 /* DragAndDropTableView */,
+				DCC9B9DF219D7A45005D4352 /* Manager */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -342,6 +356,7 @@
 				DCC9B9E9219D7A50005D4352 /* DragAndDropManager+SnapshotView.swift in Sources */,
 				DCC9B9E7219D7A50005D4352 /* DragAndDropManager+GestureRecognizer.swift in Sources */,
 				DC415810225DC73A00668A3D /* DragAndDropPagingScrollView.swift in Sources */,
+				9621B816286EABB500C73816 /* DragAndDropCollectionViewCell.swift in Sources */,
 				DCC9B9ED219D7A50005D4352 /* DragAndDropManager+AutoScroll.swift in Sources */,
 				DCC9B9E5219D7A50005D4352 /* DragAndDropManager+Destination.swift in Sources */,
 				DC41581822684FC500668A3D /* DraggableItemViewDelegate.swift in Sources */,
@@ -349,6 +364,7 @@
 				DCC9B9EB219D7A50005D4352 /* DragAndDropManager.swift in Sources */,
 				DCC9B9F4219D7A63005D4352 /* DragAndDropTableView.swift in Sources */,
 				DCC9B9DC219D7A1D005D4352 /* AutoScroll+Constant.swift in Sources */,
+				9621B814286EA31700C73816 /* DragAndDropPagingCollectionView.swift in Sources */,
 				DCC9B9F8219D7A63005D4352 /* DragAndDropTableView+Droppable.swift in Sources */,
 				DC415813225EF9A400668A3D /* DragAndDropPagingScrollView+DragAndDrop.swift in Sources */,
 				DCC9B9F6219D7A63005D4352 /* DragAndDropTableView+AutoScroll.swift in Sources */,

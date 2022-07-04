@@ -34,27 +34,33 @@ extension DragAndDropManager {
         
         var overlappingAreaMAX: CGFloat = 0.0
         var mainOverView: UIView?
+//        print("Dragging Frame == X:\(draggingFrame.origin.x)")
         
-        var index = 0
-        for view in self.tableViews where view is DraggableViewDelegate  {
-            let viewFrameOnCanvas = self.convertRectToCanvas(view.frame, fromView: view)
-            
-            /*                 ┌────────┐   ┌────────────┐
-             *                 │       ┌┼───│Intersection│
-             *                 │       ││   └────────────┘
-             *                 │   ▼───┘│
-             * ████████████████│████████│████████████████
-             * ████████████████└────────┘████████████████
-             * ██████████████████████████████████████████
-             */
-            
-            let overlappingAreaCurrent = draggingFrame.intersection(viewFrameOnCanvas).area
-            
-            if overlappingAreaCurrent > overlappingAreaMAX {
-                overlappingAreaMAX = overlappingAreaCurrent
-                mainOverView = view
+        if let collectionView = self.scrollView as? UICollectionView {
+            // If scrollView is Collectionview
+            if let indexPath = collectionView.indexPathForItem(at: pointOnDetectedView) {
+                mainOverView = self.tableViews[indexPath.row]
             }
-            index += 1
+        } else {
+            for view in self.tableViews where view is DraggableViewDelegate  {
+                let viewFrameOnCanvas = self.convertRectToCanvas(view.frame, fromView: view)
+                
+                /*                 ┌────────┐   ┌────────────┐
+                 *                 │       ┌┼───│Intersection│
+                 *                 │       ││   └────────────┘
+                 *                 │   ▼───┘│
+                 * ████████████████│████████│████████████████
+                 * ████████████████└────────┘████████████████
+                 * ██████████████████████████████████████████
+                 */
+                
+                let overlappingAreaCurrent = draggingFrame.intersection(viewFrameOnCanvas).area
+                
+                if overlappingAreaCurrent > overlappingAreaMAX {
+                    overlappingAreaMAX = overlappingAreaCurrent
+                    mainOverView = view
+                }
+            }
         }
         
         if let droppable = mainOverView as? DroppableViewDelegate {

@@ -13,7 +13,26 @@ class ScrollViewController: UIViewController {
 
     @IBOutlet weak var scrollView: DragAndDropPagingScrollView!
     
-    var titles = ["Backlog", "To Do", "In Progress", "Fixed", "Done", "Released", "Bug of Release"]
+    var titles = ["Backlog Short", "Backlog Long Terms", "To Do",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "Bug of Release", "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released",
+                  "In Progress", "Fixed", "Done", "Stagging", "Released"]
     
     var dragAndDropManager : DragAndDropManager?
     var columnData: [ColumnDataItem] = []

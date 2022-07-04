@@ -76,14 +76,10 @@ extension DragAndDropManager {
     }
     
     fileprivate func createRowSnapshotView(_ recogniser : UILongPressGestureRecognizer) {
-        for view in tableViews where view is DraggableViewDelegate  {
-            
+        
+        func createSnapshot(representation: UIView, touchPointInView: CGPoint, view: UIView) -> Bool {
+            var representation = representation
             if let draggable = view as? DraggableViewDelegate {
-                let touchPointInView = recogniser.location(in: view)
-                
-                guard draggable.draggableView(canDragAt: touchPointInView) == true else { continue }
-                
-                guard var representation = draggable.draggableView(representationImageAt: touchPointInView) else { continue }
                 representation.frame = self.canvas.convert(representation.frame, from: view)
                 representation.layer.masksToBounds = false
                 representation.layer.opacity = Float(snapshotOpacity)
@@ -111,9 +107,41 @@ extension DragAndDropManager {
                         dataItem : dataItem
                     )
                     
-                    guard let bundle = self.rowBundle else { return }
+                    guard let bundle = self.rowBundle else { return false }
                     self.canvas.addSubview(bundle.snapshotView)
-                    return
+                    return true
+                }
+            }
+            return false
+        }
+        
+        if let collectionView = self.scrollView as? UICollectionView {
+            print("Content Size = \(collectionView.contentSize)")
+            var touchPointInView = recogniser.location(in: collectionView)
+            if let indexPath = collectionView.indexPathForItem(at: touchPointInView) {
+                let view = self.tableViews[indexPath.row]
+                if let draggable = view as? DraggableViewDelegate {
+                    
+                    touchPointInView.x = view.frame.width / 2
+                    guard draggable.draggableView(canDragAt: touchPointInView) == true else { return }
+                    guard let representation = draggable.draggableView(representationImageAt: touchPointInView) else { return }
+                    if createSnapshot(representation: representation, touchPointInView: touchPointInView, view: view) {
+                        return
+                    }
+                }
+            }
+        } else {
+            for view in tableViews where view is DraggableViewDelegate  {
+                
+                if let draggable = view as? DraggableViewDelegate {
+                    let touchPointInView = recogniser.location(in: view)
+                    
+                    guard draggable.draggableView(canDragAt: touchPointInView) == true else { continue }
+                    
+                    guard let representation = draggable.draggableView(representationImageAt: touchPointInView) else { continue }
+                    if createSnapshot(representation: representation, touchPointInView: touchPointInView, view: view) {
+                        return
+                    }
                 }
             }
         }
