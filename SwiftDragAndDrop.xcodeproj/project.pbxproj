@@ -60,6 +60,8 @@
 		9621B8322872EA5B00C73816 /* DraggableItemViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableItemViewDelegate.swift; sourceTree = "<group>"; };
 		9621B8332872EA5B00C73816 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		9621B8342872EA5B00C73816 /* AutoScroll+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoScroll+Constant.swift"; sourceTree = "<group>"; };
+		96753F1D2872EFF500237C1D /* SwiftDragAndDrop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftDragAndDrop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96753F1E2872EFF500237C1D /* SwiftDragAndDropTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDragAndDropTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_12 /* SwiftDragAndDropTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDragAndDropTests.swift; sourceTree = "<group>"; };
 		OBJ_16 /* Example */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Example; sourceTree = SOURCE_ROOT; };
 		OBJ_17 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = SOURCE_ROOT; };
@@ -69,8 +71,6 @@
 		OBJ_21 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* SwiftDragAndDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDragAndDrop.swift; sourceTree = "<group>"; };
-		"swiftdraganddrop::SwiftDragAndDrop::Product" /* SwiftDragAndDrop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDragAndDrop.framework; path = "/Users/panhauy/Desktop/Personal/My-Distribution/SwiftDragAndDrop/build/Debug/SwiftDragAndDrop.framework"; sourceTree = "<absolute>"; };
-		"swiftdraganddrop::SwiftDragAndDropTests::Product" /* SwiftDragAndDropTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = SwiftDragAndDropTests.xctest; path = "/Users/panhauy/Desktop/Personal/My-Distribution/SwiftDragAndDrop/build/Debug/SwiftDragAndDropTests.xctest"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +176,8 @@
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_10 /* Tests */,
+				96753F1D2872EFF500237C1D /* SwiftDragAndDrop.framework */,
+				96753F1E2872EFF500237C1D /* SwiftDragAndDropTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,7 +215,7 @@
 			);
 			name = SwiftDragAndDrop;
 			productName = SwiftDragAndDrop;
-			productReference = "swiftdraganddrop::SwiftDragAndDrop::Product" /* SwiftDragAndDrop.framework */;
+			productReference = 96753F1D2872EFF500237C1D /* SwiftDragAndDrop.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		"swiftdraganddrop::SwiftDragAndDropTests" /* SwiftDragAndDropTests */ = {
@@ -230,7 +232,7 @@
 			);
 			name = SwiftDragAndDropTests;
 			productName = SwiftDragAndDropTests;
-			productReference = "swiftdraganddrop::SwiftDragAndDropTests::Product" /* SwiftDragAndDropTests.xctest */;
+			productReference = 96753F1E2872EFF500237C1D /* SwiftDragAndDropTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		"swiftdraganddrop::SwiftPMPackageDescription" /* SwiftDragAndDropPackageDescription */ = {
@@ -332,6 +334,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 0.5.0;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -362,6 +365,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 0.5.0;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
