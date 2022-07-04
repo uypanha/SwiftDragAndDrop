@@ -25,6 +25,16 @@ it, simply add the following line to your Podfile:
 pod 'SwiftDragAndDrop'
 ```
 
+### Swift Package Manager
+
+_Note: Instructions below are for using **SwiftPM** without the Xcode UI. It's the easiest to go to your Project Settings -> Swift Packages and add SwiftDragAndDrop from there._
+
+To integrate using Apple's Swift package manager, without Xcode integration, add the following as a dependency to your `Package.swift`:
+
+```swift
+.package(url: "https://github.com/uypanha/SwiftDragAndDrop.git", .upToNextMajor(from: "1.0"))
+```
+
 ### Manually
 
 You can integrate SwiftDragAndDrop into your project manually by copying the contents of the `Source` folder into your project.
