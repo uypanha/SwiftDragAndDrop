@@ -40,12 +40,12 @@ extension DragAndDropCollectionViewCell {
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|",
                                                            options: [],
                                                            metrics: nil,
-                                                           views: ["childView": stackView]))
+                                                           views: ["childView": stackView!]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|",
                                                            options: [],
                                                            metrics: nil,
-                                                           views: ["childView": stackView]))
+                                                           views: ["childView": stackView!]))
     }
     
     func setContentView(_ view: UIView) {
