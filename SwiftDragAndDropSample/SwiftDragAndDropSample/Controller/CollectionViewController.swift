@@ -78,6 +78,7 @@ extension CollectionViewController: DragAndDropPagingCollectionViewDataSource {
     
     func collectionView(_ collectionView: DragAndDropPagingCollectionView, viewForColumnAt index: Int) -> UIView {
         let tableView = DragAndDropTableViewCell()
+        tableView.title = columnData[index].title
         tableView.data = columnData[index].items
         self.views.insert(tableView, at: index)
         self.dragAndDropManager?.setSubViews(self.views)
@@ -99,6 +100,7 @@ extension CollectionViewController {
 
 class DragAndDropTableViewCell: DragAndDropTableView {
     
+    var title: String = ""
     var data = [DataItem]()
     
     init() {
@@ -124,6 +126,10 @@ extension DragAndDropTableViewCell {
 }
 
 extension DragAndDropTableViewCell: DragAndDropTableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.title
+    }
     
     func numberOfDraggableCells(in tableView: UITableView) -> Int {
         if data.count > 0 {
@@ -169,11 +175,12 @@ extension DragAndDropTableViewCell: DragAndDropTableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DragTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        if (tableView as? DragAndDropTableView)?.isDraggingCell(at: indexPath) == true {
-            cell.backgroundColor = .green
-        }
         cell.title = self.data[indexPath.row].indexes
         cell.color = self.data[indexPath.row].colour
+        
+        if (tableView as? DragAndDropTableView)?.isDraggingCell(at: indexPath) == true {
+            cell.isHidden = true
+        }
         return cell
     }
     

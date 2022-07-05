@@ -121,7 +121,6 @@
 				96753F412873DC5300237C1D /* Info.plist */,
 				96753F332873DC5100237C1D /* AppDelegate.swift */,
 				96753F352873DC5100237C1D /* SceneDelegate.swift */,
-				96753F6E2873DE5E00237C1D /* TodoDragAndDropTableView.swift */,
 				96753F3C2873DC5300237C1D /* Assets.xcassets */,
 				96753F672873DDCB00237C1D /* Controller */,
 				96753F702873DE7600237C1D /* Data */,
@@ -129,6 +128,7 @@
 				96753F732873DE9900237C1D /* Extension */,
 				96753F3E2873DC5300237C1D /* LaunchScreen.storyboard */,
 				96753F392873DC5100237C1D /* Main.storyboard */,
+				96753F7B2873E8E600237C1D /* Views */,
 			);
 			path = SwiftDragAndDropSample;
 			sourceTree = "<group>";
@@ -190,6 +190,14 @@
 				96753F782873DEF900237C1D /* DragTableViewCell.xib */,
 			);
 			path = DragTableViewCell;
+			sourceTree = "<group>";
+		};
+		96753F7B2873E8E600237C1D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96753F6E2873DE5E00237C1D /* TodoDragAndDropTableView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -121,7 +121,7 @@ extension DragAndDropManager {
             if let indexPath = collectionView.indexPathForItem(at: touchPointInView) {
                 let view = self.tableViews[indexPath.row]
                 if let draggable = view as? DraggableViewDelegate {
-                    
+                    touchPointInView = recogniser.location(in: view)
                     touchPointInView.x = view.frame.width / 2
                     guard draggable.draggableView(canDragAt: touchPointInView) == true else { return }
                     guard let representation = draggable.draggableView(representationImageAt: touchPointInView) else { return }
