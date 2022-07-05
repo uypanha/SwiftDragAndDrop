@@ -32,6 +32,8 @@ extension DragAndDropManager {
             self.updateReorder(recogniser)
         case .ended, .cancelled, .failed, .possible:
             self.endReorder(recogniser)
+        @unknown default:
+            break
         }
     }
     
