@@ -57,7 +57,7 @@ extension DragAndDropCollectionViewCell {
     
     func removeAllSubViews() {
         self.stackView.arrangedSubviews.forEach { view in
-            self.stackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
         }
     }
 }
