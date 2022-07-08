@@ -37,7 +37,7 @@ class CollectionViewController: UIViewController {
     var columnData: [ColumnDataItem] = []
     
     var dragAndDropManager : DragAndDropManager?
-    var views = [UIView]()
+    var views = [Int: UIView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +80,7 @@ extension CollectionViewController: DragAndDropPagingCollectionViewDataSource {
         let tableView = DragAndDropTableViewCell()
         tableView.title = columnData[index].title
         tableView.data = columnData[index].items
-        self.views.insert(tableView, at: index)
+        self.views[index] = tableView
         self.dragAndDropManager?.setSubViews(self.views)
         return tableView
     }

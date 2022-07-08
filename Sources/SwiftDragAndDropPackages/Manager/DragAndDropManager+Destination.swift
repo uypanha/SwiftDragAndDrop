@@ -42,8 +42,8 @@ extension DragAndDropManager {
                 mainOverView = self.tableViews[indexPath.row]
             }
         } else {
-            for view in self.tableViews where view is DraggableViewDelegate  {
-                let viewFrameOnCanvas = self.convertRectToCanvas(view.frame, fromView: view)
+            for view in self.tableViews where view.value is DraggableViewDelegate  {
+                let viewFrameOnCanvas = self.convertRectToCanvas(view.value.frame, fromView: view.value)
                 
                 /*                 ┌────────┐   ┌────────────┐
                  *                 │       ┌┼───│Intersection│
@@ -58,7 +58,7 @@ extension DragAndDropManager {
                 
                 if overlappingAreaCurrent > overlappingAreaMAX {
                     overlappingAreaMAX = overlappingAreaCurrent
-                    mainOverView = view
+                    mainOverView = view.value
                 }
             }
         }
@@ -146,7 +146,8 @@ extension DragAndDropManager {
         var overlappingAreaMAX: CGFloat = 0.0
         var mainOverView: UIView?
 
-        for view in self.columnViews {
+        for index in self.columnViews.keys.sorted(by: <) {
+            let view = self.columnViews[index]!
             let viewFrameOnCanvas = self.convertRectToCanvas(view.frame, fromView: view)
             
             let overlappingAreaCurrent = draggingFrame.intersection(viewFrameOnCanvas).area

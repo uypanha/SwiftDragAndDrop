@@ -143,8 +143,8 @@ public class DragAndDropManager: NSObject {
     var canvas : UIView
     var scrollView: UIScrollView? = nil
     
-    var columnViews: [UIView]
-    var tableViews: [UIView]
+    var columnViews: [Int: UIView]
+    var tableViews: [Int: UIView]
     
     var viewToDetect: UIView {
         get {
@@ -210,7 +210,7 @@ public class DragAndDropManager: NSObject {
         return gestureRecognizer
     }()
     
-    public init(canvas: UIView, tableViews: [UIView], columnViews: [UIView] = []) {
+    public init(canvas: UIView, tableViews: [Int:UIView], columnViews: [Int:UIView] = [:]) {
         
         guard let superView = canvas.superview else {
             fatalError("Canvas must be inside a view")
@@ -232,7 +232,7 @@ public class DragAndDropManager: NSObject {
         self.canvas.addGestureRecognizer(self.reorderGestureRecognizer)
     }
     
-    public func setSubViews(_ tableViews: [UIView], columnViews: [UIView] = []) {
+    public func setSubViews(_ tableViews: [Int:UIView], columnViews: [Int:UIView] = [:]) {
         self.tableViews = tableViews
         if columnViews.isEmpty {
             self.columnViews = tableViews
@@ -241,8 +241,8 @@ public class DragAndDropManager: NSObject {
         }
     }
     
-    public func append(element tableView: UIView) {
-        self.tableViews.append(tableView)
+    public func append(element tableView: UIView, at index: Int) {
+        self.tableViews[index] = tableView
     }
     
     // MARK: - Reordering

@@ -119,27 +119,28 @@ extension DragAndDropManager {
             print("Content Size = \(collectionView.contentSize)")
             var touchPointInView = recogniser.location(in: collectionView)
             if let indexPath = collectionView.indexPathForItem(at: touchPointInView) {
-                let view = self.tableViews[indexPath.row]
-                if let draggable = view as? DraggableViewDelegate {
-                    touchPointInView = recogniser.location(in: view)
-                    touchPointInView.x = view.frame.width / 2
-                    guard draggable.draggableView(canDragAt: touchPointInView) == true else { return }
-                    guard let representation = draggable.draggableView(representationImageAt: touchPointInView) else { return }
-                    if createSnapshot(representation: representation, touchPointInView: touchPointInView, view: view) {
-                        return
+                if let view = self.tableViews[indexPath.row] {
+                    if let draggable = view as? DraggableViewDelegate {
+                        touchPointInView = recogniser.location(in: view)
+                        touchPointInView.x = view.frame.width / 2
+                        guard draggable.draggableView(canDragAt: touchPointInView) == true else { return }
+                        guard let representation = draggable.draggableView(representationImageAt: touchPointInView) else { return }
+                        if createSnapshot(representation: representation, touchPointInView: touchPointInView, view: view) {
+                            return
+                        }
                     }
                 }
             }
         } else {
             for view in tableViews where view is DraggableViewDelegate  {
                 
-                if let draggable = view as? DraggableViewDelegate {
-                    let touchPointInView = recogniser.location(in: view)
+                if let draggable = view.value as? DraggableViewDelegate {
+                    let touchPointInView = recogniser.location(in: view.value)
                     
                     guard draggable.draggableView(canDragAt: touchPointInView) == true else { continue }
                     
                     guard let representation = draggable.draggableView(representationImageAt: touchPointInView) else { continue }
-                    if createSnapshot(representation: representation, touchPointInView: touchPointInView, view: view) {
+                    if createSnapshot(representation: representation, touchPointInView: touchPointInView, view: view.value) {
                         return
                     }
                 }
@@ -232,7 +233,7 @@ extension DragAndDropManager {
     public func viewColumn(at point: CGPoint) -> UIView? {
         if self.columnViews.count > 0 {
             for index in 0...(self.columnViews.count - 1) {
-                if self.columnViews[index].frame.contains(point) { return self.columnViews[index] }
+                if self.columnViews[index]?.frame.contains(point) == true { return self.columnViews[index] }
             }
         }
         return nil
