@@ -49,11 +49,15 @@ extension DragAndDropCollectionViewCell {
     }
     
     func setContentView(_ view: UIView) {
-        if let currentView = self.view {
-            self.stackView.removeArrangedSubview(currentView)
-        }
+        self.removeAllSubViews()
         self.view = view
         self.stackView.addArrangedSubview(view)
         self.contentView.layoutIfNeeded()
+    }
+    
+    func removeAllSubViews() {
+        self.stackView.arrangedSubviews.forEach { view in
+            self.stackView.removeArrangedSubview(view)
+        }
     }
 }
