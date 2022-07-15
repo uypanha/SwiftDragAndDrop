@@ -114,6 +114,7 @@ extension DragAndDropPagingCollectionView {
         
         if #available(iOS 10.0, *) {
             self.isPrefetchingEnabled = true
+            self.prefetchDataSource = self
         }
         self.delegate = self
         self.dataSource = self
@@ -184,11 +185,20 @@ extension DragAndDropPagingCollectionView: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - UICollectionViewDataSource
-extension DragAndDropPagingCollectionView: UICollectionViewDataSource {
+extension DragAndDropPagingCollectionView: UICollectionViewDataSource, UICollectionViewDataSourcePrefetching {
+    
+    public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { indexPath in
+            DispatchQueue.main.async {
+                _ = self.collumnView(at: indexPath)
+            }
+        }
+    }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DragAndDropCollectionViewCell", for: indexPath) as? DragAndDropCollectionViewCell {
             cell.setContentView(self.collumnView(at: indexPath))
+            self.shouldPrefetchViews(from: indexPath)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
@@ -207,5 +217,9 @@ extension DragAndDropPagingCollectionView: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: self.pageWidth, height: self.frame.height)
+    }
+    
+    func shouldPrefetchViews(from indexPath: IndexPath) {
+        
     }
 }
