@@ -28,7 +28,7 @@ open class DragAndDropPagingCollectionView: UICollectionView {
     public lazy var spacingWidth: CGFloat = 0
     public var padding: CGFloat = 20
     
-    public var columnViews: [UIView] = []
+    public var columnViews: [Int:UIView] = [:]
     private var indexOfCellBeforeDragging = 0
     
     public init() {
@@ -49,12 +49,13 @@ open class DragAndDropPagingCollectionView: UICollectionView {
     }
     
     private func collumnView(at indexPath: IndexPath) -> UIView {
-        if indexPath.row > (self.columnViews.count - 1) {
-            if let view = self.pagingDelegate?.collectionView(self, viewForColumnAt: indexPath.row) {
-                self.columnViews.insert(view, at: indexPath.row)
-            }
+        if let view = self.columnViews[indexPath.row] {
+            return view
+        } else if let view = self.pagingDelegate?.collectionView(self, viewForColumnAt: indexPath.row) {
+            self.columnViews[indexPath.row] = view
+            return view
         }
-        return self.columnViews[indexPath.row]
+        return .init()
     }
 }
 

@@ -38,7 +38,7 @@ public protocol DragAndDropPagingScrollViewDataSource {
     /* optional */  func scrollView(_ scrollView: DragAndDropPagingScrollView, columnIsDraggableAt index: Int) -> Bool
     /* optional */  func scrollView(_ scrollView: DragAndDropPagingScrollView, columnIsDroppableAt index: Int) -> Bool
     /* optional */  func scrollView(_ scrollView: DragAndDropPagingScrollView, stylingRepresentation view: UIView) -> UIView?
-    /* optional */  func scrollView(_ scrollView: DragAndDropPagingScrollView, didLoadedViewColumns views: [UIView])
+    /* optional */  func scrollView(_ scrollView: DragAndDropPagingScrollView, didLoadedViewColumns views: [Int:UIView])
 }
 
 public extension DragAndDropPagingScrollViewDataSource {
@@ -54,7 +54,7 @@ public extension DragAndDropPagingScrollViewDataSource {
         return view
     }
     
-    func scrollView(_ scrollView: DragAndDropPagingScrollView, didLoadedViewColumns views: [UIView]) {}
+    func scrollView(_ scrollView: DragAndDropPagingScrollView, didLoadedViewColumns views: [Int:UIView]) {}
 }
 
 /**
@@ -81,7 +81,7 @@ open class DragAndDropPagingScrollView: UIScrollView {
     
     open var pagingDelegate: DragAndDropScrollViewViewDelegate?
     
-    public var columnViews: [UIView] = []
+    public var columnViews: [Int: UIView] = [:]
     
     public var visibleColumnViews: [UIView] {
         get { return self.fetchingVisibleColumnViews() }
@@ -143,9 +143,9 @@ public extension DragAndDropPagingScrollView {
         datasource?.scrollView(self, didLoadedViewColumns: columnViews)
     }
     
-    func setupSlideScrollView(slides : [UIView]) {
+    func setupSlideScrollView(slides : [Int: UIView]) {
         slides.forEach { slide in
-            self.addSubview(slide)
+            self.addSubview(slide.value)
         }
         self.prepareSlideViews()
     }
@@ -155,27 +155,27 @@ public extension DragAndDropPagingScrollView {
         
         self.contentSize = CGSize(width: pageWidth * CGFloat(self.columnViews.count) + (spacingWidth * CGFloat(self.columnViews.count - 1)), height: pageHeight)
         
-        for i in 0 ..< self.columnViews.count {
+        for i in self.columnViews.keys {
             if animate && self.movingColumns.contains(where: { (from, to) -> Bool in return i == from }) {
                 UIView.animate(withDuration: 0.5, animations: {
-                    self.columnViews[i].frame = CGRect(x: (self.pageWidth + self.spacingWidth) * CGFloat(i), y: 0, width: self.pageWidth, height: pageHeight)
+                    self.columnViews[i]?.frame = CGRect(x: (self.pageWidth + self.spacingWidth) * CGFloat(i), y: 0, width: self.pageWidth, height: pageHeight)
                 }) { _ in
                     self.movingColumns.removeAll { (from, to) -> Bool in return i == from }
                 }
             } else {
-                self.columnViews[i].frame = CGRect(x: (pageWidth + spacingWidth) * CGFloat(i), y: 0, width: pageWidth, height: pageHeight)
+                self.columnViews[i]?.frame = CGRect(x: (pageWidth + spacingWidth) * CGFloat(i), y: 0, width: pageWidth, height: pageHeight)
                 self.movingColumns.removeAll { (from, to) -> Bool in return i == from }
             }
         }
     }
     
-    func createSlides() -> [UIView] {
-        var columnViews: [UIView] = []
+    func createSlides() -> [Int: UIView] {
+        var columnViews: [Int:UIView] = [:]
         if let datasource = self.datasource {
             let numberFoColumns = datasource.numberOfColumns(in: self)
             if numberFoColumns > 0 {
                 for index in 0...(numberFoColumns - 1) {
-                    columnViews.append(datasource.scrollView(self, viewForColumnAt: index))
+                    columnViews[index] = datasource.scrollView(self, viewForColumnAt: index)
                 }
             }
         }
@@ -194,9 +194,11 @@ public extension DragAndDropPagingScrollView {
         }
         
         var views: [UIView] = []
-        for index in 0...(self.columnViews.count - 1) {
+        for index in self.columnViews.keys {
             if !self.movingColumns.contains(where: { (from, to) -> Bool in return index == from }) {
-                views.append(self.columnViews[index])
+                if let view = self.columnViews[index] {
+                    views.append(view)
+                }
             }
         }
         

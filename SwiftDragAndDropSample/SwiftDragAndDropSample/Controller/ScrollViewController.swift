@@ -129,7 +129,7 @@ extension ScrollViewController: DragAndDropPagingScrollViewDataSource {
         return tableView
     }
     
-    func scrollView(_ scrollView: DragAndDropPagingScrollView, didLoadedViewColumns views: [UIView]) {
+    func scrollView(_ scrollView: DragAndDropPagingScrollView, didLoadedViewColumns views: [Int: UIView]) {
         if self.dragAndDropManager == nil {
             self.dragAndDropManager = DragAndDropManager(canvas: self.scrollView, tableViews: views)
             self.dragAndDropManager?.columnSnapShotScale = 0.9

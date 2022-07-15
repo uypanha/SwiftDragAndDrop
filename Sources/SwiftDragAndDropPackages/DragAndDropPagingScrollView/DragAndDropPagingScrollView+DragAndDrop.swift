@@ -27,7 +27,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
     
     public func draggingViewRect() -> CGRect? {
         if let index = self.draggingIndex, index < self.columnViews.count {
-            return self.columnViews[index].frame
+            return self.columnViews[index]?.frame
         }
         return nil
     }
@@ -40,7 +40,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
                 if view is DraggableItemViewDelegate {
                     (view as? DraggableItemViewDelegate)?.didBeginDragging()
                 } else {
-                    view.isHidden = true
+                    view?.isHidden = true
                 }
             }
             self.pagingDelegate?.scrollViewDidBeginDragging(self, at: indexToReload)
@@ -53,7 +53,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
             if view is DraggableItemViewDelegate {
                 (view as? DraggableItemViewDelegate)?.didFinishedDragging()
             } else {
-                view.isHidden = false
+                view?.isHidden = false
             }
             self.pagingDelegate?.scrollView(self, didDropAt: indexToReload)
         }
@@ -79,7 +79,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
         guard index < self.columnViews.count else { return nil }
         let view = self.columnViews[index]
         
-        let columnView: UIView = (view as? DraggableItemViewDelegate)?.representationImage() ?? view
+        let columnView: UIView = (view as? DraggableItemViewDelegate)?.representationImage() ?? view ?? .init()
         
         UIGraphicsBeginImageContextWithOptions(columnView.bounds.size, false, 0)
         columnView.layer.render(in: UIGraphicsGetCurrentContext()!)
@@ -88,7 +88,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
         
         let imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: columnView.frame.origin.x, y: columnView.frame.origin.y, width: columnView.frame.width, height: columnView.frame.height)
-        imageView.center = view.center
+        imageView.center = view?.center ?? .init()
         
         return imageView
     }
@@ -120,7 +120,7 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
             for index in 0...(self.columnViews.count - 1) {
                 if self.movingColumns.contains(where: { (from, to) -> Bool in return index == from }) {
                     return nil
-                } else if self.columnViews[index].frame.contains(point) {
+                } else if self.columnViews[index]?.frame.contains(point) == true {
                     return index
                 }
             }
@@ -132,7 +132,8 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
         var overlappingArea : CGFloat = 0.0
         var viewCandidate: UIView?
         
-        let lastIndex: Int = self.columnViews.count > 0 ? self.columnViews.count - 1 : 0
+        let indexes = self.columnViews.keys.sorted(by: <)
+        let lastIndex: Int = indexes.count > 0 ? (indexes.last ?? 0) : 0
         
         let visibleColumns = self.visibleColumnViews
         if visibleColumns.count == 0 {
@@ -154,8 +155,12 @@ extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
             }
         }
         
-        if let viewRetrieved = viewCandidate, let index = self.columnViews.firstIndex(of: viewRetrieved), self.datasource?.scrollView(self, columnIsDroppableAt: index) == true {
-            return index
+        if let viewRetreived = viewCandidate {
+            for item in self.columnViews {
+                if item.value == viewRetreived {
+                    return item.key
+                }
+            }
         }
         return nil
     }
