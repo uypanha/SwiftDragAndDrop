@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 Phanha UY
+// Copyright (c) 2019 Panha Uy
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -158,7 +158,7 @@ extension DragAndDropManager {
             }
         }
         
-        if let dragAndDrop = self.scrollView as? DragAndDropPagingScrollViewDelegate {
+        if let dragAndDrop = self.scrollView as? DragAndDropPagingDelegate {
             if let overView = mainOverView {
                 let rect = viewToDetect.convert(draggingFrame, to: self.viewToDetect)
                 if dragAndDrop.dragAndDropView(canDropAt: rect) {
@@ -170,7 +170,7 @@ extension DragAndDropManager {
         return false
     }
     
-    fileprivate func updateReoderColumns(_ dragAndDrop: DragAndDropPagingScrollViewDelegate, _ mainOverView: UIView?, at rect: CGRect) {
+    fileprivate func updateReoderColumns(_ dragAndDrop: DragAndDropPagingDelegate, _ mainOverView: UIView?, at rect: CGRect) {
         
         guard let bundle = self.columnBundle else { return }
         if bundle.draggingView == mainOverView { return }
@@ -181,7 +181,7 @@ extension DragAndDropManager {
     func updateColumnSnapshotViewOut(completion: @escaping () -> Void) {
         guard let bundle = self.columnBundle else { return }
         
-        if let dragAndDrop = self.scrollView as? DragAndDropPagingScrollViewDelegate {
+        if let dragAndDrop = self.scrollView as? DragAndDropPagingDelegate {
             if let columnRectInView = dragAndDrop.draggingViewRect() {
                 let viewRect = viewToDetect.convert(columnRectInView, to: self.canvas)
                 let viewRectCenter = CGPoint(x: viewRect.midX, y: viewRect.midY)

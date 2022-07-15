@@ -3,7 +3,7 @@
 //  SwiftDragAndDrop
 //
 //  Created by Panha Uy on 1/7/22.
-//  Copyright © 2022 Phanha Uy. All rights reserved.
+//  Copyright © 2022 Panha Uy. All rights reserved.
 //
 
 import UIKit
