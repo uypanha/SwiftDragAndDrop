@@ -154,15 +154,17 @@ extension DragAndDropPagingCollectionView: UICollectionViewDelegateFlowLayout {
             let toValue = (self.pageWidth + self.spacingWidth) * CGFloat(snapToIndex)
 
             // Damping equal 1 => no oscillations => decay animation:
-            UIView.animate(
-                withDuration: 0.3,
-                delay: 0, usingSpringWithDamping: 1,
-                initialSpringVelocity: velocity.x,
-                options: .allowUserInteraction,
-                animations: {
-                    scrollView.contentOffset = CGPoint(x: toValue, y: 0)
-                    scrollView.layoutIfNeeded()
-                }, completion: nil)
+            DispatchQueue.main.async {
+                UIView.animate(
+                    withDuration: 0.3,
+                    delay: 0, usingSpringWithDamping: 1,
+                    initialSpringVelocity: velocity.x,
+                    options: .allowUserInteraction,
+                    animations: {
+                        scrollView.contentOffset = CGPoint(x: toValue, y: 0)
+                        scrollView.layoutIfNeeded()
+                    }, completion: nil)
+            }
         } else {
             // This is a much better way to scroll to a cell:
             let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
@@ -198,7 +200,6 @@ extension DragAndDropPagingCollectionView: UICollectionViewDataSource, UICollect
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DragAndDropCollectionViewCell", for: indexPath) as? DragAndDropCollectionViewCell {
             cell.setContentView(self.collumnView(at: indexPath))
-            self.shouldPrefetchViews(from: indexPath)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
@@ -217,9 +218,5 @@ extension DragAndDropPagingCollectionView: UICollectionViewDataSource, UICollect
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: self.pageWidth, height: self.frame.height)
-    }
-    
-    func shouldPrefetchViews(from indexPath: IndexPath) {
-        
     }
 }
