@@ -159,7 +159,7 @@ extension DragAndDropPagingCollectionView: UICollectionViewDelegateFlowLayout {
                     withDuration: 0.3,
                     delay: 0, usingSpringWithDamping: 1,
                     initialSpringVelocity: velocity.x,
-                    options: .allowUserInteraction,
+                    options: .allowAnimatedContent,
                     animations: {
                         scrollView.contentOffset = CGPoint(x: toValue, y: 0)
                         scrollView.layoutIfNeeded()
