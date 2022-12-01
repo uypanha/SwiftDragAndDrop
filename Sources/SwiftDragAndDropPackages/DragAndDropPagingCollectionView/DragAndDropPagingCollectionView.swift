@@ -3,7 +3,7 @@
 //  SwiftDragAndDrop
 //
 //  Created by Panha Uy on 1/7/22.
-//  Copyright © 2022 Phanha Uy. All rights reserved.
+//  Copyright © 2022 Panha Uy. All rights reserved.
 //
 
 import UIKit
@@ -16,11 +16,54 @@ public protocol DragAndDropPagingCollectionViewDataSource {
     func numberOfColumns(in collectionView: DragAndDropPagingCollectionView) -> Int
     
     func collectionView(_ collectionView: DragAndDropPagingCollectionView, viewForColumnAt index: Int) -> UIView
+    
+    func collectionView(_ collectionView: DragAndDropPagingCollectionView, dataItemAt index: Int) -> AnyObject?
+    
+    func collectionView(_ collectionView: DragAndDropPagingCollectionView, moveDataItem from: Int, to: Int) -> Void
+    
+    /* optional */  func collectionView(_ collectionView: DragAndDropPagingCollectionView, columnIsDraggableAt index: Int) -> Bool
+    
+    /* optional */  func collectionView(_ collectionView: DragAndDropPagingCollectionView, columnIsDroppableAt index: Int) -> Bool
+    
+    /* optional */  func collectionView(_ collectionView: DragAndDropPagingCollectionView, stylingRepresentation view: UIView) -> UIView?
+}
+
+public extension DragAndDropPagingCollectionViewDataSource {
+
+    func collectionView(_ collectionView: DragAndDropPagingCollectionView, columnIsDraggableAt index: Int) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: DragAndDropPagingCollectionView, columnIsDroppableAt index: Int) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: DragAndDropPagingCollectionView, stylingRepresentation view: UIView) -> UIView? {
+        return view
+    }
+}
+
+/**
+ The delegate of a `DragAndDropPagingCollectionView` must adopt the `DragAndDropCollectionViewDelegate` protocol. This protocol defines methods for handling the drag and drop of columns.
+ */
+public protocol DragAndDropCollectionViewDelegate {
+    
+    func collectionViewDidBeginDragging(_ collectionView: UICollectionView, at index: Int)
+    
+    func collectionViewDidFinishDragging(_ collectionView: UICollectionView)
+    
+    func collectionView(_ collectionView: UICollectionView, didDropAt index: Int)
 }
 
 open class DragAndDropPagingCollectionView: UICollectionView {
     
-    open var pagingDelegate: DragAndDropPagingCollectionViewDataSource?
+    open var pagingDatasource: DragAndDropPagingCollectionViewDataSource? {
+        didSet {
+            self.reloadData()
+        }
+    }
+    
+    open var pagingDelegate: DragAndDropCollectionViewDelegate?
     
     public lazy var pageWidth: CGFloat = { [unowned self] in
         return self.frame.width - 40
@@ -29,6 +72,9 @@ open class DragAndDropPagingCollectionView: UICollectionView {
     public var padding: CGFloat = 20
     
     public var columnViews: [Int:UIView] = [:]
+    
+    public var draggingIndex: Int?
+    
     private var indexOfCellBeforeDragging = 0
     
     public init() {
@@ -51,7 +97,7 @@ open class DragAndDropPagingCollectionView: UICollectionView {
     private func collumnView(at indexPath: IndexPath) -> UIView {
         if let view = self.columnViews[indexPath.row] {
             return view
-        } else if let view = self.pagingDelegate?.collectionView(self, viewForColumnAt: indexPath.row) {
+        } else if let view = self.pagingDatasource?.collectionView(self, viewForColumnAt: indexPath.row) {
             self.columnViews[indexPath.row] = view
             return view
         }
@@ -68,6 +114,7 @@ extension DragAndDropPagingCollectionView {
         
         if #available(iOS 10.0, *) {
             self.isPrefetchingEnabled = true
+            self.prefetchDataSource = self
         }
         self.delegate = self
         self.dataSource = self
@@ -107,15 +154,17 @@ extension DragAndDropPagingCollectionView: UICollectionViewDelegateFlowLayout {
             let toValue = (self.pageWidth + self.spacingWidth) * CGFloat(snapToIndex)
 
             // Damping equal 1 => no oscillations => decay animation:
-            UIView.animate(
-                withDuration: 0.3,
-                delay: 0, usingSpringWithDamping: 1,
-                initialSpringVelocity: velocity.x,
-                options: .allowUserInteraction,
-                animations: {
-                    scrollView.contentOffset = CGPoint(x: toValue, y: 0)
-                    scrollView.layoutIfNeeded()
-                }, completion: nil)
+            DispatchQueue.main.async {
+                UIView.animate(
+                    withDuration: 0.3,
+                    delay: 0, usingSpringWithDamping: 1,
+                    initialSpringVelocity: velocity.x,
+                    options: .allowAnimatedContent,
+                    animations: {
+                        scrollView.contentOffset = CGPoint(x: toValue, y: 0)
+                        scrollView.layoutIfNeeded()
+                    }, completion: nil)
+            }
         } else {
             // This is a much better way to scroll to a cell:
             let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
@@ -138,7 +187,15 @@ extension DragAndDropPagingCollectionView: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - UICollectionViewDataSource
-extension DragAndDropPagingCollectionView: UICollectionViewDataSource {
+extension DragAndDropPagingCollectionView: UICollectionViewDataSource, UICollectionViewDataSourcePrefetching {
+    
+    public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { indexPath in
+            DispatchQueue.main.async {
+                _ = self.collumnView(at: indexPath)
+            }
+        }
+    }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DragAndDropCollectionViewCell", for: indexPath) as? DragAndDropCollectionViewCell {
@@ -156,7 +213,7 @@ extension DragAndDropPagingCollectionView: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.pagingDelegate?.numberOfColumns(in: self) ?? 0
+        return self.pagingDatasource?.numberOfColumns(in: self) ?? 0
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

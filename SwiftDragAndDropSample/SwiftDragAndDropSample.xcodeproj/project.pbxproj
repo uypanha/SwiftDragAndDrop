@@ -268,6 +268,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
+				ORGANIZATIONNAME = "Panha Uy";
 				TargetAttributes = {
 					96753F2F2873DC5100237C1D = {
 						CreatedOnToolsVersion = 13.4.1;

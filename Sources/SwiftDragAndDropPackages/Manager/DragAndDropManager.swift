@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 Phanha UY
+// Copyright (c) 2019 Panha Uy
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +54,7 @@ public extension DragAndDropDelegate where Self: UITableView {
     }
 }
 
-public protocol DragAndDropPagingScrollViewDelegate {
+public protocol DragAndDropPagingDelegate {
     
     var draggingIndex: Int? { get set }
     
@@ -77,7 +77,7 @@ public protocol DragAndDropPagingScrollViewDelegate {
     /* optional */ func isDraggingColumn(at index: Int) -> Bool
 }
 
-public extension DragAndDropPagingScrollViewDelegate {
+public extension DragAndDropPagingDelegate {
     
     func dragAndDropView(didBeginDraggingAt point: CGPoint) {}
     
@@ -258,7 +258,7 @@ public class DragAndDropManager: NSObject {
             let pointOnSourceDraggable = recogniser.location(in: bundle.sourceDraggableView)
             sourceDraggable.draggableView(didBeginDraggingAt: pointOnSourceDraggable)
         } else if let _ = self.columnBundle {
-            if let dragAndDrop = self.scrollView as? DragAndDropPagingScrollViewDelegate {
+            if let dragAndDrop = self.scrollView as? DragAndDropPagingDelegate {
                 let touchPointInView = recogniser.location(in: self.scrollView)
                 dragAndDrop.dragAndDropView(didBeginDraggingAt: touchPointInView)
             }
@@ -337,7 +337,7 @@ public class DragAndDropManager: NSObject {
         animateSnapshotViewOut()
         updateColumnSnapshotViewOut {
             
-            (self.scrollView as? DragAndDropPagingScrollViewDelegate)?.dragAndDropViewDidFinishDragging()
+            (self.scrollView as? DragAndDropPagingDelegate)?.dragAndDropViewDidFinishDragging()
             self.removeColumnSnapshitView()
         }
     }

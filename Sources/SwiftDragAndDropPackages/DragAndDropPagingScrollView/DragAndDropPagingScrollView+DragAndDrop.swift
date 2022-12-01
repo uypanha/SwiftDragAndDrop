@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 Phanha UY
+// Copyright (c) 2019 Panha Uy
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 import UIKit
 
 // MARK: - DraggableViewDelegate
-extension DragAndDropPagingScrollView: DragAndDropPagingScrollViewDelegate {
+extension DragAndDropPagingScrollView: DragAndDropPagingDelegate {
     
     public func draggingViewRect() -> CGRect? {
         if let index = self.draggingIndex, index < self.columnViews.count {

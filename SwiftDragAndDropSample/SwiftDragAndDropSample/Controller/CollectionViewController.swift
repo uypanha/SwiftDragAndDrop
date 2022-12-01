@@ -72,6 +72,10 @@ class CollectionViewController: UIViewController {
 
 extension CollectionViewController: DragAndDropPagingCollectionViewDataSource {
     
+    func collectionView(_ collectionView: DragAndDropPagingCollectionView, dataItemAt index: Int) -> AnyObject? {
+        return self.columnData[index]
+    }
+    
     func numberOfColumns(in collectionView: DragAndDropPagingCollectionView) -> Int {
         return self.columnData.count
     }
@@ -84,6 +88,26 @@ extension CollectionViewController: DragAndDropPagingCollectionViewDataSource {
         self.dragAndDropManager?.setSubViews(self.views)
         return tableView
     }
+    
+    func collectionView(_ collectionView: DragAndDropPagingCollectionView, moveDataItem from: Int, to: Int) {
+        let item = self.columnData[to]
+        self.columnData[to] = self.columnData[from]
+        self.columnData[from] = item
+    }
+}
+
+extension CollectionViewController: DragAndDropCollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didDropAt index: Int) {
+    }
+    
+    func collectionViewDidBeginDragging(_ collectionView: UICollectionView, at index: Int) {
+    }
+    
+    func collectionViewDidFinishDragging(_ collectionView: UICollectionView) {
+        self.views.removeAll()
+        self.collectionView.reloadData()
+    }
 }
 
 // MARK: - Preparations
@@ -91,6 +115,7 @@ extension CollectionViewController {
     
     fileprivate func prepareCollectionView() {
         self.collectionView.pagingDelegate = self
+        self.collectionView.pagingDatasource = self
     }
     
     private func calculateSectionInset() -> CGFloat {
@@ -190,6 +215,21 @@ extension DragAndDropTableViewCell: DragAndDropTableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellIsDroppableAt indexPath: IndexPath) -> Bool {
         return true
+    }
+}
+
+extension DragAndDropTableViewCell: DraggableItemViewDelegate {
+    
+    func representationImage() -> UIView? {
+        return self
+    }
+    
+    func didBeginDragging() {
+        self.isHidden = true
+    }
+    
+    func didFinishedDragging() {
+        self.isHidden = false
     }
 }
 

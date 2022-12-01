@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 Phanha UY
+// Copyright (c) 2019 Panha Uy
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ extension DragAndDropManager {
     }
     
     fileprivate func createColumnSnapshotView(_ recogniser : UILongPressGestureRecognizer) {
-        if let dragAndDrop = self.scrollView as? DragAndDropPagingScrollViewDelegate {
+        if let dragAndDrop = self.scrollView as? DragAndDropPagingDelegate {
             
             let touchPointInView = recogniser.location(in: self.scrollView)
             
@@ -231,7 +231,11 @@ extension DragAndDropManager {
     }
     
     public func viewColumn(at point: CGPoint) -> UIView? {
-        if self.columnViews.count > 0 {
+        if let collectionView = self.scrollView as? UICollectionView {
+            if let index = collectionView.indexPathForItem(at: point)?.row {
+                return self.columnViews[index]
+            }
+        } else if self.columnViews.count > 0 {
             for index in 0...(self.columnViews.count - 1) {
                 if self.columnViews[index]?.frame.contains(point) == true { return self.columnViews[index] }
             }

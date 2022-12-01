@@ -2,8 +2,8 @@
 //  DragTableViewCell.swift
 //  SwiftDragAndDrop
 //
-//  Created by Phanha Uy on 11/13/18.
-//  Copyright © 2019 Phanha Uy. All rights reserved.
+//  Created by Panha Uy on 11/13/18.
+//  Copyright © 2019 Panha Uy. All rights reserved.
 //
 
 import UIKit
