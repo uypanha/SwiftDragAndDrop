@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96676B622968082500757D59 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96676B612968082500757D59 /* SampleData.swift */; };
 		96753F342873DC5100237C1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96753F332873DC5100237C1D /* AppDelegate.swift */; };
 		96753F362873DC5100237C1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96753F352873DC5100237C1D /* SceneDelegate.swift */; };
 		96753F3B2873DC5100237C1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96753F392873DC5100237C1D /* Main.storyboard */; };
@@ -20,7 +21,6 @@
 		96753F6B2873DDF200237C1D /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96753F6A2873DDF200237C1D /* CollectionViewController.swift */; };
 		96753F6D2873DE0200237C1D /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96753F6C2873DE0200237C1D /* ScrollViewController.swift */; };
 		96753F6F2873DE5E00237C1D /* TodoDragAndDropTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96753F6E2873DE5E00237C1D /* TodoDragAndDropTableView.swift */; };
-		96753F722873DE8200237C1D /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96753F712873DE8200237C1D /* SampleData.swift */; };
 		96753F752873DEA500237C1D /* Reusable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96753F742873DEA500237C1D /* Reusable+Extensions.swift */; };
 		96753F792873DEF900237C1D /* DragTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96753F772873DEF900237C1D /* DragTableViewCell.swift */; };
 		96753F7A2873DEF900237C1D /* DragTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96753F782873DEF900237C1D /* DragTableViewCell.xib */; };
@@ -44,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		96676B612968082500757D59 /* SampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		96753F302873DC5100237C1D /* SwiftDragAndDropSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDragAndDropSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96753F332873DC5100237C1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96753F352873DC5100237C1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		96753F6A2873DDF200237C1D /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		96753F6C2873DE0200237C1D /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		96753F6E2873DE5E00237C1D /* TodoDragAndDropTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDragAndDropTableView.swift; sourceTree = "<group>"; };
-		96753F712873DE8200237C1D /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SampleData.swift; path = ../../../../../../../../Documents/SampleData.swift; sourceTree = "<group>"; };
 		96753F742873DEA500237C1D /* Reusable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reusable+Extensions.swift"; sourceTree = "<group>"; };
 		96753F772873DEF900237C1D /* DragTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragTableViewCell.swift; sourceTree = "<group>"; };
 		96753F782873DEF900237C1D /* DragTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DragTableViewCell.xib; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		96753F702873DE7600237C1D /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				96753F712873DE8200237C1D /* SampleData.swift */,
+				96676B612968082500757D59 /* SampleData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -338,7 +338,7 @@
 			files = (
 				96753F6D2873DE0200237C1D /* ScrollViewController.swift in Sources */,
 				96753F792873DEF900237C1D /* DragTableViewCell.swift in Sources */,
-				96753F722873DE8200237C1D /* SampleData.swift in Sources */,
+				96676B622968082500757D59 /* SampleData.swift in Sources */,
 				96753F752873DEA500237C1D /* Reusable+Extensions.swift in Sources */,
 				96753F342873DC5100237C1D /* AppDelegate.swift in Sources */,
 				96753F6F2873DE5E00237C1D /* TodoDragAndDropTableView.swift in Sources */,

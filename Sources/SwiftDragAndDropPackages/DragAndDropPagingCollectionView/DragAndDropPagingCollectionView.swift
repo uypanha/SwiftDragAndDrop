@@ -65,10 +65,14 @@ open class DragAndDropPagingCollectionView: UICollectionView {
     
     open var pagingDelegate: DragAndDropCollectionViewDelegate?
     
+    public var paging: Bool = true
+    
     public lazy var pageWidth: CGFloat = { [unowned self] in
         return self.frame.width - 40
     }()
+    
     public lazy var spacingWidth: CGFloat = 0
+    
     public var padding: CGFloat = 20
     
     public var columnViews: [Int:UIView] = [:]
@@ -135,45 +139,49 @@ extension DragAndDropPagingCollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        // Stop scrollView sliding:
-        targetContentOffset.pointee = scrollView.contentOffset
+        if self.paging {
+            // Stop scrollView sliding:
+            targetContentOffset.pointee = scrollView.contentOffset
 
-        // calculate where scrollView should snap to:
-        let indexOfMajorCell = self.indexOfMajorCell()
+            // calculate where scrollView should snap to:
+            let indexOfMajorCell = self.indexOfMajorCell()
 
-        // calculate conditions:
-        let numberOfColumns = self.numberOfItems(inSection: 0)
-        let swipeVelocityThreshold: CGFloat = 0.5 // after some trail and error
-        let hasEnoughVelocityToSlideToTheNextCell = indexOfCellBeforeDragging + 1 < numberOfColumns && velocity.x > swipeVelocityThreshold
-        let hasEnoughVelocityToSlideToThePreviousCell = indexOfCellBeforeDragging - 1 >= 0 && velocity.x < -swipeVelocityThreshold
-        let majorCellIsTheCellBeforeDragging = indexOfMajorCell == indexOfCellBeforeDragging
-        let didUseSwipeToSkipCell = majorCellIsTheCellBeforeDragging && (hasEnoughVelocityToSlideToTheNextCell || hasEnoughVelocityToSlideToThePreviousCell)
+            // calculate conditions:
+            let numberOfColumns = self.numberOfItems(inSection: 0)
+            let swipeVelocityThreshold: CGFloat = 0.5 // after some trail and error
+            let hasEnoughVelocityToSlideToTheNextCell = indexOfCellBeforeDragging + 1 < numberOfColumns && velocity.x > swipeVelocityThreshold
+            let hasEnoughVelocityToSlideToThePreviousCell = indexOfCellBeforeDragging - 1 >= 0 && velocity.x < -swipeVelocityThreshold
+            let majorCellIsTheCellBeforeDragging = indexOfMajorCell == indexOfCellBeforeDragging
+            let didUseSwipeToSkipCell = majorCellIsTheCellBeforeDragging && (hasEnoughVelocityToSlideToTheNextCell || hasEnoughVelocityToSlideToThePreviousCell)
 
-        if didUseSwipeToSkipCell {
-            let snapToIndex = indexOfCellBeforeDragging + (hasEnoughVelocityToSlideToTheNextCell ? 1 : -1)
-            let toValue = (self.pageWidth + self.spacingWidth) * CGFloat(snapToIndex)
+            if didUseSwipeToSkipCell {
+                let snapToIndex = indexOfCellBeforeDragging + (hasEnoughVelocityToSlideToTheNextCell ? 1 : -1)
+                let toValue = (self.pageWidth + self.spacingWidth) * CGFloat(snapToIndex)
 
-            // Damping equal 1 => no oscillations => decay animation:
-            DispatchQueue.main.async {
-                UIView.animate(
-                    withDuration: 0.3,
-                    delay: 0, usingSpringWithDamping: 1,
-                    initialSpringVelocity: velocity.x,
-                    options: .allowAnimatedContent,
-                    animations: {
-                        scrollView.contentOffset = CGPoint(x: toValue, y: 0)
-                        scrollView.layoutIfNeeded()
-                    }, completion: nil)
+                // Damping equal 1 => no oscillations => decay animation:
+                DispatchQueue.main.async {
+                    UIView.animate(
+                        withDuration: 0.3,
+                        delay: 0, usingSpringWithDamping: 1,
+                        initialSpringVelocity: velocity.x,
+                        options: .allowAnimatedContent,
+                        animations: {
+                            scrollView.contentOffset = CGPoint(x: toValue, y: 0)
+                            scrollView.layoutIfNeeded()
+                        }, completion: nil)
+                }
+            } else {
+                // This is a much better way to scroll to a cell:
+                let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
+                collectionViewLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             }
-        } else {
-            // This is a much better way to scroll to a cell:
-            let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
-            collectionViewLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
     }
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.indexOfCellBeforeDragging = indexOfMajorCell()
+        if self.paging {
+            self.indexOfCellBeforeDragging = indexOfMajorCell()
+        }
     }
     
     private func indexOfMajorCell() -> Int {

@@ -43,6 +43,8 @@ class CollectionViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "DragAndDrop UICollectionView"
+        // Makging scroll paging when it's phone
+        self.collectionView.paging = UIDevice.current.userInterfaceIdiom == .phone
         
         var index = 0
         titles.forEach { (title) in
